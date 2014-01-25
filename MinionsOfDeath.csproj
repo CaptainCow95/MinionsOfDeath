@@ -53,6 +53,11 @@
     <Compile Include="Camera.cs" />
     <Compile Include="GameObject.cs" />
     <Compile Include="Graphics\StringDrawer.cs" />
+    <Compile Include="Interface\Button.cs" />
+    <Compile Include="Interface\InterfaceObject.cs" />
+    <Compile Include="Interface\Select.cs" />
+    <Compile Include="Interface\StackPanel.cs" />
+    <Compile Include="Interface\TextBlock.cs" />
     <Compile Include="Minion.cs" />
     <Compile Include="Navigation\Path.cs" />
     <Compile Include="Navigation\WaypointGraph.cs" />
