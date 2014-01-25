@@ -9,17 +9,25 @@ namespace MinionsOfDeath
     public class Game : GameWindow
     {
         public static KeyboardState KeyboardState;
-        public static KeyboardState PreviousKeyboardState;
         public static MouseState MouseState;
+        public static KeyboardState PreviousKeyboardState;
         public static MouseState PreviousMouseState;
+        private GameState _gameState;
+        private Sprite _map;
+
         public Game()
         {
             this.UpdateFrame += Game_UpdateFrame;
             this.RenderFrame += Game_RenderFrame;
 
-			this.WindowBorder = WindowBorder.Fixed;
-			this.Width = 800;
-			this.Height = 600;
+            this.WindowBorder = WindowBorder.Fixed;
+            this.Width = 1000;
+            this.Height = 700;
+
+            _gameState = GameState.Running;
+            _map = new Sprite(new List<string>() { "Images\\Map1.png" });
+            _map.Width *= 2;
+            _map.Height *= 2;
         }
 
         private void Game_RenderFrame(object sender, FrameEventArgs e)
@@ -45,7 +53,18 @@ namespace MinionsOfDeath
 
             Camera.Begin();
 
-            // Do drawing here.
+            switch (_gameState)
+            {
+                case GameState.PlanningTeam1:
+                    break;
+
+                case GameState.PlanningTeam2:
+                    break;
+
+                case GameState.Running:
+                    _map.Draw();
+                    break;
+            }
 
             Camera.End();
 
@@ -59,6 +78,18 @@ namespace MinionsOfDeath
 
             MouseState = OpenTK.Input.Mouse.GetState();
             KeyboardState = OpenTK.Input.Keyboard.GetState();
+
+            switch (_gameState)
+            {
+                case GameState.PlanningTeam1:
+                    break;
+
+                case GameState.PlanningTeam2:
+                    break;
+
+                case GameState.Running:
+                    break;
+            }
         }
     }
 }
