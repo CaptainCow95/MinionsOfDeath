@@ -19,6 +19,10 @@ namespace MinionsOfDeath
             get { return _minions; }
         }
 
+        public void AddMinion(Minion minion){
+            _minions.Add(minion.ID, minion);
+        }
+
         public void SetSpecial(int MinionID)
         {
             foreach(KeyValuePair<int, Minion> minion in _minions){
