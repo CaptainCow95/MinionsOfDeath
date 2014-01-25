@@ -53,6 +53,21 @@ namespace MinionsOfDeath.Navigation
             bNode.Neighbors.Add(aNode);
         }
 
+        public WaypointNode GetClosestWaypoint(int x, int y)
+        {
+            WaypointNode closest = nodes.ElementAt(0).Value;
+            foreach (KeyValuePair<Tuple<int, int>, WaypointNode> item in nodes)
+            {
+                WaypointNode tempNode = item.Value;
+                if (getDistance(x, y, tempNode.X, tempNode.Y) < getDistance(x, y, closest.X, closest.Y))
+                {
+                    closest = tempNode;
+                }
+            }
+            return closest; 
+
+        }
+
         private double getDistance(WaypointNode node1, WaypointNode node2)
         {
             return getDistance(node1.X, node2.X, node1.Y, node2.Y);

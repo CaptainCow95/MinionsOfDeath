@@ -1,4 +1,4 @@
-﻿//#define GRAPHMAKER
+﻿#define GRAPHMAKER
 
 using MinionsOfDeath.Behaviors;
 using MinionsOfDeath.Graphics;
