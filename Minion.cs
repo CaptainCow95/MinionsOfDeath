@@ -8,6 +8,9 @@ namespace MinionsOfDeath
     {
 		private static double speed = 1.0;
         DecisionTree _decisionTree;
+        private int _MinionID;
+        private bool _isSpecial;
+
 
         public Minion(List<Sprite> sprites)
             : base(sprites)

@@ -14,7 +14,7 @@ namespace MinionsOfDeath.Behaviors
             _target = target;
         }
 
-        public DoublePoint GetGoal()
+        public override DoublePoint GetGoal()
         {
             return _target.Pos;
         }

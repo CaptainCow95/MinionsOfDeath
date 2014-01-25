@@ -22,17 +22,13 @@ namespace MinionsOfDeath.Behaviors
             get { return _root; }
             set { _root = value; }
         }
-        public DoublePoint GetGoal()
-        {
-            throw new NotImplementedException();
-        }
-
+  
         /*
          * GetGoal should return a point that an owning minion will seek towards
          */
-        public DoublePoint getGoal()
+        public DoublePoint GetGoal()
         {
-            return _root.getGoal();
+            return _root.GetGoal();
         }
     }
 }
