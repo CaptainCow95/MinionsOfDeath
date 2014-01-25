@@ -36,24 +36,24 @@ namespace MinionsOfDeath
 
             _gameState = GameState.Running;
             InitRunningState();
-            _map = new Sprite(new List<string>() { "Images\\Map1.png" });
+            _map = new Sprite(new List<string>() { "Images/Map1.png" });
             _map.Width *= 2;
             _map.Height *= 2;
 
-            _scrollBar = new ScrollBar(0, 400, 2000, 40, 0, 2000, true, new Sprite(new List<string>() { "Images\\redMinion0.png" }));
+            _scrollBar = new ScrollBar(0, 400, 2000, 40, 0, 2000, true, new Sprite(new List<string>() { "Images/redMinion0.png" }));
         }
 
         public void InitRunningState()
         {
             _player1 = new Player(1);
-            Minion minion1 = new Minion(new List<Sprite>() { new Sprite(new List<string>() { "Images\\BlueMinion.png" }), new Sprite(new List<string>() { "Images\\BlueMinion0.png", "Images\\BlueMinion1.png" }) }, 0);
+			Minion minion1 = new Minion(new List<Sprite>() { new Sprite(new List<string>() { "Images/BlueMinion.png" }), new Sprite(new List<string>() { "Images/BlueMinion0.png", "Images/BlueMinion1.png" }) }, 0);
             minion1.Width = 40;
             minion1.Height = 40;
             minion1.State = 1;
             _player1.AddMinion(minion1);
 
             _player2 = new Player(2);
-            Minion minion2 = new Minion(new List<Sprite>() { new Sprite(new List<string>() { "Images\\RedMinion.png" }), new Sprite(new List<string>() { "Images\\RedMinion0.png", "Images\\RedMinion1.png" }) }, 0);
+            Minion minion2 = new Minion(new List<Sprite>() { new Sprite(new List<string>() { "Images/RedMinion.png" }), new Sprite(new List<string>() { "Images/RedMinion0.png", "Images/RedMinion1.png" }) }, 0);
             minion2.Width = 40;
             minion2.Height = 40;
             minion2.State = 1;
