@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using OpenTK.Graphics.OpenGL;
-using System.Threading.Tasks;
+﻿using OpenTK.Graphics.OpenGL;
 using System.Drawing;
 using System.Drawing.Imaging;
 
@@ -11,6 +6,12 @@ namespace MinionsOfDeath.Graphics
 {
     public class Sprite
     {
+        private int _textureHeight;
+
+        private int _textureId;
+
+        private int _textureWidth;
+
         public Sprite(string filename)
         {
             Bitmap bitmap = new Bitmap(filename);
@@ -30,9 +31,7 @@ namespace MinionsOfDeath.Graphics
             GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)TextureMinFilter.Linear);
             GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)TextureMagFilter.Linear);
         }
-        private int _textureId;
-        private int _textureWidth;
-        private int _textureHeight;
+
         public void Draw()
         {
             GL.BindTexture(TextureTarget.Texture2D, _textureId);

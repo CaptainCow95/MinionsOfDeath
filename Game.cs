@@ -6,6 +6,8 @@ namespace MinionsOfDeath
 {
     public class Game : GameWindow
     {
+        private Sprite _sprite;
+
         public Game()
         {
             this.UpdateFrame += Game_UpdateFrame;
@@ -13,8 +15,6 @@ namespace MinionsOfDeath
 
             _sprite = new Sprite("XRay-High.png");
         }
-
-        Sprite _sprite;
 
         private void Game_RenderFrame(object sender, FrameEventArgs e)
         {
@@ -37,7 +37,11 @@ namespace MinionsOfDeath
             GL.ClearColor(OpenTK.Graphics.Color4.CornflowerBlue);
             GL.Clear(ClearBufferMask.ColorBufferBit);
 
+            Camera.Begin();
+
             _sprite.Draw();
+
+            Camera.End();
 
             SwapBuffers();
         }
