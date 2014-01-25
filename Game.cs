@@ -24,6 +24,7 @@ namespace MinionsOfDeath
         private Player _player1;
         private Player _player2;
         private ScrollBar _scrollBar;
+        private StackPanel _stackPanel;
 
         public Game()
         {
@@ -43,6 +44,8 @@ namespace MinionsOfDeath
             _map = new Sprite(new List<string>() { "Images/testMap.png" });
 
 			_scrollBar = new ScrollBar(0, 0, 40, 40, 0, (int)_map.Height, false, new Sprite(new List<string>() { "Images/redMinion0.png" }));
+            _stackPanel = new StackPanel(0, 0, 1000, 700, new Sprite(new List<string>() { "Images/redMinion0.png" }), new Sprite(new List<string>() { "Images/redMinion0.png" }));
+            _stackPanel.Children.Add(new TextBlock(0, 0, 1000, 1800, "Test Test", new Sprite(new List<string>() { "Images/testMap.png" })));
         }
 
         public static int WindowHeight { get; private set; }
@@ -108,6 +111,8 @@ namespace MinionsOfDeath
                     _player2.Draw();
 
                     _scrollBar.Draw();
+
+                    _stackPanel.Draw();
                     break;
             }
 
@@ -145,6 +150,7 @@ namespace MinionsOfDeath
 
                 case GameState.Running:
                     _scrollBar.Update(e.Time);
+                    _stackPanel.Update(e.Time);
                     _map.Update(e.Time);
                     _player1.Update(e.Time);
                     _player2.Update(e.Time);
