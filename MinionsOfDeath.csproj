@@ -50,7 +50,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Camera.cs" />
     <Compile Include="GameObject.cs" />
     <Compile Include="Graphics\StringDrawer.cs" />
     <Compile Include="Minion.cs" />
@@ -58,6 +57,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Graphics\Sprite.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Behaviors\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
