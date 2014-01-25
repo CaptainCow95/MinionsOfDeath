@@ -79,7 +79,7 @@ namespace MinionsOfDeath.Interface
 
             if (_horizontal)
             {
-				Camera.Y = (int)((_currentValue * (_maxValue - _minValue) / (Game.WindowWidth - _scrollBar.Width)) + _minValue);
+				Camera.X = (int)((_currentValue * (_maxValue - _minValue) / (Game.WindowWidth - _scrollBar.Width)) + _minValue);
             }
             else
             {
