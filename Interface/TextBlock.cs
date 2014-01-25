@@ -8,8 +8,9 @@ namespace MinionsOfDeath.Interface
     {
         private QFont _font;
         private string _text;
+        private Sprite _background;
 
-        public TextBlock(int x, int y, int width, int height, string text)
+        public TextBlock(int x, int y, int width, int height, string text, Sprite background)
             : base(x, y, width, height)
         {
             _font = new QFont(SystemFonts.DefaultFont);
@@ -23,11 +24,13 @@ namespace MinionsOfDeath.Interface
 
         public override void Draw()
         {
+            _background.Draw();
             StringDrawer.Draw(_font, _text, QFontAlignment.Centre, new OpenTK.Vector2(X + (Width / 2), Y + (Height / 2)));
         }
 
-        public override void Update()
+        public override void Update(double timeSinceFrame)
         {
+            _background.Update(timeSinceFrame);
         }
     }
 }
