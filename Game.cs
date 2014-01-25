@@ -1,4 +1,6 @@
-﻿using MinionsOfDeath.Behaviors;
+﻿//#define GRAPHMAKER
+
+using MinionsOfDeath.Behaviors;
 using MinionsOfDeath.Graphics;
 using MinionsOfDeath.Interface;
 using OpenTK;
@@ -6,6 +8,7 @@ using OpenTK.Graphics.OpenGL;
 using OpenTK.Input;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Xml.Linq;
 
 namespace MinionsOfDeath
 {
@@ -39,11 +42,12 @@ namespace MinionsOfDeath
 
             _gameState = GameState.Running;
             InitRunningState();
-            _map = new Sprite(new List<string>() { "Images/Map1.png" });
-            _map.Width *= 2;
-            _map.Height *= 2;
+            _map = new Sprite(new List<string>() { "Images/testMap.png" });
+            //_map.Width *= 2;
+            //_map.Height *= 2;
 
-            _scrollBar = new ScrollBar(0, 400, 2000, 40, 0, 2000, true, new Sprite(new List<string>() { "Images/redMinion0.png" }));
+            //_scrollBar = new ScrollBar(0, 400, 2000, 40, 0, 2000, true, new Sprite(new List<string>() { "Images/redMinion0.png" }));//horizontal
+            _scrollBar = new ScrollBar(0, 0, 40, 1800, 0, 1800, false, new Sprite(new List<string>() { "Images/redMinion0.png" }));//vertical
         }
 
         public static int WindowHeight { get; private set; }
@@ -127,6 +131,15 @@ namespace MinionsOfDeath
 
             PreviousMousePosition = MousePosition;
 
+#if GRAPHMAKER
+            XDocument doc = new XDocument();
+            doc.Add(new XElement("Waypoints"));
+            if (MouseState.LeftButton == ButtonState.Pressed && PreviousMouseState.LeftButton == ButtonState.Released) { 
+                 doc.Element("Waypoints").Add(new XElement("Waypoint", new XAttribute("X", MousePosition.X), new XAttribute("Y", MousePosition.y), new XElement("Subwaypoint")));
+            }
+            doc.Save("TestWaypoint.xml");
+#else
+
             switch (_gameState)
             {
                 case GameState.PlanningTeam1:
@@ -161,6 +174,8 @@ namespace MinionsOfDeath
 
                     break;
             }
+
+#endif
         }
 
         private void Mouse_Move(object sender, MouseMoveEventArgs e)
