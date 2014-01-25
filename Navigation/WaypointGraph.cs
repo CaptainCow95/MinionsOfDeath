@@ -68,7 +68,7 @@ namespace MinionsOfDeath.Navigation
             return nodes[Tuple.Create(x, y)];
         }
 
-        private List<WaypointNode> pathfindDijkstra(WaypointNode start, WaypointNode end)
+        public List<WaypointNode> pathfindDijkstra(WaypointNode start, WaypointNode end)
         {
             NodeRecord startRecord = new NodeRecord(start);
 

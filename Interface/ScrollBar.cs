@@ -40,13 +40,13 @@ namespace MinionsOfDeath.Interface
             {
                 _scrollBar.X = _currentValue / (_maxValue + _scrollBar.Width - _minValue) * (_maxValue - _minValue);
                 _scrollBar.Y = Y;
-                _scrollBar.Height = Height;
+				_scrollBar.Height = Height;
             }
             else
             {
                 _scrollBar.X = X;
                 _scrollBar.Y = _currentValue / (_maxValue + _scrollBar.Height - _minValue) * (_maxValue - _minValue);
-                _scrollBar.Width = Width;
+				_scrollBar.Width = Width;
             }
 
             _scrollBar.Draw();
@@ -75,16 +75,15 @@ namespace MinionsOfDeath.Interface
                 }
 
                 _currentValue = Math.Max(_minValue, Math.Min(_maxValue, _currentValue));
+            }
 
-                if (_horizontal)
-                {
-                    //Camera.X = (int)Math.Max(_minValue, _currentValue * 2 - Game.WindowWidth);
-                    Camera.X = (int)((_currentValue / (_maxValue - _scrollBar.Width - _minValue)) * (_maxValue - Game.WindowWidth - _minValue));
-                }
-                else
-                {
-                    Camera.Y = (int)((_currentValue / (_maxValue - _scrollBar.Height - _minValue)) * (_maxValue - Game.WindowHeight - _minValue));
-                }
+            if (_horizontal)
+            {
+                Camera.X = (int)((_currentValue / (_maxValue - _scrollBar.Width - _minValue)) * (_maxValue - Game.WindowWidth - _minValue));
+            }
+            else
+            {
+                Camera.Y = (int)((_currentValue / (_maxValue - _scrollBar.Height - _minValue)) * (_maxValue - Game.WindowHeight - _minValue));
             }
         }
     }
