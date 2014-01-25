@@ -1,4 +1,4 @@
-﻿﻿using MinionsOfDeath.Behaviors;
+﻿using MinionsOfDeath.Behaviors;
 using MinionsOfDeath.Graphics;
 using MinionsOfDeath.Interface;
 using OpenTK;
@@ -27,6 +27,7 @@ namespace MinionsOfDeath
 
         public Game()
         {
+			this.Title = "Minions of Death";
             this.UpdateFrame += Game_UpdateFrame;
             this.RenderFrame += Game_RenderFrame;
 
