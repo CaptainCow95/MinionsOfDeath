@@ -46,8 +46,12 @@ namespace MinionsOfDeath
             //_map.Width *= 2;
             //_map.Height *= 2;
 
+<<<<<<< HEAD
             //_scrollBar = new ScrollBar(0, 400, 2000, 40, 0, 2000, true, new Sprite(new List<string>() { "Images/redMinion0.png" }));//horizontal
             _scrollBar = new ScrollBar(0, 0, 40, 1800, 0, 1800, false, new Sprite(new List<string>() { "Images/redMinion0.png" }));//vertical
+=======
+			_scrollBar = new ScrollBar(0, 0, 40, 1800, 0, 1800, false, new Sprite(new List<string>() { "Images/redMinion0.png" }));
+>>>>>>> 9bdab7e0f77410bc85fdab5e9e05af22b19eb193
         }
 
         public static int WindowHeight { get; private set; }
@@ -180,7 +184,7 @@ namespace MinionsOfDeath
 
         private void Mouse_Move(object sender, MouseMoveEventArgs e)
         {
-            MousePosition = e.Position;
+			MousePosition = e.Position;
         }
     }
 }
