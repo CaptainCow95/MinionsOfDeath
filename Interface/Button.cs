@@ -1,4 +1,5 @@
-﻿namespace MinionsOfDeath.Interface
+﻿using OpenTK.Input;
+namespace MinionsOfDeath.Interface
 {
     public class Button : TextBlock
     {

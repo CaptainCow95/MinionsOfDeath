@@ -1,14 +1,17 @@
 ﻿using MinionsOfDeath.Graphics;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
+using OpenTK.Input;
 using System.Collections.Generic;
 
 namespace MinionsOfDeath
 {
     public class Game : GameWindow
     {
-        private Sprite _sprite;
-
+        public static KeyboardState KeyboardState;
+        public static KeyboardState PreviousKeyboardState;
+        public static MouseState MouseState;
+        public static MouseState PreviousMouseState;
         public Game()
         {
             this.UpdateFrame += Game_UpdateFrame;
@@ -47,6 +50,11 @@ namespace MinionsOfDeath
 
         private void Game_UpdateFrame(object sender, FrameEventArgs e)
         {
+            PreviousMouseState = MouseState;
+            PreviousKeyboardState = KeyboardState;
+
+            MouseState = OpenTK.Input.Mouse.GetState();
+            KeyboardState = OpenTK.Input.Keyboard.GetState();
         }
     }
 }
