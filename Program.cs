@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MinionsOfDeath
+﻿namespace MinionsOfDeath
 {
     public class Program
     {
@@ -12,7 +6,7 @@ namespace MinionsOfDeath
         {
             using (Game game = new Game())
             {
-                game.Run();
+                game.Run(60, 60);
             }
         }
     }

@@ -1,9 +1,4 @@
 ﻿using OpenTK;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using OpenTK.Graphics.OpenGL;
 
 namespace MinionsOfDeath
@@ -16,22 +11,22 @@ namespace MinionsOfDeath
             this.RenderFrame += Game_RenderFrame;
         }
 
-        void Game_UpdateFrame(object sender, FrameEventArgs e)
-        {
-
-        }
-
-        void Game_RenderFrame(object sender, FrameEventArgs e)
+        private void Game_RenderFrame(object sender, FrameEventArgs e)
         {
             GL.Viewport(this.ClientRectangle);
+            GL.Ortho(0, Width, Height, 0, 0, 1);
 
             GL.MatrixMode(MatrixMode.Modelview);
             GL.LoadIdentity();
 
-			GL.ClearColor(OpenTK.Graphics.Color4.CornflowerBlue);
+            GL.ClearColor(OpenTK.Graphics.Color4.CornflowerBlue);
             GL.Clear(ClearBufferMask.ColorBufferBit);
 
             SwapBuffers();
+        }
+
+        private void Game_UpdateFrame(object sender, FrameEventArgs e)
+        {
         }
     }
 }
