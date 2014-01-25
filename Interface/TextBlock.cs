@@ -24,6 +24,8 @@ namespace MinionsOfDeath.Interface
 
         public override void Draw()
         {
+			_background.X = X;
+			_background.Y = Y;
             _background.Draw();
             StringDrawer.Draw(_font, _text, QFontAlignment.Centre, new OpenTK.Vector2(X + (Width / 2), Y + (Height / 2)));
         }

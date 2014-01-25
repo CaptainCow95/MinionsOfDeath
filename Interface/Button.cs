@@ -17,11 +17,6 @@ namespace MinionsOfDeath.Interface
             get { return _pressed; }
         }
 
-        public override void Draw()
-        {
-            base.Draw();
-        }
-
         public override void Update(double timeSinceFrame)
         {
             base.Update(timeSinceFrame);
