@@ -5,20 +5,30 @@ namespace MinionsOfDeath.Behaviors
 {
     internal class Pathfinder : Action
     {
-        public Pathfinder(Minion owner, Minion target)
+        List<WaypointNode> _path;
+
+        public Pathfinder(Minion owner, List<WaypointNode> path)
         {
             _owner = owner;
-            _target = target;
+            _path = path;
         }
 
         public override DoublePoint GetGoal()
         {
-            return _target.Pos;
+            WaypointNode targetNode = _path[0];
+            DoublePoint targetNodePos = new DoublePoint(targetNode.X,targetNode.Y);
+            // minion at target, advancec target
+            if(_owner.Pos == targetNodePos){
+                _path.RemoveAt(0);
+                targetNode = _path[0];
+                targetNodePos = new DoublePoint(targetNode.X, targetNode.Y);
+            }
+            return targetNodePos;
         }
 
         public void getPath(WaypointGraph graph, WaypointNode curNode, WaypointNode target)
         {
-            List<WaypointNode> path = graph.pathfindDijkstra(curNode, target);
+           _path = graph.pathfindDijkstra(curNode, target);
         }
     }
 }
