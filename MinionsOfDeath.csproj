@@ -38,6 +38,8 @@
     <None Include="OpenTK.dll.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Sounds\Strategizing.wav" />
+    <None Include="Sounds\strategy game watching.wav" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="QuickFont">
@@ -48,8 +50,8 @@
     <Reference Include="OpenTK">
       <HintPath>OpenTK.dll</HintPath>
     </Reference>
-    <Reference Include="System.XML" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Behaviors\Action.cs" />
@@ -134,4 +136,7 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup>
+    <Folder Include="Sounds\" />
+  </ItemGroup>
 </Project>
