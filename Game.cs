@@ -35,26 +35,33 @@ namespace MinionsOfDeath
             _map.Height *= 2;
         }
 
+        public Sprite LoadAndDoubleSize(List<string> filenames)
+        {
+            Sprite sprite = new Sprite(filenames);
+            sprite.Width *= 2;
+            sprite.Height *= 2;
+
+            return sprite;
+        }
+
         public void InitRunningState()
         {
             _player1 = new Player(1);
-            Minion minion1 = new Minion(new List<Sprite>() { new Sprite(new List<string>() { "Images\\BlueMinion.png" }), new Sprite(new List<string>() { "Images\\BlueMinion0.png", "Images\\BlueMinion1.png" }) }, 0);
+            Minion minion1 = new Minion(new List<Sprite>() { LoadAndDoubleSize(new List<string>() { "Images\\BlueMinion.png" }), LoadAndDoubleSize(new List<string>() { "Images\\BlueMinion0.png", "Images\\BlueMinion1.png" }) }, 0);
             minion1.State = 1;
             _player1.AddMinion(minion1);
             _player2 = new Player(2);
-            Minion minion2 = new Minion(new List<Sprite>() { new Sprite(new List<string>() { "Images\\RedMinion.png" }), new Sprite(new List<string>() { "Images\\RedMinion0.png", "Images\\RedMinion1.png" }) }, 0);
+            Minion minion2 = new Minion(new List<Sprite>() { LoadAndDoubleSize(new List<string>() { "Images\\RedMinion.png" }), LoadAndDoubleSize(new List<string>() { "Images\\RedMinion0.png", "Images\\RedMinion1.png" }) }, 0);
             minion2.State = 1;
             _player2.AddMinion(minion2);
 
             minion1.Pos.X = 50;
             minion1.Pos.Y = 900;
-            minion1.DecisionTree = new DecisionTree();
-            minion1.DecisionTree.Root = new SeekAction(minion1, minion2);
+            minion1.DecisionTree = new DecisionTree(minion1, new SeekAction(minion1, minion2));
 
             minion2.Pos.X = 900;
             minion2.Pos.Y = 100;
-            minion2.DecisionTree = new DecisionTree();
-            minion2.DecisionTree.Root = new SeekAction(minion2, minion1);
+            minion2.DecisionTree = new DecisionTree(minion2, new SeekAction(minion2, minion1));
         }
 
         private void Game_RenderFrame(object sender, FrameEventArgs e)
