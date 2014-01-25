@@ -38,7 +38,9 @@
     <None Include="OpenTK.dll.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="XRay-High.png" />
+    <None Include="XRay-High.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="QuickFont">
@@ -53,6 +55,7 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="Graphics\Sprite.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
