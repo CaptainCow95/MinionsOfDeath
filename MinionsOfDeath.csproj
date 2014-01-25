@@ -50,9 +50,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Camera.cs" />
     <Compile Include="GameObject.cs" />
     <Compile Include="Graphics\StringDrawer.cs" />
     <Compile Include="Minion.cs" />
+    <Compile Include="Navigation\Path.cs" />
+    <Compile Include="Navigation\WaypointGraph.cs" />
+    <Compile Include="Navigation\WaypointNode.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game.cs" />
