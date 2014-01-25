@@ -54,9 +54,10 @@ namespace MinionsOfDeath.Interface
 
         public override void Update(double timeSinceFrame)
         {
-			if (Game.MouseState.LeftButton == OpenTK.Input.ButtonState.Pressed &&
+			if (Game.MouseState.LeftButton == OpenTK.Input.ButtonState.Pressed && Game.PreviousMouseState.LeftButton == OpenTK.Input.ButtonState.Pressed &&
 			    Game.PreviousMousePosition.X > _scrollBar.X - Camera.X && Game.PreviousMousePosition.X < _scrollBar.X + _scrollBar.Width - Camera.Y &&
-			    Game.PreviousMousePosition.Y > _scrollBar.Y - Camera.X && Game.PreviousMousePosition.Y < _scrollBar.Y + _scrollBar.Height - Camera.Y) {
+			    Game.PreviousMousePosition.Y > _scrollBar.Y - Camera.X && Game.PreviousMousePosition.Y < _scrollBar.Y + _scrollBar.Height - Camera.Y)
+			{
 				_scrolling = true;
 			} else if (Game.MouseState.LeftButton == OpenTK.Input.ButtonState.Released)
 			{
