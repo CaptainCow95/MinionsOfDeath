@@ -25,6 +25,9 @@ namespace MinionsOfDeath
         {
             _MinionID = MinionID;
             _isSpecial = false;
+			_left += 2;
+			_right -= 2;
+			_top += 2;
         }
 
         public DecisionTree DecisionTree
@@ -49,12 +52,6 @@ namespace MinionsOfDeath
         {
             get { return _pid; }
             set { _pid = value; }
-        }
-
-        public bool IsCollidingWith(Minion minion)
-        {
-            return Pos.X < minion.Pos.X + minion.Width && Pos.X + Width > minion.Pos.X &&
-                Pos.Y < minion.Pos.Y + minion.Height && Pos.Y + Height > minion.Pos.Y;
         }
 
         public override void Update(double time)
