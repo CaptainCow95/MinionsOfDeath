@@ -8,13 +8,18 @@ namespace MinionsOfDeath.Navigation
 {
     class WaypointNode
     {
-        private List<WaypointNode> neighbors;
+        private WaypointGraph my_graph;
+        private List<WaypointNode> my_neighbors;
         private int _x;
         private int _y;
+        private bool isVisible = false;
 
-        public WaypointNode(int x, int y)
+        public WaypointNode(WaypointGraph graph, int x, int y, List<WaypointNode> neighbors)
         {
-
+            my_graph = graph;
+            _x = x;
+            _y = y;
+            my_neighbors = neighbors;
         }
 
         public int X
@@ -27,6 +32,5 @@ namespace MinionsOfDeath.Navigation
             get { return _y; }
             set { _y = value; }
         }
-
     }
 }
