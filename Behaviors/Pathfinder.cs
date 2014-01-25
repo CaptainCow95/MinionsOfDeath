@@ -1,4 +1,7 @@
-﻿namespace MinionsOfDeath.Behaviors
+﻿using MinionsOfDeath.Navigation;
+using System.Collections.Generic;
+
+namespace MinionsOfDeath.Behaviors
 {
     internal class Pathfinder : Action
     {
@@ -11,6 +14,11 @@
         public override DoublePoint GetGoal()
         {
             return _target.Pos;
+        }
+
+        public void getPath(WaypointGraph graph, WaypointNode curNode, WaypointNode target)
+        {
+            List<WaypointNode> path = graph.pathfindDijkstra(curNode, target);
         }
     }
 }
