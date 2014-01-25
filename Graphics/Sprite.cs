@@ -13,8 +13,8 @@ namespace MinionsOfDeath.Graphics
         private int _textureNumber;
         private int _textureWidth;
         private double _timeSinceUpdate;
-        private float _x;
-        private float _y;
+		private double _x;
+		private double _y;
 
         public Sprite(List<string> filenames)
         {
@@ -38,22 +38,36 @@ namespace MinionsOfDeath.Graphics
                 GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)TextureMinFilter.Linear);
                 GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)TextureMagFilter.Linear);
             }
+
+			_width = _textureWidth;
+			_height = _textureHeight;
         }
 
-        public float X
+		public double X
         {
             get { return _x; }
             set { _x = value; }
         }
 
-        public float Y
+		public double Y
         {
             get { return _y; }
             set { _y = value; }
         }
 
+		private double _width;
+		private double _height;
+		public double Width{get{ return _width; }set{ _width = value; }
+		}
+		public double Height{get{return _height;}set{ _height = value; }
+		}
+
         public void Draw()
         {
+			GL.PushMatrix ();
+			GL.Translate (X, Y, 0);
+			GL.Scale (_width / _textureWidth, _height / _textureHeight, 0);
+
             GL.BindTexture(TextureTarget.Texture2D, _textureIds[_textureNumber]);
 
             GL.Begin(PrimitiveType.Quads);
@@ -65,7 +79,9 @@ namespace MinionsOfDeath.Graphics
             GL.Vertex2(_textureWidth, _textureHeight);
             GL.TexCoord2(1, 0);
             GL.Vertex2(_textureWidth, 0);
-            GL.End();
+			GL.End ();
+
+			GL.PopMatrix ();
         }
 
         public void Update(double timeSinceFrame)
