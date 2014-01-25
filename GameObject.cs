@@ -63,6 +63,8 @@ namespace MinionsOfDeath
         public virtual void Update(double time)
         {
             _sprites[_state].Update(time);
+			_sprites[_state].X = _pos.X;
+			_sprites[_state].Y = _pos.Y;
         }
     }
 }
