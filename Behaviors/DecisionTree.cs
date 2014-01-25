@@ -22,6 +22,12 @@ namespace MinionsOfDeath.Behaviors
             get { return _root; }
             set { _root = value; }
         }
+
+        public DecisionTree(Minion owner, DecisionNode root)
+        {
+            _root = root;
+            _owner = owner;
+        }
   
         /*
          * GetGoal should return a point that an owning minion will seek towards
