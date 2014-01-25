@@ -32,5 +32,11 @@ namespace MinionsOfDeath
 		}
 
 		public abstract void Update(double time);
+        public void Draw()
+        {
+            _sprites[_state].X = _pos.X;
+            _sprites[_state].Y = _pos.Y;
+            _sprites[_state].Draw();
+        }
     }
 }
