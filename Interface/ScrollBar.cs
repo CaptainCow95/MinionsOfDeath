@@ -75,16 +75,15 @@ namespace MinionsOfDeath.Interface
                 }
 
                 _currentValue = Math.Max(_minValue, Math.Min(_maxValue, _currentValue));
+            }
 
-                if (_horizontal)
-                {
-                    //Camera.X = (int)Math.Max(_minValue, _currentValue * 2 - Game.WindowWidth);
-                    Camera.X = (int)((_currentValue / (_maxValue - _scrollBar.Width - _minValue)) * (_maxValue - Game.WindowWidth - _minValue));
-                }
-                else
-                {
-                    Camera.Y = (int)((_currentValue / (_maxValue - _scrollBar.Height - _minValue)) * (_maxValue - Game.WindowHeight - _minValue));
-                }
+            if (_horizontal)
+            {
+                Camera.X = (int)((_currentValue / (_maxValue - _scrollBar.Width - _minValue)) * (_maxValue - Game.WindowWidth - _minValue));
+            }
+            else
+            {
+                Camera.Y = (int)((_currentValue / (_maxValue - _scrollBar.Height - _minValue)) * (_maxValue - Game.WindowHeight - _minValue));
             }
         }
     }
