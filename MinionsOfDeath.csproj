@@ -68,6 +68,8 @@
     <Compile Include="Interface\StackPanel.cs" />
     <Compile Include="Interface\TextBlock.cs" />
     <Compile Include="Minion.cs" />
+    <Compile Include="Navigation\Connection.cs" />
+    <Compile Include="Navigation\NodeRecord.cs" />
     <Compile Include="Navigation\WaypointGraph.cs" />
     <Compile Include="Navigation\WaypointNode.cs" />
     <Compile Include="Player.cs" />

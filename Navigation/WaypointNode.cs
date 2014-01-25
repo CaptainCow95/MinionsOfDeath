@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace MinionsOfDeath.Navigation
 {
     public class WaypointNode
     {
-        private WaypointGraph my_graph;
-        private List<WaypointNode> my_neighbors;
         private int _x;
         private int _y;
         private bool isVisible = false;
+        private WaypointGraph my_graph;
+        private List<WaypointNode> my_neighbors;
 
         public WaypointNode(WaypointGraph graph, int x, int y, List<WaypointNode> neighbors)
         {
@@ -22,20 +18,21 @@ namespace MinionsOfDeath.Navigation
             my_neighbors = neighbors;
         }
 
+        public List<WaypointNode> Neighbors
+        {
+            get { return my_neighbors; }
+        }
+
         public int X
         {
             get { return _x; }
             set { _x = value; }
         }
+
         public int Y
         {
             get { return _y; }
             set { _y = value; }
-        }
-
-        public List<WaypointNode> Neighbors
-        {
-            get { return my_neighbors; }
         }
     }
 }
