@@ -21,7 +21,7 @@ namespace MinionsOfDeath
         private Player _player2;
         public static int WindowWidth { get; private set; }
         public static int WindowHeight { get; private set; }
-        private ScrollBar _scrollBar = new ScrollBar(0, 400, 2000, 40, 0, 2000, true, new Sprite(new List<string>() { "Images\\redMinion0.png" }));
+        private ScrollBar _scrollBar;
 
         public Game()
         {
@@ -39,6 +39,8 @@ namespace MinionsOfDeath
             _map = new Sprite(new List<string>() { "Images\\Map1.png" });
             _map.Width *= 2;
             _map.Height *= 2;
+
+            _scrollBar = new ScrollBar(0, 400, 2000, 40, 0, 2000, true, new Sprite(new List<string>() { "Images\\redMinion0.png" }));
         }
 
         public void InitRunningState()
