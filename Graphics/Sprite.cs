@@ -97,6 +97,7 @@ namespace MinionsOfDeath.Graphics
             while (_timeSinceUpdate > UPDATETIME)
             {
                 ++_textureNumber;
+                _timeSinceUpdate -= UPDATETIME;
                 if (_textureNumber >= _textureIds.Count)
                 {
                     _textureNumber = 0;

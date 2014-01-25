@@ -1,4 +1,5 @@
-﻿using MinionsOfDeath.Graphics;
+﻿using MinionsOfDeath.Behaviors;
+using MinionsOfDeath.Graphics;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
 using OpenTK.Input;
@@ -15,6 +16,9 @@ namespace MinionsOfDeath
         private GameState _gameState;
         private Sprite _map;
 
+        private Player _player1;
+        private Player _player2;
+
         public Game()
         {
             this.UpdateFrame += Game_UpdateFrame;
@@ -25,9 +29,32 @@ namespace MinionsOfDeath
             this.Height = 700;
 
             _gameState = GameState.Running;
+            InitRunningState();
             _map = new Sprite(new List<string>() { "Images\\Map1.png" });
             _map.Width *= 2;
             _map.Height *= 2;
+        }
+
+        public void InitRunningState()
+        {
+            _player1 = new Player(1);
+            Minion minion1 = new Minion(new List<Sprite>() { new Sprite(new List<string>() { "Images\\BlueMinion.png" }), new Sprite(new List<string>() { "Images\\BlueMinion0.png", "Images\\BlueMinion1.png" }) }, 0);
+            minion1.State = 1;
+            _player1.AddMinion(minion1);
+            _player2 = new Player(2);
+            Minion minion2 = new Minion(new List<Sprite>() { new Sprite(new List<string>() { "Images\\RedMinion.png" }), new Sprite(new List<string>() { "Images\\RedMinion0.png", "Images\\RedMinion1.png" }) }, 0);
+            minion2.State = 1;
+            _player2.AddMinion(minion2);
+
+            minion1.Pos.X = 50;
+            minion1.Pos.Y = 900;
+            minion1.DecisionTree = new DecisionTree();
+            minion1.DecisionTree.Root = new SeekAction(minion1, minion2);
+
+            minion2.Pos.X = 900;
+            minion2.Pos.Y = 100;
+            minion2.DecisionTree = new DecisionTree();
+            minion2.DecisionTree.Root = new SeekAction(minion2, minion1);
         }
 
         private void Game_RenderFrame(object sender, FrameEventArgs e)
@@ -63,6 +90,9 @@ namespace MinionsOfDeath
 
                 case GameState.Running:
                     _map.Draw();
+
+                    _player1.Draw();
+                    _player2.Draw();
                     break;
             }
 
@@ -88,6 +118,9 @@ namespace MinionsOfDeath
                     break;
 
                 case GameState.Running:
+                    _map.Update(e.Time);
+                    _player1.Update(e.Time);
+                    _player2.Update(e.Time);
                     break;
             }
         }

@@ -7,7 +7,7 @@ namespace MinionsOfDeath
     {
 		private List<Sprite> _sprites;
 		private int _state;
-		protected DoublePoint _pos;
+		protected DoublePoint _pos = new DoublePoint(0, 0);
 
         public DoublePoint Pos
         {
@@ -31,7 +31,11 @@ namespace MinionsOfDeath
 			return _sprites[_state];
 		}
 
-		public abstract void Update(double time);
+        public virtual void Update(double time)
+        {
+            _sprites[_state].Update(time);
+        }
+
         public void Draw()
         {
             _sprites[_state].X = _pos.X;
