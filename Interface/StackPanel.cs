@@ -43,13 +43,29 @@ namespace MinionsOfDeath.Interface
             }
         }
 
+        private bool _horizontal = false;
+
         public override void Update(double timeSinceFrame)
         {
             int maxWidth = 0;
             int maxHeight = 0;
+            int currentX = X;
+            int currentY = Y;
             foreach (var child in _children)
             {
+                child.X = currentX;
+                child.Y = currentY;
                 child.Update(timeSinceFrame);
+
+                if (_horizontal)
+                {
+                    currentX += child.Width;
+                }
+                else
+                {
+                    currentY += child.Height;
+                }
+
                 maxWidth = Math.Max(maxWidth, child.X + child.Width - X);
                 maxHeight = Math.Max(maxHeight, child.Y + child.Height - Y);
             }
