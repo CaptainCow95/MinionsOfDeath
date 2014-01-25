@@ -14,6 +14,7 @@ namespace MinionsOfDeath.Interface
         public StackPanel(int x, int y)
             : base(x, y, 0, 0)
         {
+            _scrollable = false;
         }
 
         public StackPanel(int x, int y, int width, int height, Sprite verticalScrollBar, Sprite horizontalScrollBar)
@@ -31,6 +32,12 @@ namespace MinionsOfDeath.Interface
             foreach (var child in _children)
             {
                 child.Draw();
+            }
+
+            if (_scrollable)
+            {
+                _horizontalScrollbar.Draw();
+                _verticalScrollbar.Draw();
             }
         }
 
@@ -54,6 +61,12 @@ namespace MinionsOfDeath.Interface
             {
                 _horizontalScrollbar.MaxValue = maxWidth;
                 _verticalScrollbar.MaxValue = maxHeight;
+            }
+
+            if (_scrollable)
+            {
+                _horizontalScrollbar.Update(timeSinceFrame);
+                _verticalScrollbar.Update(timeSinceFrame);
             }
         }
     }
