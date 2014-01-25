@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MinionsOfDeath.Behaviors
+﻿namespace MinionsOfDeath.Behaviors
 {
-    class SeekAction : Action
+    internal class SeekAction : Action
     {
         public SeekAction(Minion owner, Minion target)
         {

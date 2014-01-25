@@ -1,19 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MinionsOfDeath.Behaviors
+﻿namespace MinionsOfDeath.Behaviors
 {
-    abstract class QueryNode : DecisionNode
+    internal abstract class QueryNode : DecisionNode
     {
         private DecisionNode _trueChild, _falseChild;
-        public DecisionNode TrueChild
-        {
-            get { return _trueChild; }
-            set { _trueChild = value; }
-        }
 
         public DecisionNode FalseChild
         {
@@ -21,5 +10,10 @@ namespace MinionsOfDeath.Behaviors
             set { _falseChild = value; }
         }
 
+        public DecisionNode TrueChild
+        {
+            get { return _trueChild; }
+            set { _trueChild = value; }
+        }
     }
 }

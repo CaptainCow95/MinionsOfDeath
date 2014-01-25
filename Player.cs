@@ -1,36 +1,11 @@
 ﻿using System.Collections.Generic;
+
 namespace MinionsOfDeath
 {
     internal class Player
     {
+        private Dictionary<int, Minion> _minions;
         private int _pid;
-        private Dictionary<int,Minion> _minions;
-        
-
-
-        public int PID
-        {
-            set { _pid = value; }
-            get { return _pid; }
-        }
-
-        public Dictionary<int, Minion> Minions
-        {
-            get { return _minions; }
-        }
-
-        public void AddMinion(Minion minion){
-            _minions.Add(minion.ID, minion);
-        }
-
-        public void SetSpecial(int MinionID)
-        {
-            foreach(KeyValuePair<int, Minion> minion in _minions){
-                minion.Value.IsSpecial = false;
-
-            }
-            _minions[MinionID].IsSpecial = true;
-        }
 
         public Player(int ID)
         {
@@ -38,12 +13,20 @@ namespace MinionsOfDeath
             _minions = new Dictionary<int, Minion>();
         }
 
-        public void Update(double time)
+        public Dictionary<int, Minion> Minions
         {
-            foreach (KeyValuePair<int, Minion> minion in _minions)
-            {
-                minion.Value.Update(time);
-            }
+            get { return _minions; }
+        }
+
+        public int PID
+        {
+            set { _pid = value; }
+            get { return _pid; }
+        }
+
+        public void AddMinion(Minion minion)
+        {
+            _minions.Add(minion.ID, minion);
         }
 
         public void Draw()
@@ -54,5 +37,21 @@ namespace MinionsOfDeath
             }
         }
 
+        public void SetSpecial(int MinionID)
+        {
+            foreach (KeyValuePair<int, Minion> minion in _minions)
+            {
+                minion.Value.IsSpecial = false;
+            }
+            _minions[MinionID].IsSpecial = true;
+        }
+
+        public void Update(double time)
+        {
+            foreach (KeyValuePair<int, Minion> minion in _minions)
+            {
+                minion.Value.Update(time);
+            }
+        }
     }
 }

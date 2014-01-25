@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MinionsOfDeath.Behaviors
+﻿namespace MinionsOfDeath.Behaviors
 {
-    class DecisionTree
+    internal class DecisionTree
     {
         private Minion _owner;
         private DecisionNode _root;
+
+        public DecisionTree(Minion owner, DecisionNode root)
+        {
+            _root = root;
+            _owner = owner;
+        }
 
         public Minion Owner
         {
@@ -23,15 +23,10 @@ namespace MinionsOfDeath.Behaviors
             set { _root = value; }
         }
 
-        public DecisionTree(Minion owner, DecisionNode root)
-        {
-            _root = root;
-            _owner = owner;
-        }
-  
         /*
          * GetGoal should return a point that an owning minion will seek towards
          */
+
         public DoublePoint GetGoal()
         {
             return _root.GetGoal();
