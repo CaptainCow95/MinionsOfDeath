@@ -16,6 +16,10 @@ namespace MinionsOfDeath
         {
             this.UpdateFrame += Game_UpdateFrame;
             this.RenderFrame += Game_RenderFrame;
+
+			this.WindowBorder = WindowBorder.Fixed;
+			this.Width = 800;
+			this.Height = 600;
         }
 
         private void Game_RenderFrame(object sender, FrameEventArgs e)
