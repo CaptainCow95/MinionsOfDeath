@@ -41,6 +41,6 @@
 
         public abstract void Draw();
 
-        public abstract void Update();
+        public abstract void Update(double timeSinceFrame);
     }
 }

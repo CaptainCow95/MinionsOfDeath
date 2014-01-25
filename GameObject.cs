@@ -2,7 +2,7 @@
 
 namespace MinionsOfDeath
 {
-	internal class GameObject
+	internal abstract class GameObject
     {
 		private Sprite[] _sprites;
 		private int _state;
@@ -22,5 +22,7 @@ namespace MinionsOfDeath
 		{
 			return _sprites[_state];
 		}
+
+		public abstract update(double time);
     }
 }
