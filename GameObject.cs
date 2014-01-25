@@ -6,6 +6,7 @@ namespace MinionsOfDeath
     {
 		private Sprite[] _sprites;
 		private int _state;
+		protected FloatPoint _pos;
 
 		public GameObject(Sprite[] sprites)
 		{
