@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MinionsOfDeath.Behaviors.Queries
 {
-    internal class IsEnemyNum2 : QueryNode
+    internal class IsEnemyNum0 : QueryNode
     {
 
         public override DoublePoint GetGoal()
@@ -15,11 +15,11 @@ namespace MinionsOfDeath.Behaviors.Queries
             bool succeed;
             if (player1)
             {
-                succeed = Game.Player2.Minions.Count == 2;
+                succeed = Game.Player2.Minions.Count == 0;
             }
             else
             {
-                succeed = Game.Player1.Minions.Count == 2;
+                succeed = Game.Player1.Minions.Count == 0;
             }
             if (succeed)
             {
