@@ -31,5 +31,14 @@ namespace MinionsOfDeath.Navigation
         private double getDistance(int x1, int x2, int y1, int y2){
             return Math.Sqrt(Math.Pow(x2 - x1,2) + Math.Pow(y2 - y1, 2));
         }
+
+        private void pathfindDijkstra(WaypointNode start, WaypointNode end)
+        {
+            Path startPath = new Path(start, 0);
+
+            //TODO: Change this, it is not correct
+            List<Path> open = new List<Path>();
+            
+        }
     }
 }
