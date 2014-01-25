@@ -1,5 +1,6 @@
 ﻿using MinionsOfDeath.Behaviors;
 using MinionsOfDeath.Graphics;
+using MinionsOfDeath.Interface;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
 using OpenTK.Input;
@@ -18,6 +19,9 @@ namespace MinionsOfDeath
 
         private Player _player1;
         private Player _player2;
+        public static int WindowWidth { get; private set; }
+        public static int WindowHeight { get; private set; }
+        private ScrollBar _scrollBar = new ScrollBar(0, 400, 2000, 40, 0, 2000, true, new Sprite(new List<string>() { "Images\\redMinion0.png" }));
 
         public Game()
         {
@@ -26,7 +30,9 @@ namespace MinionsOfDeath
 
             this.WindowBorder = WindowBorder.Fixed;
             this.Width = 1000;
+            WindowWidth = this.Width;
             this.Height = 700;
+            WindowHeight = this.Height;
 
             _gameState = GameState.Running;
             InitRunningState();
@@ -96,6 +102,8 @@ namespace MinionsOfDeath
 
                     _player1.Draw();
                     _player2.Draw();
+
+                    _scrollBar.Draw();
                     break;
             }
 
@@ -121,6 +129,7 @@ namespace MinionsOfDeath
                     break;
 
                 case GameState.Running:
+                    _scrollBar.Update(e.Time);
                     _map.Update(e.Time);
                     _player1.Update(e.Time);
                     _player2.Update(e.Time);

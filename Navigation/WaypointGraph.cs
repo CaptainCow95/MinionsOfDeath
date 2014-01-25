@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MinionsOfDeath.Navigation
 {
-    class WaypointGraph
+    public class WaypointGraph
     {
         // Storing nodes in dictionary, indexed by Tuple<_x,_y>
         private Dictionary<Tuple<int,int>,WaypointNode> nodes;
@@ -37,7 +37,7 @@ namespace MinionsOfDeath.Navigation
             return Math.Sqrt(Math.Pow(x2 - x1,2) + Math.Pow(y2 - y1, 2));
         }
 
-        private Path pathfindDijkstra(WaypointNode start, WaypointNode end)
+        private List<WaypointNode> pathfindDijkstra(WaypointNode start, WaypointNode end)
         {
             NodeRecord startRecord = new NodeRecord(start);
 
@@ -98,7 +98,7 @@ namespace MinionsOfDeath.Navigation
             }
             else
             {
-                Path path = new Path();
+                List<WaypointNode> path = new List<WaypointNode>();
                 path.Add(current.Connection.getFromNode());
                 while (current.Node != start){
                     // path += current.connection;

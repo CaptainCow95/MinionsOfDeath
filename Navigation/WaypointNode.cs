@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MinionsOfDeath.Navigation
 {
-    class WaypointNode
+    public class WaypointNode
     {
         private WaypointGraph my_graph;
         private List<WaypointNode> my_neighbors;
@@ -31,6 +31,11 @@ namespace MinionsOfDeath.Navigation
         {
             get { return _y; }
             set { _y = value; }
+        }
+
+        public List<WaypointNode> Neighbors
+        {
+            get { return my_neighbors; }
         }
     }
 }

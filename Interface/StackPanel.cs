@@ -1,4 +1,5 @@
-﻿﻿using System;
+﻿﻿using MinionsOfDeath.Graphics;
+using System;
 using System.Collections.Generic;
 
 namespace MinionsOfDeath.Interface
@@ -7,16 +8,20 @@ namespace MinionsOfDeath.Interface
     {
         private List<InterfaceObject> _children = new List<InterfaceObject>();
         private bool _scrollable = false;
+        private ScrollBar _verticalScrollbar;
+        private ScrollBar _horizontalScrollbar;
 
         public StackPanel(int x, int y)
             : base(x, y, 0, 0)
         {
         }
 
-        public StackPanel(int x, int y, int width, int height)
+        public StackPanel(int x, int y, int width, int height, Sprite verticalScrollBar, Sprite horizontalScrollBar)
             : base(x, y, width, height)
         {
             _scrollable = true;
+            _verticalScrollbar = new ScrollBar((int)(x + width - verticalScrollBar.Width), y, (int)verticalScrollBar.Width, height, 0, height, false, verticalScrollBar);
+            _horizontalScrollbar = new ScrollBar(x, (int)(y + height - horizontalScrollBar.Height), width, (int)horizontalScrollBar.Height, 0, width, true, horizontalScrollBar);
         }
 
         public List<InterfaceObject> Children { get { return _children; } }
@@ -44,6 +49,11 @@ namespace MinionsOfDeath.Interface
             {
                 Width = maxWidth;
                 Height = maxHeight;
+            }
+            else
+            {
+                _horizontalScrollbar.MaxValue = maxWidth;
+                _verticalScrollbar.MaxValue = maxHeight;
             }
         }
     }

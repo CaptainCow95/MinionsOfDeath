@@ -21,6 +21,18 @@ namespace MinionsOfDeath.Interface
             _scrollBar = scrollBar;
         }
 
+        public int MaxValue
+        {
+            get { return _maxValue; }
+            set { _maxValue = value; }
+        }
+
+        public int MinValue
+        {
+            get { return _minValue; }
+            set { _minValue = value; }
+        }
+
         public override void Draw()
         {
             if (_horizontal)
@@ -55,6 +67,15 @@ namespace MinionsOfDeath.Interface
                 }
 
                 _currentValue = Math.Max(_minValue, Math.Min(_maxValue, _currentValue));
+
+                if (_horizontal)
+                {
+                    Camera.X = Math.Min(_minValue, _currentValue - Game.WindowWidth);
+                }
+                else
+                {
+                    Camera.Y = Math.Min(_minValue, _currentValue - Game.WindowHeight);
+                }
             }
         }
     }
