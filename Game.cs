@@ -135,7 +135,7 @@ namespace MinionsOfDeath
             XDocument doc = new XDocument();
             doc.Add(new XElement("Waypoints"));
             if (MouseState.LeftButton == ButtonState.Pressed && PreviousMouseState.LeftButton == ButtonState.Released) { 
-                 doc.Element("Waypoints").Add(new XElement("Waypoint", new XAttribute("X", MousePosition.X), new XAttribute("Y", MousePosition.y), new XElement("Subwaypoint")));
+                 doc.Element("Waypoints").Add(new XElement("Waypoint", new XAttribute("X", MousePosition.X), new XAttribute("Y", MousePosition.Y), new XElement("Subwaypoint")));
             }
             doc.Save("TestWaypoint.xml");
 #else
