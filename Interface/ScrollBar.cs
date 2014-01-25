@@ -45,7 +45,7 @@ namespace MinionsOfDeath.Interface
             else
             {
                 _scrollBar.X = X;
-                _scrollBar.Y = _currentValue - _minValue;
+                _scrollBar.Y = _currentValue / (_maxValue + _scrollBar.Height - _minValue) * (_maxValue - _minValue);
                 _scrollBar.Width = Width;
             }
 
@@ -76,7 +76,7 @@ namespace MinionsOfDeath.Interface
                 }
                 else
                 {
-                    Camera.Y = (int)Math.Max(_minValue, _currentValue * 2 - Game.WindowHeight);
+                    Camera.Y = (int)((_currentValue / (_maxValue - _scrollBar.Height - _minValue)) * (_maxValue - Game.WindowHeight - _minValue));
                 }
             }
         }
