@@ -7,9 +7,9 @@ namespace MinionsOfDeath.Interface
     public class StackPanel : InterfaceObject
     {
         private List<InterfaceObject> _children = new List<InterfaceObject>();
+        private ScrollBar _horizontalScrollbar;
         private bool _scrollable = false;
         private ScrollBar _verticalScrollbar;
-        private ScrollBar _horizontalScrollbar;
 
         public StackPanel(int x, int y)
             : base(x, y, 0, 0)

@@ -1,6 +1,5 @@
 using MinionsOfDeath.Graphics;
 using System;
-using System.Diagnostics;
 
 namespace MinionsOfDeath.Interface
 {

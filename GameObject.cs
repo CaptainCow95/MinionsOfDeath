@@ -5,10 +5,10 @@ namespace MinionsOfDeath
 {
     internal abstract class GameObject
     {
+        protected double _left, _right, _top, _bottom;
         protected DoublePoint _pos = new DoublePoint(0, 0);
         private List<Sprite> _sprites;
         private int _state;
-		protected double _left, _right, _top, _bottom;
 
         public GameObject(List<Sprite> sprites)
         {
@@ -16,18 +16,12 @@ namespace MinionsOfDeath
 
             if (_sprites.Count > 0)
             {
-				_left = 0;
-				_right = _sprites[0].Width;
-				_top = 0;
-				_bottom = _sprites[0].Height;
+                _left = 0;
+                _right = _sprites[0].Width;
+                _top = 0;
+                _bottom = _sprites[0].Height;
             }
         }
-
-		public bool IsCollidingWith(GameObject obj)
-		{
-			return Pos.X + _left < obj.Pos.X + obj._right && Pos.X + _right > obj.Pos.X + obj._left &&
-				Pos.Y + _top < obj.Pos.Y + obj._bottom && Pos.Y + _bottom > obj.Pos.Y + obj._top;
-		}
 
         public DoublePoint Pos
         {
@@ -51,6 +45,12 @@ namespace MinionsOfDeath
         public Sprite GetSprite()
         {
             return _sprites[_state];
+        }
+
+        public bool IsCollidingWith(GameObject obj)
+        {
+            return Pos.X + _left < obj.Pos.X + obj._right && Pos.X + _right > obj.Pos.X + obj._left &&
+                Pos.Y + _top < obj.Pos.Y + obj._bottom && Pos.Y + _bottom > obj.Pos.Y + obj._top;
         }
 
         public virtual void Update(double time)

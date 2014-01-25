@@ -78,13 +78,13 @@ namespace MinionsOfDeath.Graphics
             GL.BindTexture(TextureTarget.Texture2D, _textureIds[_textureNumber]);
 
             GL.Begin(PrimitiveType.Quads);
-			GL.TexCoord2(0.01, 0.01);
+            GL.TexCoord2(0.01, 0.01);
             GL.Vertex2(0, 0);
-			GL.TexCoord2(0.01, 0.99);
+            GL.TexCoord2(0.01, 0.99);
             GL.Vertex2(0, _textureHeight);
-			GL.TexCoord2(0.99, 0.99);
+            GL.TexCoord2(0.99, 0.99);
             GL.Vertex2(_textureWidth, _textureHeight);
-			GL.TexCoord2(0.99, 0.01);
+            GL.TexCoord2(0.99, 0.01);
             GL.Vertex2(_textureWidth, 0);
             GL.End();
 

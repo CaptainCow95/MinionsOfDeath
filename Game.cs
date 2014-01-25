@@ -13,9 +13,9 @@ namespace MinionsOfDeath
     {
         public static KeyboardState KeyboardState;
         public static Point MousePosition;
-        public static Point PreviousMousePosition;
         public static MouseState MouseState;
         public static KeyboardState PreviousKeyboardState;
+        public static Point PreviousMousePosition;
         public static MouseState PreviousMouseState;
         private GameState _gameState;
         private Sprite _map;
@@ -53,12 +53,12 @@ namespace MinionsOfDeath
         public void InitRunningState()
         {
             _player1 = new Player(1);
-			Minion minion1 = new Minion(new List<Sprite>() { new Sprite(new List<string>() { "Images/BlueMinion.png" }), new Sprite(new List<string>() { "Images/BlueMinion0.png", "Images/BlueMinion1.png" }) }, 0);
+            Minion minion1 = new Minion(new List<Sprite>() { new Sprite(new List<string>() { "Images/BlueMinion.png" }), new Sprite(new List<string>() { "Images/BlueMinion0.png", "Images/BlueMinion1.png" }) }, 0);
             minion1.State = 1;
             _player1.AddMinion(minion1);
 
             _player2 = new Player(2);
-			Minion minion2 = new Minion(new List<Sprite>() { new Sprite(new List<string>() { "Images/RedMinion.png" }), new Sprite(new List<string>() { "Images/RedMinion0.png", "Images/RedMinion1.png" }) }, 0);
+            Minion minion2 = new Minion(new List<Sprite>() { new Sprite(new List<string>() { "Images/RedMinion.png" }), new Sprite(new List<string>() { "Images/RedMinion0.png", "Images/RedMinion1.png" }) }, 0);
             minion2.State = 1;
             _player2.AddMinion(minion2);
 

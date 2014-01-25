@@ -15,7 +15,6 @@ namespace MinionsOfDeath.Navigation
             nodes = new Dictionary<Tuple<int, int>, WaypointNode>();
             XDocument xdoc = XDocument.Load("Resources/WaypointTestGraph.xml");
 
-
             //add all the waypoints to the graph
             foreach (var item in xdoc.Elements("Waypoint"))
             {
@@ -37,7 +36,6 @@ namespace MinionsOfDeath.Navigation
                     Tuple<int, int> neighborPoint = new Tuple<int, int>(xn, yn);
                     nodes[thisPoint].Neighbors.Add(nodes[neighborPoint]);
                 }
-
             }
         }
 

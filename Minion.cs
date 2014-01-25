@@ -25,9 +25,9 @@ namespace MinionsOfDeath
         {
             _MinionID = MinionID;
             _isSpecial = false;
-			_left += 2;
-			_right -= 2;
-			_top += 2;
+            _left += 2;
+            _right -= 2;
+            _top += 2;
         }
 
         public DecisionTree DecisionTree
@@ -61,7 +61,7 @@ namespace MinionsOfDeath
             v.SetToLessOrEqualMag(speed);
             _pos.Add(v);
 
-			base.Update(time);
+            base.Update(time);
         }
     }
 }
