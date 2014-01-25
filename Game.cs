@@ -1,4 +1,4 @@
-﻿using MinionsOfDeath.Behaviors;using MinionsOfDeath.Behaviors;
+﻿﻿using MinionsOfDeath.Behaviors;
 using MinionsOfDeath.Graphics;
 using MinionsOfDeath.Interface;
 using OpenTK;

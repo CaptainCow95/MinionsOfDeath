@@ -25,9 +25,9 @@ namespace MinionsOfDeath
         {
             _MinionID = MinionID;
             _isSpecial = false;
-            _left += 2;
-            _right -= 2;
-            _top += 2;
+			_left += 4;
+			_right -= 4;
+			_top += 4;
         }
 
         public DecisionTree DecisionTree
