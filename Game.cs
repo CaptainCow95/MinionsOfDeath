@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OpenTK.Graphics.OpenGL;
 
 namespace MinionsOfDeath
 {
@@ -21,6 +22,18 @@ namespace MinionsOfDeath
 
         void Game_RenderFrame(object sender, FrameEventArgs e)
         {
+            GL.Viewport(this.ClientRectangle);
+            GL.MatrixMode(MatrixMode.Projection);
+            Matrix4 fieldOfView = Matrix4.CreatePerspectiveFieldOfView((float)Math.PI / 4, (float)this.Width / (float)this.Height, 1f, 1000f);
+            GL.LoadMatrix(ref fieldOfView);
+
+            GL.MatrixMode(MatrixMode.Modelview);
+            GL.LoadIdentity();
+
+            GL.ClearColor(OpenTK.Graphics.Color4.Black);
+            GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
+
+            SwapBuffers();
         }
     }
 }
