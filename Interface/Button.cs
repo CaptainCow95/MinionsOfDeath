@@ -1,6 +1,6 @@
 ﻿namespace MinionsOfDeath.Interface
 {
-    internal class Button
+    public class Button
     {
     }
 }

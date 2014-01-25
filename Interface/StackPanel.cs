@@ -1,6 +1,6 @@
 ﻿namespace MinionsOfDeath.Interface
 {
-    internal class StackPanel
+    public class StackPanel
     {
     }
 }

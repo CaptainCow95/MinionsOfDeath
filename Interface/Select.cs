@@ -1,6 +1,6 @@
 ﻿namespace MinionsOfDeath.Interface
 {
-    internal class Select
+    public class Select
     {
     }
 }
