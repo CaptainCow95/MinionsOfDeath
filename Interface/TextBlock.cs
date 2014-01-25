@@ -6,9 +6,9 @@ namespace MinionsOfDeath.Interface
 {
     public class TextBlock : InterfaceObject
     {
+        private Sprite _background;
         private QFont _font;
         private string _text;
-        private Sprite _background;
 
         public TextBlock(int x, int y, int width, int height, string text, Sprite background)
             : base(x, y, width, height)
@@ -24,8 +24,8 @@ namespace MinionsOfDeath.Interface
 
         public override void Draw()
         {
-			_background.X = X;
-			_background.Y = Y;
+            _background.X = X;
+            _background.Y = Y;
             _background.Draw();
             StringDrawer.Draw(_font, _text, QFontAlignment.Centre, new OpenTK.Vector2(X + (Width / 2), Y + (Height / 2)));
         }
