@@ -1,6 +1,7 @@
 ﻿using MinionsOfDeath.Graphics;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
+using System.Collections.Generic;
 
 namespace MinionsOfDeath
 {
@@ -12,8 +13,6 @@ namespace MinionsOfDeath
         {
             this.UpdateFrame += Game_UpdateFrame;
             this.RenderFrame += Game_RenderFrame;
-
-            _sprite = new Sprite("XRay-High.png");
         }
 
         private void Game_RenderFrame(object sender, FrameEventArgs e)
@@ -39,7 +38,7 @@ namespace MinionsOfDeath
 
             Camera.Begin();
 
-            _sprite.Draw();
+            // Do drawing here.
 
             Camera.End();
 
