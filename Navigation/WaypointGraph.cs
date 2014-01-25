@@ -32,13 +32,127 @@ namespace MinionsOfDeath.Navigation
             return Math.Sqrt(Math.Pow(x2 - x1,2) + Math.Pow(y2 - y1, 2));
         }
 
-        private void pathfindDijkstra(WaypointNode start, WaypointNode end)
+        private Path pathfindDijkstra(WaypointNode start, WaypointNode end)
         {
-            Path startPath = new Path(start, 0);
+            NodeRecord startRecord = new NodeRecord(start);
 
-            //TODO: Change this, it is not correct
-            List<Path> open = new List<Path>();
-            
+            List<NodeRecord> open = new List<NodeRecord>();
+            open.Add(startRecord);
+            List<NodeRecord> closed = new List<NodeRecord>();
+            NodeRecord current = new NodeRecord();
+
+            while (open.Count > 0){
+                current = open.Where(e => e.CostSoFar == open.Min(f => f.CostSoFar)).First();
+
+                if (current.Node == end)
+                    break;
+
+                // connections = graph.getConnections(current);
+                List<Connection> connections = new List<Connection>();
+                foreach (WaypointNode n in current.Node.Neighbors)
+                {
+                    WaypointNode fromNode = current.Node;
+                    Connection c = new Connection(getDistance(current.Node, n), current.Node , n);
+                    connections.Add(c);
+                }
+
+                foreach (Connection connection in connections){
+                    WaypointNode endNode = connection.getToNode();
+                    double endNodeCost = current.CostSoFar + connection.getCost();
+                    NodeRecord endNodeRecord = closed.Where(e => e.Node == endNode).First();
+                    if (endNodeRecord==null)
+                        endNodeRecord = open.Where(e => e.Node == endNode).First();
+
+                    // if (closed.Contains(endNode))
+                    if(closed.Contains(endNodeRecord))
+                        continue;
+                    // else if (open.Contains(endNode))
+                    else if (open.Contains(endNodeRecord))
+                    {
+                        //endNodeRecord = open.Find(endNode);
+                        if (endNodeRecord.CostSoFar <= endNodeCost)
+                            continue;
+                    }
+                    else
+                    {
+                        endNodeRecord = new NodeRecord(endNode);
+                    }
+                    endNodeRecord.CostSoFar = endNodeCost;
+                    endNodeRecord.Connection = connection;
+
+                    if (!open.Contains(endNodeRecord))
+                    {
+                        open.Add(endNodeRecord);
+                    }
+                }
+                open.Remove(current);
+                closed.Add(current);    
+            }
+            if (current.Node != end){
+                return null;
+            }
+            else
+            {
+                Path path = new Path();
+                path.Add(current.Connection.getFromNode());
+                while (current.Node != start){
+                    // path += current.connection;
+                    path.Add(current.Connection.getToNode()); 
+                    // current = current.connection.getFromNode();
+                    current = closed.Where(e => e.Node == current.Connection.getFromNode()).First();
+                }
+                path.Reverse();
+                return path;
+            }
+        }
+    }
+
+
+    public class Connection
+    {
+        double cost;
+        WaypointNode fromNode;
+        WaypointNode toNode;
+
+        public Connection(double cost, WaypointNode fromNode, WaypointNode toNode)
+        {
+            this.cost = cost;
+            this.fromNode = fromNode;
+            this.toNode = toNode;
+        }
+
+        public double getCost() { return cost; }
+        public WaypointNode getFromNode() { return fromNode; }     
+        public WaypointNode getToNode() { return toNode; }
+    }
+     
+    public class NodeRecord
+    {
+        WaypointNode node;
+        Connection connection;
+        double costSoFar;
+
+        public NodeRecord() { }
+        public NodeRecord(WaypointNode node)
+        {
+            this.node = node;
+            costSoFar = 0;
+        }
+
+        public double CostSoFar
+        {
+            get { return costSoFar; }
+            set { costSoFar = value; }
+        }
+        public WaypointNode Node
+        {
+            get { return node; }
+            set { node = value; }
+        }
+        public Connection Connection
+        {
+            get { return connection; }
+            set { connection = value; }
         }
     }
 }
