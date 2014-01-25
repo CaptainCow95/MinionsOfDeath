@@ -26,7 +26,7 @@ namespace MinionsOfDeath
 		public bool IsCollidingWith(GameObject obj)
 		{
 			return Pos.X + _left < obj.Pos.X + obj._right && Pos.X + _right > obj.Pos.X + obj._left &&
-				Pos.Y + _top < obj.Pos.Y + obj._bottom && Pos.Y + _bottom > obj.Pos.Y + obj._top';
+				Pos.Y + _top < obj.Pos.Y + obj._bottom && Pos.Y + _bottom > obj.Pos.Y + obj._top;
 		}
 
         public DoublePoint Pos
