@@ -11,6 +11,11 @@ namespace MinionsOfDeath.Navigation
         // Storing nodes in dictionary, indexed by Tuple<_x,_y>
         private Dictionary<Tuple<int,int>,WaypointNode> nodes;
 
+
+        public WaypointGraph(string filename)
+        {
+            XmlTextReader reader = new XmlTextReader();
+        }
         private void addNode(int x, int y)
         {
             //TODO: give node its neighbors

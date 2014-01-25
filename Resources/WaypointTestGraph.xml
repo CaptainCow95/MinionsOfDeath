@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Waypoints>
+<Waypoint X="200" Y="200">
+  <neighbor X ="150" Y="200" />
+  <neighbor X="200" Y="150" />
+</Waypoint>
+<Waypoint X="150" Y="200">
+  <neighbor X ="200" Y="200" />
+  <neighbor X="200" Y="150" />
+</Waypoint>
+ <Waypoint X="200" Y="150">
+    <neighbor X ="150" Y="200" />
+    <neighbor X="200" Y="200" />
+ </Waypoint>
+</Waypoints>
