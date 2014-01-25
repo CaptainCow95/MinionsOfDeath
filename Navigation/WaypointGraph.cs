@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Linq;
 
 namespace MinionsOfDeath.Navigation
 {
@@ -11,6 +12,33 @@ namespace MinionsOfDeath.Navigation
 
         public WaypointGraph(string filename)
         {
+            nodes = new Dictionary<Tuple<int, int>, WaypointNode>();
+            XDocument xdoc = XDocument.Load("Resources/WaypointTestGraph.xml");
+
+
+            //add all the waypoints to the graph
+            foreach (var item in xdoc.Elements("Waypoint"))
+            {
+                int x = int.Parse(item.Attribute("X").Value);
+                int y = int.Parse(item.Attribute("Y").Value);
+                nodes.Add(new Tuple<int, int>(x, y), new WaypointNode(this, x, y, new List<WaypointNode>()));
+            }
+
+            //find the neigbhors for every waypoint
+            foreach (var item in xdoc.Elements("Waypoint"))
+            {
+                int x = int.Parse(item.Attribute("X").Value);
+                int y = int.Parse(item.Attribute("Y").Value);
+                Tuple<int, int> thisPoint = new Tuple<int, int>(x, y);
+                foreach (var neighbor in item.Elements("Neighbor"))
+                {
+                    int xn = int.Parse(neighbor.Attribute("X").Value);
+                    int yn = int.Parse(neighbor.Attribute("Y").Value);
+                    Tuple<int, int> neighborPoint = new Tuple<int, int>(xn, yn);
+                    nodes[thisPoint].Neighbors.Add(nodes[neighborPoint]);
+                }
+
+            }
         }
 
         private void addNode(int x, int y)
