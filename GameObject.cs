@@ -23,6 +23,6 @@ namespace MinionsOfDeath
 			return _sprites[_state];
 		}
 
-		public abstract update(double time);
+		public abstract void update(double time);
     }
 }

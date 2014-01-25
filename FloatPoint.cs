@@ -8,6 +8,11 @@ namespace MinionsOfDeath
 {
     class FloatPoint
     {
+        public FloatPoint(float x,float y){
+            _x = x;
+            _y = y;
+        }
+
         private float _x, _y;
 
         public float X

@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace MinionsOfDeath.Behaviors
 {
-    class DecisionTree
+    abstract class DecisionNode
     {
-        public FloatPoint getMove();
+        abstract Behavior getMove();
     }
 }

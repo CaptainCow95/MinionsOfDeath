@@ -4,17 +4,17 @@ namespace MinionsOfDeath
 {
     internal class Minion : GameObject
     {
-		Behavior _behavior = null;
+        DecisionTree _decisionTree;
 
-		public Behavior Behavior
-		{
-			get { return _behavior; }
-			set { _behavior = value; }
+        public DecisionTree DecisionTree
+        {
+            get { return _decisionTree; }
+            set { _decisionTree = value; }
 		}
 
 		public abstract void update(double time)
 		{
-			Move move = _behavior.getMove();
+            FloatPoint targetMove = _decisionTree.getMove();
 		}
     }
 }

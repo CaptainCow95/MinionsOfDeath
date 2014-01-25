@@ -51,8 +51,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Behaviors\Behavior.cs" />
-    <Compile Include="Behaviors\Move.cs" />
+    <Compile Include="Behaviors\DecisionNode.cs" />
+    <Compile Include="Behaviors\DecisionTree.cs" />
     <Compile Include="Camera.cs" />
+    <Compile Include="FloatPoint.cs" />
     <Compile Include="GameObject.cs" />
     <Compile Include="Graphics\StringDrawer.cs" />
     <Compile Include="Interface\Button.cs" />
