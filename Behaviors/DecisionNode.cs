@@ -8,6 +8,7 @@ namespace MinionsOfDeath.Behaviors
 {
     abstract class DecisionNode
     {
-        public abstract Behavior getMove();
+
+        public abstract DoublePoint getGoal();
     }
 }

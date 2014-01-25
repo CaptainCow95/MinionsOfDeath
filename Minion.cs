@@ -22,7 +22,7 @@ namespace MinionsOfDeath
 
 		public override void Update(double time)
 		{
-			DoublePoint fp = _decisionTree.GetMove();
+			DoublePoint fp = _decisionTree.GetGoal();
 			DoublePoint v = new DoublePoint (fp.X - _pos.X, fp.Y - _pos.Y);
 			v.SetToLessOrEqualMag (speed);
 			_pos.Add (v);

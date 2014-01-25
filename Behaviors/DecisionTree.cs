@@ -8,9 +8,19 @@ namespace MinionsOfDeath.Behaviors
 {
     class DecisionTree
     {
-        public DoublePoint GetMove()
+        private DecisionNode _root;
+        public DecisionNode Root
+        {
+            get { return _root; }
+            set { _root = value; }
+        }
+        public DoublePoint GetGoal()
         {
             throw new NotImplementedException();
+        }
+        public DoublePoint getGoal()
+        {
+            return _root.getGoal();
         }
     }
 }

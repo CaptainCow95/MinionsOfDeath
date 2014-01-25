@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace MinionsOfDeath.Behaviors
 {
-    abstract class Behavior : DecisionNode
+    abstract class Action : DecisionNode
     {
         private Minion owner;
         private Minion target;
-        public abstract DoublePoint getTarget();
 
     }
 }
