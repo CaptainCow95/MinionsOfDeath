@@ -8,6 +8,9 @@ namespace MinionsOfDeath.Behaviors
 {
     class DecisionTree
     {
-        public FloatPoint getMove();
+        public DoublePoint GetMove()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

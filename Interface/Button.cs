@@ -1,4 +1,5 @@
-﻿using OpenTK.Input;
+﻿using MinionsOfDeath.Graphics;
+using OpenTK.Input;
 
 namespace MinionsOfDeath.Interface
 {
@@ -6,8 +7,8 @@ namespace MinionsOfDeath.Interface
     {
         private bool _pressed = false;
 
-        public Button(int x, int y, int width, int height, string text)
-            : base(x, y, width, height, text)
+        public Button(int x, int y, int width, int height, string text, Sprite background)
+            : base(x, y, width, height, text, background)
         {
         }
 

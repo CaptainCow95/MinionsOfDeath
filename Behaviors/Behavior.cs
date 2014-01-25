@@ -10,7 +10,7 @@ namespace MinionsOfDeath.Behaviors
     {
         private Minion owner;
         private Minion target;
-        public abstract FloatPoint getTarget;
+        public abstract DoublePoint getTarget();
 
     }
 }

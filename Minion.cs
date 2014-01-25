@@ -1,11 +1,18 @@
 ﻿using MinionsOfDeath.Behaviors;
+using MinionsOfDeath.Graphics;
+using System.Collections.Generic;
 
 namespace MinionsOfDeath
 {
     internal class Minion : GameObject
     {
-		private static float speed = 1.0;
+		private static double speed = 1.0;
         DecisionTree _decisionTree;
+
+        public Minion(List<Sprite> sprites)
+            : base(sprites)
+        {
+        }
 
         public DecisionTree DecisionTree
         {
@@ -13,10 +20,10 @@ namespace MinionsOfDeath
             set { _decisionTree = value; }
 		}
 
-		public abstract void update(double time)
+		public override void Update(double time)
 		{
-			FloatPoint fp = _decisionTree.getMove();
-			FloatPoint v = new FloatPoint (fp.X - _x, fp.Y - _y);
+			DoublePoint fp = _decisionTree.GetMove();
+			DoublePoint v = new DoublePoint (fp.X - _pos.X, fp.Y - _pos.Y);
 			v.SetToLessOrEqualMag (speed);
 			_pos.Add (v);
 		}

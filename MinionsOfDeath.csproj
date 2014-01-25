@@ -54,7 +54,7 @@
     <Compile Include="Behaviors\DecisionNode.cs" />
     <Compile Include="Behaviors\DecisionTree.cs" />
     <Compile Include="Camera.cs" />
-    <Compile Include="FloatPoint.cs" />
+    <Compile Include="DoublePoint.cs" />
     <Compile Include="GameObject.cs" />
     <Compile Include="Graphics\StringDrawer.cs" />
     <Compile Include="Interface\Button.cs" />

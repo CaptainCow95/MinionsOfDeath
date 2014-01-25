@@ -6,36 +6,36 @@ using System.Threading.Tasks;
 
 namespace MinionsOfDeath
 {
-    class FloatPoint
+    class DoublePoint
     {
-        public FloatPoint(float x,float y){
+        public DoublePoint(double x,double y){
             _x = x;
             _y = y;
         }
 
-        private float _x, _y;
+        private double _x, _y;
 
-        public float X
+        public double X
         {
 			get { return _x; }
 			set { _x = value; }
         }
 
-        public float Y
+        public double Y
         {
             get { return _y; }
             set { _y = value; }
         }
 
-		public void SetToLessOrEqualMag(float mag)
+        public void SetToLessOrEqualMag(double mag)
 		{
-			float m = Math.Sqrt((_x*_x) + (_y*_y));
+			double m = Math.Sqrt((_x*_x) + (_y*_y));
 			if (m < mag) return;
 			_x /= m;
 			_y /= m;
 		}
 
-		public void Add(FloatPoint point)
+		public void Add(DoublePoint point)
 		{
 			_x += point._x;
 			_y += point._y;

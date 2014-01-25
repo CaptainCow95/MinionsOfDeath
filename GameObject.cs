@@ -1,14 +1,15 @@
 ﻿using MinionsOfDeath.Graphics;
+using System.Collections.Generic;
 
 namespace MinionsOfDeath
 {
 	internal abstract class GameObject
     {
-		private Sprite[] _sprites;
+		private List<Sprite> _sprites;
 		private int _state;
-		protected FloatPoint _pos;
+		protected DoublePoint _pos;
 
-		public GameObject(Sprite[] sprites)
+		public GameObject(List<Sprite> sprites)
 		{
 			_sprites = sprites;
 		}
@@ -19,11 +20,11 @@ namespace MinionsOfDeath
 			set { _state = value; }
 		}
 
-		public Sprite getSprite()
+		public Sprite GetSprite()
 		{
 			return _sprites[_state];
 		}
 
-		public abstract void update(double time);
+		public abstract void Update(double time);
     }
 }
