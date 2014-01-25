@@ -49,12 +49,12 @@ namespace MinionsOfDeath
 
         public static int WindowWidth { get; private set; }
 
-        public Player Player1
+        public static Player Player1
         {
             get { return _player1; }
         }
 
-        public Player Player2
+        public static Player Player2
         {
             get { return _player2; }
         }
