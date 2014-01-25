@@ -5,12 +5,15 @@ using OpenTK;
 using OpenTK.Graphics.OpenGL;
 using OpenTK.Input;
 using System.Collections.Generic;
+using System.Drawing;
 
 namespace MinionsOfDeath
 {
     public class Game : GameWindow
     {
         public static KeyboardState KeyboardState;
+        public static Point MousePosition;
+        public static Point PreviousMousePosition;
         public static MouseState MouseState;
         public static KeyboardState PreviousKeyboardState;
         public static MouseState PreviousMouseState;
@@ -19,14 +22,14 @@ namespace MinionsOfDeath
 
         private Player _player1;
         private Player _player2;
-        public static int WindowWidth { get; private set; }
-        public static int WindowHeight { get; private set; }
         private ScrollBar _scrollBar;
 
         public Game()
         {
             this.UpdateFrame += Game_UpdateFrame;
             this.RenderFrame += Game_RenderFrame;
+
+            Mouse.Move += Mouse_Move;
 
             this.WindowBorder = WindowBorder.Fixed;
             this.Width = 1000;
@@ -42,6 +45,10 @@ namespace MinionsOfDeath
 
             _scrollBar = new ScrollBar(0, 400, 2000, 40, 0, 2000, true, new Sprite(new List<string>() { "Images/redMinion0.png" }));
         }
+
+        public static int WindowHeight { get; private set; }
+
+        public static int WindowWidth { get; private set; }
 
         public void InitRunningState()
         {
@@ -118,6 +125,8 @@ namespace MinionsOfDeath
             MouseState = OpenTK.Input.Mouse.GetState();
             KeyboardState = OpenTK.Input.Keyboard.GetState();
 
+            PreviousMousePosition = MousePosition;
+
             switch (_gameState)
             {
                 case GameState.PlanningTeam1:
@@ -152,6 +161,11 @@ namespace MinionsOfDeath
 
                     break;
             }
+        }
+
+        private void Mouse_Move(object sender, MouseMoveEventArgs e)
+        {
+            MousePosition = e.Position;
         }
     }
 }

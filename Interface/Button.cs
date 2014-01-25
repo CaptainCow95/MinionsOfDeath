@@ -22,7 +22,7 @@ namespace MinionsOfDeath.Interface
             base.Update(timeSinceFrame);
 
             if (Game.MouseState.LeftButton == ButtonState.Released && Game.PreviousMouseState.LeftButton == ButtonState.Pressed &&
-                Game.MouseState.X > X && Game.MouseState.X < X + Width && Game.MouseState.Y > Y && Game.MouseState.Y < Y + Height)
+                Game.MousePosition.X > X && Game.MousePosition.X < X + Width && Game.MousePosition.Y > Y && Game.MousePosition.Y < Y + Height)
             {
                 _pressed = true;
             }
