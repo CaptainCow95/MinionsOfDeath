@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace MinionsOfDeath
 {
-    internal abstract class GameObject
+    public abstract class GameObject
     {
         protected double _left, _right, _top, _bottom;
         protected DoublePoint _pos = new DoublePoint(0, 0);

@@ -6,7 +6,6 @@ using OpenTK.Graphics.OpenGL;
 using OpenTK.Input;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Xml.Linq;
 
 namespace MinionsOfDeath
 {
@@ -18,16 +17,15 @@ namespace MinionsOfDeath
         public static KeyboardState PreviousKeyboardState;
         public static Point PreviousMousePosition;
         public static MouseState PreviousMouseState;
+        private static Player _player1;
+        private static Player _player2;
         private GameState _gameState;
         private Sprite _map;
-
-        private Player _player1;
-        private Player _player2;
         private StackPanel _stackPanel;
 
         public Game()
         {
-			this.Title = "Minions of Death";
+            this.Title = "Minions of Death";
             this.UpdateFrame += Game_UpdateFrame;
             this.RenderFrame += Game_RenderFrame;
 
@@ -50,6 +48,16 @@ namespace MinionsOfDeath
         public static int WindowHeight { get; private set; }
 
         public static int WindowWidth { get; private set; }
+
+        public Player Player1
+        {
+            get { return _player1; }
+        }
+
+        public Player Player2
+        {
+            get { return _player2; }
+        }
 
         public void InitRunningState()
         {
@@ -131,7 +139,7 @@ namespace MinionsOfDeath
 #if GRAPHMAKER
             XDocument doc = new XDocument();
             doc.Add(new XElement("Waypoints"));
-            if (MouseState.LeftButton == ButtonState.Pressed && PreviousMouseState.LeftButton == ButtonState.Released) { 
+            if (MouseState.LeftButton == ButtonState.Pressed && PreviousMouseState.LeftButton == ButtonState.Released) {
                  doc.Element("Waypoints").Add(new XElement("Waypoint", new XAttribute("X", MousePosition.X), new XAttribute("Y", MousePosition.Y), new XElement("Subwaypoint")));
             }
             doc.Save("TestWaypoint.xml");
@@ -177,7 +185,7 @@ namespace MinionsOfDeath
 
         private void Mouse_Move(object sender, MouseMoveEventArgs e)
         {
-			MousePosition = e.Position;
+            MousePosition = e.Position;
         }
     }
 }

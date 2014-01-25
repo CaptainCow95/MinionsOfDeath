@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace MinionsOfDeath
 {
-    internal class Minion : GameObject
+    public class Minion : GameObject
     {
         private static double speed = 1.0;
 
