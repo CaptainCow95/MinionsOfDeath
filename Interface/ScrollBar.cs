@@ -40,13 +40,13 @@ namespace MinionsOfDeath.Interface
             {
                 _scrollBar.X = _currentValue / (_maxValue + _scrollBar.Width - _minValue) * (_maxValue - _minValue);
                 _scrollBar.Y = Y;
-                _scrollBar.Height = Height;
+				_scrollBar.Height = Height;
             }
             else
             {
                 _scrollBar.X = X;
                 _scrollBar.Y = _currentValue / (_maxValue + _scrollBar.Height - _minValue) * (_maxValue - _minValue);
-                _scrollBar.Width = Width;
+				_scrollBar.Width = Width;
             }
 
             _scrollBar.Draw();
