@@ -11,7 +11,7 @@ namespace MinionsOfDeath.Behaviors.Queries
 
         public override DoublePoint GetGoal()
         {
-            if (true)
+            if ()
             {
                 return TrueChild.GetGoal();
             }
