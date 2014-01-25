@@ -1,4 +1,4 @@
-﻿using MinionsOfDeath.Behaviors;
+﻿﻿using MinionsOfDeath.Behaviors;
 using MinionsOfDeath.Graphics;
 using MinionsOfDeath.Interface;
 using OpenTK;
@@ -43,7 +43,7 @@ namespace MinionsOfDeath
             _map.Width *= 2;
             _map.Height *= 2;
 
-			_scrollBar = new ScrollBar(0, 0, 40, 1800, 0, 1800, false, new Sprite(new List<string>() { "Images/redMinion0.png" }));
+			_scrollBar = new ScrollBar(0, 0, 40, 40, 0, (int)_map.Height, false, new Sprite(new List<string>() { "Images/redMinion0.png" }));
         }
 
         public static int WindowHeight { get; private set; }

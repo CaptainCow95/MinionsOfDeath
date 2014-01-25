@@ -16,7 +16,7 @@ namespace MinionsOfDeath.Interface
             : base(x, y, width, height)
         {
             _minValue = minValue;
-            _maxValue = maxValue;
+			_maxValue = maxValue - (horizontal ? Game.WindowWidth : Game.WindowHeight);
             _horizontal = horizontal;
             _currentValue = minValue;
             _scrollBar = scrollBar;
@@ -44,8 +44,10 @@ namespace MinionsOfDeath.Interface
             }
             else
             {
-                _scrollBar.X = X;
-                _scrollBar.Y = _currentValue / (_maxValue + _scrollBar.Height - _minValue) * (_maxValue - _minValue);
+				//_scrollBar.X = X;
+				//_scrollBar.Y = _currentValue / (_maxValue + _scrollBar.Height - _minValue) * (_maxValue - _minValue);
+				_scrollBar.X = X;
+				_scrollBar.Y = _currentValue + Camera.Y;
 				_scrollBar.Width = Width;
             }
 
@@ -55,8 +57,8 @@ namespace MinionsOfDeath.Interface
         public override void Update(double timeSinceFrame)
         {
 			if (Game.MouseState.LeftButton == OpenTK.Input.ButtonState.Pressed && Game.PreviousMouseState.LeftButton == OpenTK.Input.ButtonState.Pressed &&
-			    Game.PreviousMousePosition.X > _scrollBar.X - Camera.X && Game.PreviousMousePosition.X < _scrollBar.X + _scrollBar.Width - Camera.Y &&
-			    Game.PreviousMousePosition.Y > _scrollBar.Y - Camera.X && Game.PreviousMousePosition.Y < _scrollBar.Y + _scrollBar.Height - Camera.Y)
+				Game.PreviousMousePosition.X > _scrollBar.X - Camera.X && Game.PreviousMousePosition.X < _scrollBar.X + _scrollBar.Width - Camera.X &&
+				Game.PreviousMousePosition.Y > _scrollBar.Y - Camera.Y && Game.PreviousMousePosition.Y < _scrollBar.Y + _scrollBar.Height - Camera.Y)
 			{
 				_scrolling = true;
 			} else if (Game.MouseState.LeftButton == OpenTK.Input.ButtonState.Released)
@@ -67,14 +69,16 @@ namespace MinionsOfDeath.Interface
             {
                 if (_horizontal)
                 {
-                    _currentValue = Game.MousePosition.X + Camera.X - _minValue;
+					_currentValue = Game.MousePosition.X + Camera.X - _minValue;
                 }
                 else
                 {
-                    _currentValue = Game.MousePosition.Y + Camera.Y - _minValue;
+					// _currentValue = Game.MousePosition.Y + Camera.Y - _minValue;
+					_currentValue = Game.MousePosition.Y - (int)(_scrollBar.Height / 2);
                 }
 
-                _currentValue = Math.Max(_minValue, Math.Min(_maxValue, _currentValue));
+				// _currentValue = Math.Max(_minValue, Math.Min(_maxValue, _currentValue));
+				_currentValue = Math.Max(0, Math.Min((int) (Game.WindowHeight - _scrollBar.Height), _currentValue));
             }
 
             if (_horizontal)
@@ -83,7 +87,8 @@ namespace MinionsOfDeath.Interface
             }
             else
             {
-                Camera.Y = (int)((_currentValue / (_maxValue - _scrollBar.Height - _minValue)) * (_maxValue - Game.WindowHeight - _minValue));
+				//Camera.Y = (int)((_currentValue / (_maxValue - _scrollBar.Height - _minValue)) * (_maxValue - Game.WindowHeight - _minValue));
+				Camera.Y = (int)((_currentValue * (_maxValue - _minValue) / (Game.WindowHeight - _scrollBar.Height)) + _minValue);
             }
         }
     }
