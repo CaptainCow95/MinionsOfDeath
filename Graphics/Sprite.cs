@@ -7,10 +7,10 @@ namespace MinionsOfDeath.Graphics
     public class Sprite
     {
         private int _textureHeight;
-
         private int _textureId;
-
         private int _textureWidth;
+        private float _x;
+        private float _y;
 
         public Sprite(string filename)
         {
@@ -30,6 +30,18 @@ namespace MinionsOfDeath.Graphics
 
             GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)TextureMinFilter.Linear);
             GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)TextureMagFilter.Linear);
+        }
+
+        public float X
+        {
+            get { return _x; }
+            set { _x = value; }
+        }
+
+        public float Y
+        {
+            get { return _y; }
+            set { _y = value; }
         }
 
         public void Draw()
