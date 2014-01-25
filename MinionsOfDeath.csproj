@@ -78,6 +78,7 @@
     <Compile Include="Game.cs" />
     <Compile Include="Graphics\Sprite.cs" />
     <Compile Include="Interface\ScrollBar.cs" />
+    <Compile Include="Resources\GraphMaker.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\BlueMinion.png">
@@ -100,6 +101,9 @@
     </Content>
     <Content Include="Images\redMinion1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\testMap.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\WaypointTestGraph.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

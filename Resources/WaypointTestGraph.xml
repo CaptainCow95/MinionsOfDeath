@@ -1,15 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Waypoints>
-<Waypoint X="200" Y="200">
-  <neighbor X ="150" Y="200" />
-  <neighbor X="200" Y="150" />
+<Waypoint X="400" Y="60">
+  <Neighbor X="500" Y ="50"/>
+  <Neighbor X="126" Y ="218"/>
 </Waypoint>
-<Waypoint X="150" Y="200">
-  <neighbor X ="200" Y="200" />
-  <neighbor X="200" Y="150" />
-</Waypoint>
- <Waypoint X="200" Y="150">
-    <neighbor X ="150" Y="200" />
-    <neighbor X="200" Y="200" />
- </Waypoint>
+  <Waypoint  X="500" Y ="50">
+    <Neighbor X="400" Y ="60"/>
+    <Neighbor X="126" Y ="218"/>
+  </Waypoint>
+  <Waypoint  X="126" Y ="218">
+  </Waypoint>
+  <Waypoint  X="500" Y ="220">
+  </Waypoint>
+  <Waypoint  X="900" Y ="210">
+  </Waypoint>
+  <Waypoint  X="495" Y ="460">
+  </Waypoint>
+  <Waypoint  X="577" Y ="50">
+  </Waypoint>
+  <Waypoint  X="577" Y ="50">
+    <Waypoint  X="577" Y ="50">
+    </Waypoint>
+  </Waypoint>
 </Waypoints>

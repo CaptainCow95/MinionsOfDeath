@@ -39,12 +39,33 @@ namespace MinionsOfDeath.Navigation
             }
         }
 
-        private void addNode(int x, int y)
+        private void AddNode(int x, int y)
         {
             //TODO: give node its neighbors
             List<WaypointNode> ns = new List<WaypointNode>();
             WaypointNode n = new WaypointNode(this, x, y, ns);
             nodes.Add(Tuple.Create(x, y), n);
+        }
+
+        private void ConnectNodes(WaypointNode aNode, WaypointNode bNode)
+        {
+            aNode.Neighbors.Add(bNode);
+            bNode.Neighbors.Add(aNode);
+        }
+
+        public WaypointNode GetClosestWaypoint(int x, int y)
+        {
+            WaypointNode closest = nodes.ElementAt(0).Value;
+            foreach (KeyValuePair<Tuple<int, int>, WaypointNode> item in nodes)
+            {
+                WaypointNode tempNode = item.Value;
+                if (getDistance(x, y, tempNode.X, tempNode.Y) < getDistance(x, y, closest.X, closest.Y))
+                {
+                    closest = tempNode;
+                }
+            }
+            return closest; 
+
         }
 
         private double getDistance(WaypointNode node1, WaypointNode node2)
