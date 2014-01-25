@@ -35,23 +35,19 @@ namespace MinionsOfDeath
             _map.Height *= 2;
         }
 
-        public Sprite LoadAndDoubleSize(List<string> filenames)
-        {
-            Sprite sprite = new Sprite(filenames);
-            sprite.Width *= 2;
-            sprite.Height *= 2;
-
-            return sprite;
-        }
-
         public void InitRunningState()
         {
             _player1 = new Player(1);
-            Minion minion1 = new Minion(new List<Sprite>() { LoadAndDoubleSize(new List<string>() { "Images\\BlueMinion.png" }), LoadAndDoubleSize(new List<string>() { "Images\\BlueMinion0.png", "Images\\BlueMinion1.png" }) }, 0);
+            Minion minion1 = new Minion(new List<Sprite>() { new Sprite(new List<string>() { "Images\\BlueMinion.png" }), new Sprite(new List<string>() { "Images\\BlueMinion0.png", "Images\\BlueMinion1.png" }) }, 0);
+            minion1.Width = 40;
+            minion1.Height = 40;
             minion1.State = 1;
             _player1.AddMinion(minion1);
+
             _player2 = new Player(2);
-            Minion minion2 = new Minion(new List<Sprite>() { LoadAndDoubleSize(new List<string>() { "Images\\RedMinion.png" }), LoadAndDoubleSize(new List<string>() { "Images\\RedMinion0.png", "Images\\RedMinion1.png" }) }, 0);
+            Minion minion2 = new Minion(new List<Sprite>() { new Sprite(new List<string>() { "Images\\RedMinion.png" }), new Sprite(new List<string>() { "Images\\RedMinion0.png", "Images\\RedMinion1.png" }) }, 0);
+            minion2.Width = 40;
+            minion2.Height = 40;
             minion2.State = 1;
             _player2.AddMinion(minion2);
 
@@ -128,6 +124,25 @@ namespace MinionsOfDeath
                     _map.Update(e.Time);
                     _player1.Update(e.Time);
                     _player2.Update(e.Time);
+
+                    // Check for collisions
+                    List<int> player1MinionsToRemove = new List<int>();
+                    List<int> player2MinionsToRemove = new List<int>();
+                    foreach (var player1Minion in _player1.Minions)
+                    {
+                        foreach (var player2Minion in _player2.Minions)
+                        {
+                            if (player1Minion.Value.IsCollidingWith(player2Minion.Value))
+                            {
+                                player1MinionsToRemove.Add(player1Minion.Key);
+                                player2MinionsToRemove.Add(player2Minion.Key);
+                            }
+                        }
+                    }
+
+                    player1MinionsToRemove.ForEach(f => _player1.Minions.Remove(f));
+                    player2MinionsToRemove.ForEach(f => _player2.Minions.Remove(f));
+
                     break;
             }
         }
