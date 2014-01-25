@@ -8,7 +8,7 @@ namespace MinionsOfDeath.Behaviors
 {
     abstract class DecisionNode
     {
-
+        protected Minion _owner;
         public abstract DoublePoint getGoal();
     }
 }

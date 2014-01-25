@@ -8,8 +8,7 @@ namespace MinionsOfDeath.Behaviors
 {
     abstract class Action : DecisionNode
     {
-        private Minion owner;
-        private Minion target;
+        protected Minion _target;
 
     }
 }

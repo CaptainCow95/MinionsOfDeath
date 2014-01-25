@@ -9,6 +9,12 @@ namespace MinionsOfDeath
 		private int _state;
 		protected DoublePoint _pos;
 
+        public DoublePoint Pos
+        {
+            set { _pos = value; }
+            get { return _pos; }
+        }
+
 		public GameObject(List<Sprite> sprites)
 		{
 			_sprites = sprites;

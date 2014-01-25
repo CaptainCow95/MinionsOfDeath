@@ -54,6 +54,7 @@
     <Compile Include="Behaviors\DecisionNode.cs" />
     <Compile Include="Behaviors\DecisionTree.cs" />
     <Compile Include="Behaviors\QueryNode.cs" />
+    <Compile Include="Behaviors\SeekAction.cs" />
     <Compile Include="Camera.cs" />
     <Compile Include="DoublePoint.cs" />
     <Compile Include="GameObject.cs" />
