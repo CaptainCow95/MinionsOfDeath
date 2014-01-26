@@ -8,5 +8,9 @@ namespace MinionsOfDeath.Behaviors.Actions
 {
     internal class FollowPath : Action
     {
+        public override DoublePoint GetGoal()
+        {
+            return null;
+        }
     }
 }
