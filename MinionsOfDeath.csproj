@@ -155,6 +155,7 @@
     <Content Include="Images\Map1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\Map2.png" />
     <Content Include="Images\Player1Wins.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
