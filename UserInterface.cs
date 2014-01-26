@@ -1,4 +1,4 @@
-﻿﻿﻿using MinionsOfDeath.Behaviors;
+﻿﻿﻿﻿using MinionsOfDeath.Behaviors;
 using MinionsOfDeath.Behaviors.Actions;
 using MinionsOfDeath.Behaviors.Queries;
 using MinionsOfDeath.Graphics;
@@ -634,32 +634,12 @@ namespace MinionsOfDeath
                     break;
 
                 case UserInterfaceState.Player1Wins:
-                    Camera.X = 0;
-                    Camera.Y = 0;
-
-                    if (Game.MouseState.LeftButton == OpenTK.Input.ButtonState.Released && Game.PreviousMouseState.LeftButton == OpenTK.Input.ButtonState.Pressed)
-                    {
-                        _state = UserInterfaceState.Player1MinionSelect;
-                        Reset();
-                    }
-                    break;
-
                 case UserInterfaceState.Player2Wins:
-                    Camera.X = 0;
-                    Camera.Y = 0;
-
-                    if (Game.MouseState.LeftButton == OpenTK.Input.ButtonState.Released && Game.PreviousMouseState.LeftButton == OpenTK.Input.ButtonState.Pressed)
-                    {
-                        _state = UserInterfaceState.Player1MinionSelect;
-                        Reset();
-                    }
-                    break;
-
                 case UserInterfaceState.Draw:
                     Camera.X = 0;
                     Camera.Y = 0;
 
-                    if (Game.MouseState.LeftButton == OpenTK.Input.ButtonState.Released && Game.PreviousMouseState.LeftButton == OpenTK.Input.ButtonState.Pressed)
+				if (Game.MouseState.LeftButton == OpenTK.Input.ButtonState.Pressed && Game.PreviousMouseState.LeftButton == OpenTK.Input.ButtonState.Released)
                     {
                         _state = UserInterfaceState.Player1MinionSelect;
                         Reset();
