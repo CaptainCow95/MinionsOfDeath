@@ -35,6 +35,7 @@ namespace MinionsOfDeath
         private int _minionEditing = 1;
         private static Sprite player1wins = new Sprite(new List<string>() { "Images/Player1Wins.png" }, 0);
         private static Sprite player2wins = new Sprite(new List<string>() { "Images/Player2Wins.png" }, 0);
+        private static Sprite draw = new Sprite(new List<string>() { "draw.png" }, 0);
 
 
         public UserInterface()
@@ -191,6 +192,10 @@ namespace MinionsOfDeath
 
                 case UserInterfaceState.Player2Wins:
                     player2wins.Draw();
+                    break;
+
+                case UserInterfaceState.Draw:
+                    draw.Draw();
                     break;
             }
         }
@@ -610,7 +615,8 @@ namespace MinionsOfDeath
 
                     if (!player1SpecialAlive && !player2SpecialAlive)
                     {
-                        // Draw
+                        _state = UserInterfaceState.Draw;
+                        Sound.Death.Play();
                     }
                     else if (!player1SpecialAlive)
                     {
@@ -639,6 +645,17 @@ namespace MinionsOfDeath
                     break;
 
                 case UserInterfaceState.Player2Wins:
+                    Camera.X = 0;
+                    Camera.Y = 0;
+
+                    if (Game.MouseState.LeftButton == OpenTK.Input.ButtonState.Released && Game.PreviousMouseState.LeftButton == OpenTK.Input.ButtonState.Pressed)
+                    {
+                        _state = UserInterfaceState.Player1MinionSelect;
+                        Reset();
+                    }
+                    break;
+
+                case UserInterfaceState.Draw:
                     Camera.X = 0;
                     Camera.Y = 0;
 

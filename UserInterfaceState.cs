@@ -8,6 +8,7 @@
         Player2EditMinionTree,
         Running,
         Player1Wins,
-        Player2Wins
+        Player2Wins,
+        Draw
     }
 }
