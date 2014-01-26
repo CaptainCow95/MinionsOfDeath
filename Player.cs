@@ -42,6 +42,7 @@ namespace MinionsOfDeath
             {
                 minion.Value.Draw();
             }
+            _base.Draw();
         }
 
         public void SetSpecial(int MinionID)
