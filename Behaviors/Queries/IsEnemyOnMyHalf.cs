@@ -17,12 +17,12 @@ namespace MinionsOfDeath.Behaviors.Queries
             bool succeed;
             if (player1)
             {
-                Minion minion = Game.Player2.Minions.Values.Where(e => e.Pos.Y > 500).First();
+                Minion minion = Game.Player2.Minions.Values.Where(e => e.Pos.Y < 900).FirstOrDefault();
                 succeed = minion != null;
             }
             else
             {
-                Minion minion = Game.Player1.Minions.Values.Where(e => e.Pos.Y < 500).First();
+                Minion minion = Game.Player1.Minions.Values.Where(e => e.Pos.Y > 900).FirstOrDefault();
                 succeed = minion != null;
             }
             if (succeed)
