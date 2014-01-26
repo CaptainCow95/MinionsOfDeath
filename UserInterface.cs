@@ -1,6 +1,7 @@
 ﻿using MinionsOfDeath.Graphics;
 using MinionsOfDeath.Interface;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MinionsOfDeath
 {
@@ -14,12 +15,21 @@ namespace MinionsOfDeath
         private Button _player2Go;
         private StackPanel _player2TreeRoot;
         private UserInterfaceState _state;
+        private Dictionary<Button, StackPanel> _player1ParentList = new Dictionary<Button,StackPanel>();
+        private Dictionary<Button, StackPanel> _player2ParentList = new Dictionary<Button, StackPanel>();
+        private Select _editSelect;
 
         public UserInterface()
         {
             _player1TreeRoot = new StackPanel(0, 0, 1000, 700, false, false, new Sprite(new List<string>() { "Images/SCROLLDAGGER5000.png" }), new Sprite(new List<string>() { "Images/SCROLLDAGGER3000.png" }));
+            Button player1GoToBase = new Button(0, 0, 100, 100, false, "Go To\nBase", new Sprite(new List<string>() { "Images/blueButton.png" }));
+            _player1TreeRoot.Children.Add(player1GoToBase);
+            _player1ParentList.Add(player1GoToBase, _player1TreeRoot);
             _player1TreeRoot.Children.Add(new Button(0, 0, 100, 100, false, "Go Back", new Sprite(new List<string>() { "Images/blueButton.png" })));
             _player2TreeRoot = new StackPanel(0, 0, 1000, 700, false, false, new Sprite(new List<string>() { "Images/SCROLLDAGGER5000.png" }), new Sprite(new List<string>() { "Images/SCROLLDAGGER3000.png" }));
+            Button player2GoToBase = new Button(0, 0, 100, 100, false, "Go To\nBase", new Sprite(new List<string>() { "Images/blueButton.png" }));
+            _player2TreeRoot.Children.Add(player2GoToBase);
+            _player2ParentList.Add(player2GoToBase, _player2TreeRoot);
             _player2TreeRoot.Children.Add(new Button(0, 0, 100, 100, false, "Go Back", new Sprite(new List<string>() { "Images/blueButton.png" })));
 
             _player1Go = new Button(0, 600, 100, 100, true, "Go to\nPlayer 2", new Sprite(new List<string>() { "Images/blueButton.png" }));
@@ -77,6 +87,15 @@ namespace MinionsOfDeath
             {
                 case UserInterfaceState.Player1EditMinionTree:
                     _player1TreeRoot.Update(lastFrameTime);
+
+                    for (int i = 0; i < _player1ParentList.Keys.Count; ++i)
+                    {
+                        Button button = _player1ParentList.Keys.ElementAt(i);
+                        if (button.Pressed)
+                        {
+
+                        }
+                    }
 
                     if (((Button)_player1TreeRoot.Children[_player1TreeRoot.Children.Count - 1]).Pressed)
                     {
