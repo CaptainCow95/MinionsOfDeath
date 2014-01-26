@@ -45,7 +45,10 @@ namespace MinionsOfDeath
 
 		public void Flush()
 		{
-			_deathClouds.RemoveAll(_toRemoveDC);
+			foreach (DeathCloud dc in _toRemoveDC)
+			{
+				_deathClouds.Remove(dc);
+			}
 		}
 
 		public void Draw()
