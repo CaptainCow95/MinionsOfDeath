@@ -64,11 +64,13 @@ namespace MinionsOfDeath
         public static Player Player1
         {
             get { return _player1; }
+            set { _player1 = value; }
         }
 
         public static Player Player2
         {
             get { return _player2; }
+            set { _player2 = value; }
         }
 
         public static int WindowHeight { get; private set; }

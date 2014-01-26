@@ -19,10 +19,10 @@ namespace MinionsOfDeath
         private ScrollBar _mapScroll;
         private Button _player1Go;
         private Dictionary<Button, Tuple<StackPanel, StackPanel>> _player1ParentList = new Dictionary<Button, Tuple<StackPanel, StackPanel>>();
-        private StackPanel _player1TreeRoot;
+        private Dictionary<int, StackPanel> _player1TreeRoot;
         private Button _player2Go;
         private Dictionary<Button, Tuple<StackPanel, StackPanel>> _player2ParentList = new Dictionary<Button, Tuple<StackPanel, StackPanel>>();
-        private StackPanel _player2TreeRoot;
+        private Dictionary<int, StackPanel> _player2TreeRoot;
         private List<string> _selectOptions = new List<string>() { "Is Enemy\nClose", "Is 1 \nEnemy Left", "Is 2\nEnemies Left", "Is Enemy\nOn My Half", "Is Nearest\nEnemy Moving\nAway", "Is Nearest\nEnemy Moving\nTowards", "Attack Closest", "Follow Path", "Go To Base", "Run Away", "Wait For Time" };
         private UserInterfaceState _state;
         private Button _minion1;
@@ -37,16 +37,39 @@ namespace MinionsOfDeath
 
         public UserInterface()
         {
-            _player1TreeRoot = new StackPanel(0, 0, 1000, 700, false, false, new Sprite(new List<string>() { "Images/SCROLLDAGGER5000.png" }, 0), new Sprite(new List<string>() { "Images/SCROLLDAGGER3000.png" }, 0));
+            _player1TreeRoot = new Dictionary<int, StackPanel>();
+            _player1TreeRoot[1] = new StackPanel(0, 0, 1000, 700, false, false, new Sprite(new List<string>() { "Images/SCROLLDAGGER5000.png" }, 0), new Sprite(new List<string>() { "Images/SCROLLDAGGER3000.png" }, 0));
             Button player1GoToBase = new Button(0, 0, 100, 100, false, "Go To Base", new Sprite(new List<string>() { "Images/blueButton.png" }, 0));
-            _player1TreeRoot.Children.Add(player1GoToBase);
-            _player1ParentList.Add(player1GoToBase, new Tuple<StackPanel, StackPanel>(_player1TreeRoot, null));
-            _player1TreeRoot.Children.Add(new Button(0, 0, 100, 100, false, "Go Back", new Sprite(new List<string>() { "Images/blueButton.png" }, 0)));
-            _player2TreeRoot = new StackPanel(0, 0, 1000, 700, false, false, new Sprite(new List<string>() { "Images/SCROLLDAGGER5000.png" }, 0), new Sprite(new List<string>() { "Images/SCROLLDAGGER3000.png" }, 0));
+            _player1TreeRoot[1].Children.Add(player1GoToBase);
+            _player1ParentList.Add(player1GoToBase, new Tuple<StackPanel, StackPanel>(_player1TreeRoot[1], null));
+            _player1TreeRoot[1].Children.Add(new Button(0, 0, 100, 100, false, "Go Back", new Sprite(new List<string>() { "Images/blueButton.png" }, 0)));
+            _player1TreeRoot[2] = new StackPanel(0, 0, 1000, 700, false, false, new Sprite(new List<string>() { "Images/SCROLLDAGGER5000.png" }, 0), new Sprite(new List<string>() { "Images/SCROLLDAGGER3000.png" }, 0));
+            player1GoToBase = new Button(0, 0, 100, 100, false, "Go To Base", new Sprite(new List<string>() { "Images/blueButton.png" }, 0));
+            _player1TreeRoot[2].Children.Add(player1GoToBase);
+            _player1ParentList.Add(player1GoToBase, new Tuple<StackPanel, StackPanel>(_player1TreeRoot[2], null));
+            _player1TreeRoot[2].Children.Add(new Button(0, 0, 100, 100, false, "Go Back", new Sprite(new List<string>() { "Images/blueButton.png" }, 0)));
+            _player1TreeRoot[3] = new StackPanel(0, 0, 1000, 700, false, false, new Sprite(new List<string>() { "Images/SCROLLDAGGER5000.png" }, 0), new Sprite(new List<string>() { "Images/SCROLLDAGGER3000.png" }, 0));
+            player1GoToBase = new Button(0, 0, 100, 100, false, "Go To Base", new Sprite(new List<string>() { "Images/blueButton.png" }, 0));
+            _player1TreeRoot[3].Children.Add(player1GoToBase);
+            _player1ParentList.Add(player1GoToBase, new Tuple<StackPanel, StackPanel>(_player1TreeRoot[3], null));
+            _player1TreeRoot[3].Children.Add(new Button(0, 0, 100, 100, false, "Go Back", new Sprite(new List<string>() { "Images/blueButton.png" }, 0)));
+
+            _player2TreeRoot = new Dictionary<int, StackPanel>();
+            _player2TreeRoot[1] = new StackPanel(0, 0, 1000, 700, false, false, new Sprite(new List<string>() { "Images/SCROLLDAGGER5000.png" }, 0), new Sprite(new List<string>() { "Images/SCROLLDAGGER3000.png" }, 0));
             Button player2GoToBase = new Button(0, 0, 100, 100, false, "Go To Base", new Sprite(new List<string>() { "Images/blueButton.png" }, 0));
-            _player2TreeRoot.Children.Add(player2GoToBase);
-            _player2ParentList.Add(player2GoToBase, new Tuple<StackPanel, StackPanel>(_player2TreeRoot, null));
-            _player2TreeRoot.Children.Add(new Button(0, 0, 100, 100, false, "Go Back", new Sprite(new List<string>() { "Images/blueButton.png" }, 0)));
+            _player2TreeRoot[1].Children.Add(player2GoToBase);
+            _player2ParentList.Add(player2GoToBase, new Tuple<StackPanel, StackPanel>(_player2TreeRoot[1], null));
+            _player2TreeRoot[1].Children.Add(new Button(0, 0, 100, 100, false, "Go Back", new Sprite(new List<string>() { "Images/blueButton.png" }, 0)));
+            _player2TreeRoot[2] = new StackPanel(0, 0, 1000, 700, false, false, new Sprite(new List<string>() { "Images/SCROLLDAGGER5000.png" }, 0), new Sprite(new List<string>() { "Images/SCROLLDAGGER3000.png" }, 0));
+            player2GoToBase = new Button(0, 0, 100, 100, false, "Go To Base", new Sprite(new List<string>() { "Images/blueButton.png" }, 0));
+            _player2TreeRoot[2].Children.Add(player2GoToBase);
+            _player2ParentList.Add(player2GoToBase, new Tuple<StackPanel, StackPanel>(_player2TreeRoot[2], null));
+            _player2TreeRoot[2].Children.Add(new Button(0, 0, 100, 100, false, "Go Back", new Sprite(new List<string>() { "Images/blueButton.png" }, 0)));
+            _player2TreeRoot[3] = new StackPanel(0, 0, 1000, 700, false, false, new Sprite(new List<string>() { "Images/SCROLLDAGGER5000.png" }, 0), new Sprite(new List<string>() { "Images/SCROLLDAGGER3000.png" }, 0));
+            player2GoToBase = new Button(0, 0, 100, 100, false, "Go To Base", new Sprite(new List<string>() { "Images/blueButton.png" }, 0));
+            _player2TreeRoot[3].Children.Add(player2GoToBase);
+            _player2ParentList.Add(player2GoToBase, new Tuple<StackPanel, StackPanel>(_player2TreeRoot[3], null));
+            _player2TreeRoot[3].Children.Add(new Button(0, 0, 100, 100, false, "Go Back", new Sprite(new List<string>() { "Images/blueButton.png" }, 0)));
 
             _player1Go = new Button(0, 600, 100, 100, true, "Go to\nPlayer 2", new Sprite(new List<string>() { "Images/blueButton.png" }, 0));
 
@@ -73,11 +96,23 @@ namespace MinionsOfDeath
 
         public void CreateDecisionTrees()
         {
-            DecisionTree tree = new DecisionTree(Game.Player1.Minions.ElementAt(0).Value, GetNode(Game.Player1.Minions.ElementAt(0).Value, _player1TreeRoot.Children[0], _player1TreeRoot, null));
-            Game.Player1.Minions.ElementAt(0).Value.DecisionTree = tree;
+            DecisionTree tree = new DecisionTree(Game.Player1.Minions[1], GetNode(Game.Player1.Minions[1], _player1TreeRoot[1].Children[0], _player1TreeRoot[1], null));
+            Game.Player1.Minions[1].DecisionTree = tree;
 
-            DecisionTree tree2 = new DecisionTree(Game.Player2.Minions.ElementAt(0).Value, GetNode(Game.Player2.Minions.ElementAt(0).Value, _player2TreeRoot.Children[0], _player2TreeRoot, null));
-            Game.Player2.Minions.ElementAt(0).Value.DecisionTree = tree2;
+            tree = new DecisionTree(Game.Player1.Minions[2], GetNode(Game.Player1.Minions[2], _player1TreeRoot[2].Children[0], _player1TreeRoot[2], null));
+            Game.Player1.Minions[2].DecisionTree = tree;
+
+            tree = new DecisionTree(Game.Player1.Minions[3], GetNode(Game.Player1.Minions[3], _player1TreeRoot[3].Children[0], _player1TreeRoot[3], null));
+            Game.Player1.Minions[3].DecisionTree = tree;
+
+            DecisionTree tree2 = new DecisionTree(Game.Player2.Minions[1], GetNode(Game.Player2.Minions[1], _player2TreeRoot[1].Children[0], _player2TreeRoot[1], null));
+            Game.Player2.Minions[1].DecisionTree = tree2;
+
+            tree2 = new DecisionTree(Game.Player2.Minions[2], GetNode(Game.Player2.Minions[2], _player2TreeRoot[2].Children[0], _player2TreeRoot[2], null));
+            Game.Player2.Minions[2].DecisionTree = tree2;
+
+            tree2 = new DecisionTree(Game.Player2.Minions[3], GetNode(Game.Player2.Minions[3], _player2TreeRoot[3].Children[0], _player2TreeRoot[3], null));
+            Game.Player2.Minions[3].DecisionTree = tree2;
         }
 
         public void Draw()
@@ -95,7 +130,7 @@ namespace MinionsOfDeath
                     }
                     else
                     {
-                        _player1TreeRoot.Draw();
+                        _player1TreeRoot[_minionEditing].Draw();
                     }
                     break;
 
@@ -131,7 +166,7 @@ namespace MinionsOfDeath
                     }
                     else
                     {
-                        _player2TreeRoot.Draw();
+                        _player2TreeRoot[_minionEditing].Draw();
                     }
                     break;
 
@@ -322,7 +357,7 @@ namespace MinionsOfDeath
                     }
                     else
                     {
-                        _player1TreeRoot.Update(lastFrameTime);
+                        _player1TreeRoot[_minionEditing].Update(lastFrameTime);
 
                         for (int i = 0; i < _player1ParentList.Keys.Count; ++i)
                         {
@@ -335,7 +370,7 @@ namespace MinionsOfDeath
                         }
                     }
 
-                    if (((Button)_player1TreeRoot.Children[_player1TreeRoot.Children.Count - 1]).Pressed)
+                    if (((Button)_player1TreeRoot[_minionEditing].Children[_player1TreeRoot[_minionEditing].Children.Count - 1]).Pressed)
                     {
                         _state = UserInterfaceState.Player1MinionSelect;
                         Camera.X = 0;
@@ -448,7 +483,7 @@ namespace MinionsOfDeath
                     }
                     else
                     {
-                        _player2TreeRoot.Update(lastFrameTime);
+                        _player2TreeRoot[_minionEditing].Update(lastFrameTime);
 
                         for (int i = 0; i < _player2ParentList.Keys.Count; ++i)
                         {
@@ -461,7 +496,7 @@ namespace MinionsOfDeath
                         }
                     }
 
-                    if (((Button)_player2TreeRoot.Children[_player2TreeRoot.Children.Count - 1]).Pressed)
+                    if (((Button)_player2TreeRoot[_minionEditing].Children[_player2TreeRoot[_minionEditing].Children.Count - 1]).Pressed)
                     {
                         _state = UserInterfaceState.Player2MinionSelect;
                         Camera.X = 0;
@@ -556,12 +591,86 @@ namespace MinionsOfDeath
                 case UserInterfaceState.Player1Wins:
                     Camera.X = 0;
                     Camera.Y = 0;
+
+                    Reset();
                     break;
 
                 case UserInterfaceState.Player2Wins:
                     Camera.X = 0;
                     Camera.Y = 0;
+
+                    Reset();
                     break;
+            }
+        }
+
+        public void Reset()
+        {
+            if (Game.MouseState.LeftButton == OpenTK.Input.ButtonState.Released && Game.PreviousMouseState.LeftButton == OpenTK.Input.ButtonState.Pressed)
+            {
+                InterfaceObject obj = _player1TreeRoot[1].Children[_player1TreeRoot[1].Children.Count - 1];
+                _player1TreeRoot[1].Children.Clear();
+                _player1TreeRoot[1].Children.Add(obj);
+                obj = _player1TreeRoot[2].Children[_player1TreeRoot[2].Children.Count - 1];
+                _player1TreeRoot[2].Children.Clear();
+                _player1TreeRoot[2].Children.Add(obj);
+                obj = _player1TreeRoot[3].Children[_player1TreeRoot[3].Children.Count - 1];
+                _player1TreeRoot[3].Children.Clear();
+                _player1TreeRoot[3].Children.Add(obj);
+
+                obj = _player2TreeRoot[1].Children[_player2TreeRoot[1].Children.Count - 1];
+                _player2TreeRoot[1].Children.Clear();
+                _player2TreeRoot[1].Children.Add(obj);
+                obj = _player2TreeRoot[2].Children[_player2TreeRoot[2].Children.Count - 1];
+                _player2TreeRoot[2].Children.Clear();
+                _player2TreeRoot[2].Children.Add(obj);
+                obj = _player2TreeRoot[3].Children[_player2TreeRoot[3].Children.Count - 1];
+                _player2TreeRoot[3].Children.Clear();
+                _player2TreeRoot[3].Children.Add(obj);
+
+                _minionEditing = 1;
+
+                Game.Player1 = new Player(1);
+                Minion minion1Player1 = new Minion(true, 1);
+                Game.Player1.AddMinion(minion1Player1);
+                Minion minion2Player1 = new Minion(true, 2);
+                Game.Player1.AddMinion(minion2Player1);
+                Minion minion3Player1 = new Minion(true, 3);
+                Game.Player1.AddMinion(minion3Player1);
+                //_player1.Base = new Base((List<Sprite>)null, 1);
+                Game.Player1.Base = new Base(null, 1);
+                Game.Player1.Base.Pos.X = 499;
+                Game.Player1.Base.Pos.Y = 44;
+
+                Game.Player2 = new Player(2);
+                Minion minion1Player2 = new Minion(false, 1);
+                Game.Player2.AddMinion(minion1Player2);
+                Minion minion2Player2 = new Minion(false, 2);
+                Game.Player2.AddMinion(minion2Player2);
+                Minion minion3Player2 = new Minion(false, 3);
+                Game.Player2.AddMinion(minion3Player2);
+                //_player2.Base = new Base((List<Sprite>)null, 2);
+                Game.Player2.Base = new Base(null, 2);
+                Game.Player2.Base.Pos.X = 495;
+                Game.Player2.Base.Pos.Y = 1700;
+
+                minion1Player1.Pos.X = 160;
+                minion1Player1.Pos.Y = 47;
+
+                minion2Player1.Pos.X = 160;
+                minion2Player1.Pos.Y = 47;
+
+                minion3Player1.Pos.X = 160;
+                minion3Player1.Pos.Y = 47;
+
+                minion1Player2.Pos.X = 690;
+                minion1Player2.Pos.Y = 912;
+
+                minion2Player2.Pos.X = 690;
+                minion2Player2.Pos.Y = 912;
+
+                minion3Player2.Pos.X = 690;
+                minion3Player2.Pos.Y = 912;
             }
         }
     }
