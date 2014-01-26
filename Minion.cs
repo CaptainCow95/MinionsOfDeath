@@ -20,6 +20,8 @@ namespace MinionsOfDeath
         //Represent the player the Minion belongs to
         private int _pid;
 
+        private bool _moveDirectionUp;
+
         public Minion(List<Sprite> sprites, int MinionID)
             : base(sprites)
         {
@@ -54,11 +56,17 @@ namespace MinionsOfDeath
             set { _pid = value; }
         }
 
+        public bool MoveDirectionUp
+        {
+            get { return _moveDirectionUp; }
+        }
+
         public override void Update(double time)
         {
             DoublePoint fp = _decisionTree.GetGoal();
             DoublePoint v = new DoublePoint(fp.X - _pos.X, fp.Y - _pos.Y);
             v.SetToLessOrEqualMag(speed);
+            _moveDirectionUp = fp.Y - _pos.Y > 0; 
             _pos.Add(v);
 
             base.Update(time);
