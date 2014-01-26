@@ -121,9 +121,6 @@ namespace MinionsOfDeath
 
             _map.Draw();
 
-            _player1.Draw();
-            _player2.Draw();
-
             _ui.Draw();
 
             Camera.End();
@@ -192,28 +189,8 @@ namespace MinionsOfDeath
 #else
 
             _map.Update(e.Time);
-            _player1.Update(e.Time);
-            _player2.Update(e.Time);
 
             _ui.Update(e.Time);
-
-            // Check for collisions
-            List<int> player1MinionsToRemove = new List<int>();
-            List<int> player2MinionsToRemove = new List<int>();
-            foreach (var player1Minion in _player1.Minions)
-            {
-                foreach (var player2Minion in _player2.Minions)
-                {
-                    if (player1Minion.Value.IsCollidingWith(player2Minion.Value))
-                    {
-                        player1MinionsToRemove.Add(player1Minion.Key);
-                        player2MinionsToRemove.Add(player2Minion.Key);
-                    }
-                }
-            }
-
-            player1MinionsToRemove.ForEach(f => _player1.Minions.Remove(f));
-            player2MinionsToRemove.ForEach(f => _player2.Minions.Remove(f));
 
 #endif
         }

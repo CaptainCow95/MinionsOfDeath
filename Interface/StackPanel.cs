@@ -85,8 +85,8 @@ namespace MinionsOfDeath.Interface
             }
             else
             {
-                _horizontalScrollbar.MaxValue = maxWidth - Game.WindowWidth;
-                _verticalScrollbar.MaxValue = maxHeight - Game.WindowHeight;
+                _horizontalScrollbar.MaxValue = Math.Max(maxWidth - Game.WindowWidth, 0);
+                _verticalScrollbar.MaxValue = Math.Max(maxHeight - Game.WindowHeight, 0);
             }
 
             if (_scrollable)

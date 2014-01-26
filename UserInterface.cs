@@ -18,7 +18,9 @@ namespace MinionsOfDeath
         public UserInterface()
         {
             _player1TreeRoot = new StackPanel(0, 0, 1000, 700, false, false, new Sprite(new List<string>() { "Images/SCROLLDAGGER5000.png" }), new Sprite(new List<string>() { "Images/SCROLLDAGGER3000.png" }));
+            _player1TreeRoot.Children.Add(new Button(0, 0, 100, 100, false, "Go Back", new Sprite(new List<string>() { "Images/blueButton.png" })));
             _player2TreeRoot = new StackPanel(0, 0, 1000, 700, false, false, new Sprite(new List<string>() { "Images/SCROLLDAGGER5000.png" }), new Sprite(new List<string>() { "Images/SCROLLDAGGER3000.png" }));
+            _player2TreeRoot.Children.Add(new Button(0, 0, 100, 100, false, "Go Back", new Sprite(new List<string>() { "Images/blueButton.png" })));
 
             _player1Go = new Button(0, 600, 100, 100, true, "Go to\nPlayer 2", new Sprite(new List<string>() { "Images/blueButton.png" }));
 
@@ -36,6 +38,9 @@ namespace MinionsOfDeath
 
         public void Draw()
         {
+            Game.Player1.Draw();
+            Game.Player2.Draw();
+
             switch (_state)
             {
                 case UserInterfaceState.Player1EditMinionTree:
@@ -72,6 +77,13 @@ namespace MinionsOfDeath
             {
                 case UserInterfaceState.Player1EditMinionTree:
                     _player1TreeRoot.Update(lastFrameTime);
+
+                    if (((Button)_player1TreeRoot.Children[_player1TreeRoot.Children.Count - 1]).Pressed)
+                    {
+                        _state = UserInterfaceState.Player1MinionSelect;
+                        Camera.X = 0;
+                        Camera.Y = 0;
+                    }
                     break;
 
                 case UserInterfaceState.Player1MinionSelect:
@@ -96,6 +108,13 @@ namespace MinionsOfDeath
 
                 case UserInterfaceState.Player2EditMinionTree:
                     _player2TreeRoot.Update(lastFrameTime);
+
+                    if (((Button)_player2TreeRoot.Children[_player2TreeRoot.Children.Count - 1]).Pressed)
+                    {
+                        _state = UserInterfaceState.Player2MinionSelect;
+                        Camera.X = 0;
+                        Camera.Y = 0;
+                    }
                     break;
 
                 case UserInterfaceState.Player2MinionSelect:
@@ -122,6 +141,27 @@ namespace MinionsOfDeath
 
                 case UserInterfaceState.Running:
                     _mapScroll.Update(lastFrameTime);
+
+                    Game.Player1.Update(lastFrameTime);
+                    Game.Player2.Update(lastFrameTime);
+
+                    // Check for collisions
+                    List<int> player1MinionsToRemove = new List<int>();
+                    List<int> player2MinionsToRemove = new List<int>();
+                    foreach (var player1Minion in Game.Player1.Minions)
+                    {
+                        foreach (var player2Minion in Game.Player2.Minions)
+                        {
+                            if (player1Minion.Value.IsCollidingWith(player2Minion.Value))
+                            {
+                                player1MinionsToRemove.Add(player1Minion.Key);
+                                player2MinionsToRemove.Add(player2Minion.Key);
+                            }
+                        }
+                    }
+
+                    player1MinionsToRemove.ForEach(f => Game.Player1.Minions.Remove(f));
+                    player2MinionsToRemove.ForEach(f => Game.Player2.Minions.Remove(f));
                     break;
             }
         }
