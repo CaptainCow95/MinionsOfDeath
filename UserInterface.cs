@@ -532,7 +532,7 @@ namespace MinionsOfDeath
                     }
                     foreach (var player1Minion in Game.Player1.Minions)
                     {
-                        if (player1Minion.Value.IsCollidingWith(Game.Player2.Base))
+                        if (player1Minion.Value.IsCollidingWith(Game.Player2.Base) && player1Minion.Value.IsSpecial)
                         {
                             //TODO: win state
                             _state = UserInterfaceState.Player1Wins;
@@ -541,7 +541,7 @@ namespace MinionsOfDeath
                     }
                     foreach (var player2Minion in Game.Player2.Minions)
                     {
-                        if (player2Minion.Value.IsCollidingWith(Game.Player1.Base))
+                        if (player2Minion.Value.IsCollidingWith(Game.Player1.Base) && player2Minion.Value.IsSpecial)
                         {
                             _state = UserInterfaceState.Player2Wins;
                             Console.Write("Player 2 wins!");
