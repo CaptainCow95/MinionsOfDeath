@@ -35,7 +35,7 @@ namespace MinionsOfDeath
         private int _minionEditing = 1;
         private static Sprite player1wins = new Sprite(new List<string>() { "Images/Player1Wins.png" }, 0);
         private static Sprite player2wins = new Sprite(new List<string>() { "Images/Player2Wins.png" }, 0);
-        private static Sprite draw = new Sprite(new List<string>() { "draw.png" }, 0);
+        private static Sprite draw = new Sprite(new List<string>() { "Images/draw.png" }, 0);
 
 
         public UserInterface()
