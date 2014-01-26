@@ -81,7 +81,7 @@ namespace MinionsOfDeath.Navigation
             return Math.Sqrt(Math.Pow(x2 - x1, 2) + Math.Pow(y2 - y1, 2));
         }
 
-        private static WaypointNode getNode(int x, int y)
+        public static WaypointNode getNode(int x, int y)
         {
             return nodes[Tuple.Create(x, y)];
         }
