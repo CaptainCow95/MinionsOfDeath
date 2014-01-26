@@ -8,7 +8,7 @@ namespace MinionsOfDeath.Interface
     {
         private Sprite _background;
         private StackPanel _buttons;
-        private bool _canceled;
+        private bool _canceled = false;
         private int _selectedIndex = -1;
 
         public Select(int x, int y, bool staticImage, List<string> selections, Sprite background, List<string> backgroundFilenames)
@@ -42,8 +42,10 @@ namespace MinionsOfDeath.Interface
 
         public override void Update(double timeSinceFrame)
         {
-            if (!(Game.MouseState.LeftButton == ButtonState.Released && Game.PreviousMouseState.LeftButton == ButtonState.Pressed &&
-                Game.MousePosition.X > X && Game.MousePosition.X < X + Width && Game.MousePosition.Y > Y && Game.MousePosition.Y < Y + Height))
+            Width = _buttons.Width;
+            Height = _buttons.Height;
+            if (Game.MouseState.LeftButton == ButtonState.Released && Game.PreviousMouseState.LeftButton == ButtonState.Pressed &&
+                !(Game.MousePosition.X > X - Camera.X && Game.MousePosition.X < X + Width - Camera.X && Game.MousePosition.Y > Y - Camera.Y && Game.MousePosition.Y < Y + Height - Camera.Y))
             {
                 _canceled = true;
             }

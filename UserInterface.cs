@@ -41,7 +41,7 @@ namespace MinionsOfDeath
 
             _mapScroll = new ScrollBar(970, 0, 30, 1800, false, 0, 1800, false, new Sprite(new List<string>() { "Images/SCROLLDAGGER5000.png" }));
 
-            _editSelect = new Select(0, 0, false, new List<string>() { "Go To\nBase" }, new Sprite(new List<string>() { "Images/blueButton.png" }), new List<string>() { "Images/blueButton.png" });
+            _editSelect = new Select(0, 0, false, new List<string>() { "Is Enemy\nClose", "Is 1 \nEnemy Left", "Is 2\nEnemies Left", "Is Enemy\nOn My Half", "Is Nearest\nEnemy Moving\nAway", "Is Nearest\nEnemy Moving\nTowards" }, new Sprite(new List<string>() { "Images/blueButton.png" }), new List<string>() { "Images/blueButton.png" });
 
             _state = UserInterfaceState.Player1MinionSelect;
 
@@ -56,7 +56,14 @@ namespace MinionsOfDeath
             switch (_state)
             {
                 case UserInterfaceState.Player1EditMinionTree:
-                    _player1TreeRoot.Draw();
+                    if (_inSelectMode)
+                    {
+                        _editSelect.Draw();
+                    }
+                    else
+                    {
+                        _player1TreeRoot.Draw();
+                    }
                     break;
 
                 case UserInterfaceState.Player1MinionSelect:
@@ -82,20 +89,74 @@ namespace MinionsOfDeath
                     break;
             }
         }
-
+        private bool _inSelectMode = false;
+        private Button _inSelectModeButton;
         public void Update(double lastFrameTime)
         {
             switch (_state)
             {
                 case UserInterfaceState.Player1EditMinionTree:
-                    _player1TreeRoot.Update(lastFrameTime);
-
-                    for (int i = 0; i < _player1ParentList.Keys.Count; ++i)
+                    if (_inSelectMode)
                     {
-                        Button button = _player1ParentList.Keys.ElementAt(i);
-                        if (button.Pressed)
-                        {
+                        _editSelect.Update(lastFrameTime);
 
+                        if (_editSelect.Canceled)
+                        {
+                            _inSelectMode = false;
+                            _editSelect.Reset();
+                        }
+                        else if (_editSelect.SelectedIndex != -1)
+                        {
+                            int index = _player1ParentList[_inSelectModeButton].Children.IndexOf(_inSelectModeButton);
+
+                            bool query = true;
+                            if (query)
+                            {
+                                _player1ParentList[_inSelectModeButton].Children.Remove(_inSelectModeButton);
+                                StackPanel panel = new StackPanel(0, 0, false, false);
+                                StackPanel panel2 = new StackPanel(0, 0, false, true);
+                                panel.Children.Add(panel2);
+                                Button button = new Button(0, 0, 100, 100, false, "Go To\nBase", new Sprite(new List<string>() { "Images/blueButton.png" }));
+                                panel.Children.Add(button);
+                                _player1ParentList.Add(button, panel);
+
+                                Button queryButton = new Button(0, 0, 100, 100, false, "query", new Sprite(new List<string>() { "Images/blueButton.png" }));
+                                panel2.Children.Add(queryButton);
+                                _player1ParentList.Add(queryButton, panel2);
+
+                                Button queryChildButton = new Button(0, 0, 100, 100, false, "Go To\nBase", new Sprite(new List<string>() { "Images/blueButton.png" }));
+                                panel2.Children.Add(queryChildButton);
+                                _player1ParentList.Add(queryChildButton, panel2);
+
+                                _player1ParentList[_inSelectModeButton].Children.Insert(index, panel);
+                                _player1ParentList.Remove(_inSelectModeButton);
+                            }
+                            else
+                            {
+                                _player1ParentList[_inSelectModeButton].Children.Remove(_inSelectModeButton);
+                                Button button = new Button(0, 0, 100, 100, false, "blah", new Sprite(new List<string>() { "Images/blueButton.png" }));
+                                _player1ParentList[_inSelectModeButton].Children.Insert(index, button);
+
+                                _player1ParentList.Add(button, _player1ParentList[_inSelectModeButton]);
+                                _player1ParentList.Remove(_inSelectModeButton);
+                            }
+
+                            _inSelectMode = false;
+                            _editSelect.Reset();
+                        }
+                    }
+                    else
+                    {
+                        _player1TreeRoot.Update(lastFrameTime);
+
+                        for (int i = 0; i < _player1ParentList.Keys.Count; ++i)
+                        {
+                            Button button = _player1ParentList.Keys.ElementAt(i);
+                            if (button.Pressed)
+                            {
+                                _inSelectMode = true;
+                                _inSelectModeButton = button;
+                            }
                         }
                     }
 
