@@ -81,7 +81,7 @@ namespace MinionsOfDeath
 			Minion minion1 = new Minion(true, 0);
             _player1.AddMinion(minion1);
             //_player1.Base = new Base((List<Sprite>)null, 1);
-            _player1.Base = new Base(new List<Sprite>{new Sprite(new List<string>() { "Images/Player2Wins.png" },0)}, 1);
+            _player1.Base = new Base(null, 1);
             _player1.Base.Pos.X = 499;
             _player1.Base.Pos.Y = 44;
 
@@ -89,7 +89,7 @@ namespace MinionsOfDeath
 			Minion minion2 = new Minion(false, 0);
             _player2.AddMinion(minion2);
             //_player2.Base = new Base((List<Sprite>)null, 2);
-            _player2.Base = new Base(new List<Sprite> { new Sprite(new List<string>() { "Images/Player1Wins.png" }, 0) }, 2);
+            _player2.Base = new Base(null, 2);
             _player2.Base.Pos.X = 495;
             _player2.Base.Pos.Y = 1700;
               
