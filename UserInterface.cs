@@ -38,40 +38,6 @@ namespace MinionsOfDeath
 
         public UserInterface()
         {
-            _player1TreeRoot = new Dictionary<int, StackPanel>();
-            _player1TreeRoot[1] = new StackPanel(0, 0, 1000, 700, false, false, new Sprite(new List<string>() { "Images/SCROLLDAGGER5000.png" }, 0), new Sprite(new List<string>() { "Images/SCROLLDAGGER3000.png" }, 0));
-            Button player1GoToBase = new Button(0, 0, 100, 100, false, "Go To Base", new Sprite(new List<string>() { "Images/blueButton.png" }, 0));
-            _player1TreeRoot[1].Children.Add(player1GoToBase);
-            _player1ParentList.Add(player1GoToBase, new Tuple<StackPanel, StackPanel>(_player1TreeRoot[1], null));
-            _player1TreeRoot[1].Children.Add(new Button(0, 0, 100, 100, false, "Go Back", new Sprite(new List<string>() { "Images/blueButton.png" }, 0)));
-            _player1TreeRoot[2] = new StackPanel(0, 0, 1000, 700, false, false, new Sprite(new List<string>() { "Images/SCROLLDAGGER5000.png" }, 0), new Sprite(new List<string>() { "Images/SCROLLDAGGER3000.png" }, 0));
-            player1GoToBase = new Button(0, 0, 100, 100, false, "Go To Base", new Sprite(new List<string>() { "Images/blueButton.png" }, 0));
-            _player1TreeRoot[2].Children.Add(player1GoToBase);
-            _player1ParentList.Add(player1GoToBase, new Tuple<StackPanel, StackPanel>(_player1TreeRoot[2], null));
-            _player1TreeRoot[2].Children.Add(new Button(0, 0, 100, 100, false, "Go Back", new Sprite(new List<string>() { "Images/blueButton.png" }, 0)));
-            _player1TreeRoot[3] = new StackPanel(0, 0, 1000, 700, false, false, new Sprite(new List<string>() { "Images/SCROLLDAGGER5000.png" }, 0), new Sprite(new List<string>() { "Images/SCROLLDAGGER3000.png" }, 0));
-            player1GoToBase = new Button(0, 0, 100, 100, false, "Go To Base", new Sprite(new List<string>() { "Images/blueButton.png" }, 0));
-            _player1TreeRoot[3].Children.Add(player1GoToBase);
-            _player1ParentList.Add(player1GoToBase, new Tuple<StackPanel, StackPanel>(_player1TreeRoot[3], null));
-            _player1TreeRoot[3].Children.Add(new Button(0, 0, 100, 100, false, "Go Back", new Sprite(new List<string>() { "Images/blueButton.png" }, 0)));
-
-            _player2TreeRoot = new Dictionary<int, StackPanel>();
-            _player2TreeRoot[1] = new StackPanel(0, 0, 1000, 700, false, false, new Sprite(new List<string>() { "Images/SCROLLDAGGER5000.png" }, 0), new Sprite(new List<string>() { "Images/SCROLLDAGGER3000.png" }, 0));
-            Button player2GoToBase = new Button(0, 0, 100, 100, false, "Go To Base", new Sprite(new List<string>() { "Images/blueButton.png" }, 0));
-            _player2TreeRoot[1].Children.Add(player2GoToBase);
-            _player2ParentList.Add(player2GoToBase, new Tuple<StackPanel, StackPanel>(_player2TreeRoot[1], null));
-            _player2TreeRoot[1].Children.Add(new Button(0, 0, 100, 100, false, "Go Back", new Sprite(new List<string>() { "Images/blueButton.png" }, 0)));
-            _player2TreeRoot[2] = new StackPanel(0, 0, 1000, 700, false, false, new Sprite(new List<string>() { "Images/SCROLLDAGGER5000.png" }, 0), new Sprite(new List<string>() { "Images/SCROLLDAGGER3000.png" }, 0));
-            player2GoToBase = new Button(0, 0, 100, 100, false, "Go To Base", new Sprite(new List<string>() { "Images/blueButton.png" }, 0));
-            _player2TreeRoot[2].Children.Add(player2GoToBase);
-            _player2ParentList.Add(player2GoToBase, new Tuple<StackPanel, StackPanel>(_player2TreeRoot[2], null));
-            _player2TreeRoot[2].Children.Add(new Button(0, 0, 100, 100, false, "Go Back", new Sprite(new List<string>() { "Images/blueButton.png" }, 0)));
-            _player2TreeRoot[3] = new StackPanel(0, 0, 1000, 700, false, false, new Sprite(new List<string>() { "Images/SCROLLDAGGER5000.png" }, 0), new Sprite(new List<string>() { "Images/SCROLLDAGGER3000.png" }, 0));
-            player2GoToBase = new Button(0, 0, 100, 100, false, "Go To Base", new Sprite(new List<string>() { "Images/blueButton.png" }, 0));
-            _player2TreeRoot[3].Children.Add(player2GoToBase);
-            _player2ParentList.Add(player2GoToBase, new Tuple<StackPanel, StackPanel>(_player2TreeRoot[3], null));
-            _player2TreeRoot[3].Children.Add(new Button(0, 0, 100, 100, false, "Go Back", new Sprite(new List<string>() { "Images/blueButton.png" }, 0)));
-
             _player1Go = new Button(0, 600, 100, 100, true, "Go to\nPlayer 2", new Sprite(new List<string>() { "Images/blueButton.png" }, 0));
 
             _player2Go = new Button(0, 600, 100, 100, true, "Run\nSimulation", new Sprite(new List<string>() { "Images/blueButton.png" }, 0));
@@ -615,72 +581,83 @@ namespace MinionsOfDeath
 
         public void Reset()
         {
-            if (Game.MouseState.LeftButton == OpenTK.Input.ButtonState.Released && Game.PreviousMouseState.LeftButton == OpenTK.Input.ButtonState.Pressed)
-            {
-                InterfaceObject obj = _player1TreeRoot[1].Children[_player1TreeRoot[1].Children.Count - 1];
-                _player1TreeRoot[1].Children.Clear();
-                _player1TreeRoot[1].Children.Add(obj);
-                obj = _player1TreeRoot[2].Children[_player1TreeRoot[2].Children.Count - 1];
-                _player1TreeRoot[2].Children.Clear();
-                _player1TreeRoot[2].Children.Add(obj);
-                obj = _player1TreeRoot[3].Children[_player1TreeRoot[3].Children.Count - 1];
-                _player1TreeRoot[3].Children.Clear();
-                _player1TreeRoot[3].Children.Add(obj);
+            _player1TreeRoot = new Dictionary<int, StackPanel>();
+            _player1TreeRoot[1] = new StackPanel(0, 0, 1000, 700, false, false, new Sprite(new List<string>() { "Images/SCROLLDAGGER5000.png" }, 0), new Sprite(new List<string>() { "Images/SCROLLDAGGER3000.png" }, 0));
+            Button player1GoToBase = new Button(0, 0, 100, 100, false, "Go To Base", new Sprite(new List<string>() { "Images/blueButton.png" }, 0));
+            _player1TreeRoot[1].Children.Add(player1GoToBase);
+            _player1ParentList.Add(player1GoToBase, new Tuple<StackPanel, StackPanel>(_player1TreeRoot[1], null));
+            _player1TreeRoot[1].Children.Add(new Button(0, 0, 100, 100, false, "Go Back", new Sprite(new List<string>() { "Images/blueButton.png" }, 0)));
+            _player1TreeRoot[2] = new StackPanel(0, 0, 1000, 700, false, false, new Sprite(new List<string>() { "Images/SCROLLDAGGER5000.png" }, 0), new Sprite(new List<string>() { "Images/SCROLLDAGGER3000.png" }, 0));
+            player1GoToBase = new Button(0, 0, 100, 100, false, "Go To Base", new Sprite(new List<string>() { "Images/blueButton.png" }, 0));
+            _player1TreeRoot[2].Children.Add(player1GoToBase);
+            _player1ParentList.Add(player1GoToBase, new Tuple<StackPanel, StackPanel>(_player1TreeRoot[2], null));
+            _player1TreeRoot[2].Children.Add(new Button(0, 0, 100, 100, false, "Go Back", new Sprite(new List<string>() { "Images/blueButton.png" }, 0)));
+            _player1TreeRoot[3] = new StackPanel(0, 0, 1000, 700, false, false, new Sprite(new List<string>() { "Images/SCROLLDAGGER5000.png" }, 0), new Sprite(new List<string>() { "Images/SCROLLDAGGER3000.png" }, 0));
+            player1GoToBase = new Button(0, 0, 100, 100, false, "Go To Base", new Sprite(new List<string>() { "Images/blueButton.png" }, 0));
+            _player1TreeRoot[3].Children.Add(player1GoToBase);
+            _player1ParentList.Add(player1GoToBase, new Tuple<StackPanel, StackPanel>(_player1TreeRoot[3], null));
+            _player1TreeRoot[3].Children.Add(new Button(0, 0, 100, 100, false, "Go Back", new Sprite(new List<string>() { "Images/blueButton.png" }, 0)));
 
-                obj = _player2TreeRoot[1].Children[_player2TreeRoot[1].Children.Count - 1];
-                _player2TreeRoot[1].Children.Clear();
-                _player2TreeRoot[1].Children.Add(obj);
-                obj = _player2TreeRoot[2].Children[_player2TreeRoot[2].Children.Count - 1];
-                _player2TreeRoot[2].Children.Clear();
-                _player2TreeRoot[2].Children.Add(obj);
-                obj = _player2TreeRoot[3].Children[_player2TreeRoot[3].Children.Count - 1];
-                _player2TreeRoot[3].Children.Clear();
-                _player2TreeRoot[3].Children.Add(obj);
+            _player2TreeRoot = new Dictionary<int, StackPanel>();
+            _player2TreeRoot[1] = new StackPanel(0, 0, 1000, 700, false, false, new Sprite(new List<string>() { "Images/SCROLLDAGGER5000.png" }, 0), new Sprite(new List<string>() { "Images/SCROLLDAGGER3000.png" }, 0));
+            Button player2GoToBase = new Button(0, 0, 100, 100, false, "Go To Base", new Sprite(new List<string>() { "Images/blueButton.png" }, 0));
+            _player2TreeRoot[1].Children.Add(player2GoToBase);
+            _player2ParentList.Add(player2GoToBase, new Tuple<StackPanel, StackPanel>(_player2TreeRoot[1], null));
+            _player2TreeRoot[1].Children.Add(new Button(0, 0, 100, 100, false, "Go Back", new Sprite(new List<string>() { "Images/blueButton.png" }, 0)));
+            _player2TreeRoot[2] = new StackPanel(0, 0, 1000, 700, false, false, new Sprite(new List<string>() { "Images/SCROLLDAGGER5000.png" }, 0), new Sprite(new List<string>() { "Images/SCROLLDAGGER3000.png" }, 0));
+            player2GoToBase = new Button(0, 0, 100, 100, false, "Go To Base", new Sprite(new List<string>() { "Images/blueButton.png" }, 0));
+            _player2TreeRoot[2].Children.Add(player2GoToBase);
+            _player2ParentList.Add(player2GoToBase, new Tuple<StackPanel, StackPanel>(_player2TreeRoot[2], null));
+            _player2TreeRoot[2].Children.Add(new Button(0, 0, 100, 100, false, "Go Back", new Sprite(new List<string>() { "Images/blueButton.png" }, 0)));
+            _player2TreeRoot[3] = new StackPanel(0, 0, 1000, 700, false, false, new Sprite(new List<string>() { "Images/SCROLLDAGGER5000.png" }, 0), new Sprite(new List<string>() { "Images/SCROLLDAGGER3000.png" }, 0));
+            player2GoToBase = new Button(0, 0, 100, 100, false, "Go To Base", new Sprite(new List<string>() { "Images/blueButton.png" }, 0));
+            _player2TreeRoot[3].Children.Add(player2GoToBase);
+            _player2ParentList.Add(player2GoToBase, new Tuple<StackPanel, StackPanel>(_player2TreeRoot[3], null));
+            _player2TreeRoot[3].Children.Add(new Button(0, 0, 100, 100, false, "Go Back", new Sprite(new List<string>() { "Images/blueButton.png" }, 0)));
 
-                _minionEditing = 1;
+            _minionEditing = 1;
 
-                Game.Player1 = new Player(1);
-                Minion minion1Player1 = new Minion(true, 1);
-                Game.Player1.AddMinion(minion1Player1);
-                Minion minion2Player1 = new Minion(true, 2);
-                Game.Player1.AddMinion(minion2Player1);
-                Minion minion3Player1 = new Minion(true, 3);
-                Game.Player1.AddMinion(minion3Player1);
-                //_player1.Base = new Base((List<Sprite>)null, 1);
-                Game.Player1.Base = new Base(null, 1);
-                Game.Player1.Base.Pos.X = 499;
-                Game.Player1.Base.Pos.Y = 44;
+            Game.Player1 = new Player(1);
+            Minion minion1Player1 = new Minion(true, 1);
+            Game.Player1.AddMinion(minion1Player1);
+            Minion minion2Player1 = new Minion(true, 2);
+            Game.Player1.AddMinion(minion2Player1);
+            Minion minion3Player1 = new Minion(true, 3);
+            Game.Player1.AddMinion(minion3Player1);
+            //_player1.Base = new Base((List<Sprite>)null, 1);
+            Game.Player1.Base = new Base(null, 1);
+            Game.Player1.Base.Pos.X = 499;
+            Game.Player1.Base.Pos.Y = 44;
 
-                Game.Player2 = new Player(2);
-                Minion minion1Player2 = new Minion(false, 1);
-                Game.Player2.AddMinion(minion1Player2);
-                Minion minion2Player2 = new Minion(false, 2);
-                Game.Player2.AddMinion(minion2Player2);
-                Minion minion3Player2 = new Minion(false, 3);
-                Game.Player2.AddMinion(minion3Player2);
-                //_player2.Base = new Base((List<Sprite>)null, 2);
-                Game.Player2.Base = new Base(null, 2);
-                Game.Player2.Base.Pos.X = 495;
-                Game.Player2.Base.Pos.Y = 1700;
+            Game.Player2 = new Player(2);
+            Minion minion1Player2 = new Minion(false, 1);
+            Game.Player2.AddMinion(minion1Player2);
+            Minion minion2Player2 = new Minion(false, 2);
+            Game.Player2.AddMinion(minion2Player2);
+            Minion minion3Player2 = new Minion(false, 3);
+            Game.Player2.AddMinion(minion3Player2);
+            //_player2.Base = new Base((List<Sprite>)null, 2);
+            Game.Player2.Base = new Base(null, 2);
+            Game.Player2.Base.Pos.X = 495;
+            Game.Player2.Base.Pos.Y = 1700;
 
-                minion1Player1.Pos.X = 160;
-                minion1Player1.Pos.Y = 47;
+            minion1Player1.Pos.X = 160;
+            minion1Player1.Pos.Y = 47;
 
-                minion2Player1.Pos.X = 160;
-                minion2Player1.Pos.Y = 47;
+            minion2Player1.Pos.X = 160;
+            minion2Player1.Pos.Y = 47;
 
-                minion3Player1.Pos.X = 160;
-                minion3Player1.Pos.Y = 47;
+            minion3Player1.Pos.X = 160;
+            minion3Player1.Pos.Y = 47;
 
-                minion1Player2.Pos.X = 690;
-                minion1Player2.Pos.Y = 912;
+            minion1Player2.Pos.X = 690;
+            minion1Player2.Pos.Y = 912;
 
-                minion2Player2.Pos.X = 690;
-                minion2Player2.Pos.Y = 912;
+            minion2Player2.Pos.X = 690;
+            minion2Player2.Pos.Y = 912;
 
-                minion3Player2.Pos.X = 690;
-                minion3Player2.Pos.Y = 912;
-            }
+            minion3Player2.Pos.X = 690;
+            minion3Player2.Pos.Y = 912;
         }
     }
 }
