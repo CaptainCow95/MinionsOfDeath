@@ -6,13 +6,20 @@
         private int _width;
         private int _x;
         private int _y;
+        private bool _static;
 
-        public InterfaceObject(int x, int y, int width, int height)
+        public InterfaceObject(int x, int y, int width, int height, bool staticImage)
         {
             _x = x;
             _y = y;
             _width = width;
             _height = height;
+        _static = staticImage;
+        }
+
+        protected bool Static
+        {
+            get { return _static; }
         }
 
         public int Height

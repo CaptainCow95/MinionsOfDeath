@@ -10,8 +10,8 @@ namespace MinionsOfDeath.Interface
         private QFont _font;
         private string _text;
 
-        public TextBlock(int x, int y, int width, int height, string text, Sprite background)
-            : base(x, y, width, height)
+        public TextBlock(int x, int y, int width, int height, bool staticImage, string text, Sprite background)
+            : base(x, y, width, height, staticImage)
         {
             _font = new QFont(SystemFonts.DefaultFont);
             _background = background;
@@ -28,10 +28,24 @@ namespace MinionsOfDeath.Interface
         {
             _background.X = X;
             _background.Y = Y;
+
+            if (Static)
+            {
+                _background.X += Camera.X;
+                _background.Y += Camera.Y;
+            }
+
             _background.Width = Width;
             _background.Height = Height;
             _background.Draw();
-            StringDrawer.Draw(_font, _text, QFontAlignment.Centre, new OpenTK.Vector2(X + (Width / 2), Y + (Height / 2)));
+            if (Static)
+            {
+                StringDrawer.Draw(_font, _text, QFontAlignment.Centre, new OpenTK.Vector2(X + (Width / 2) + Camera.X, Y + (Height / 2) + Camera.Y));
+            }
+            else
+            {
+                StringDrawer.Draw(_font, _text, QFontAlignment.Centre, new OpenTK.Vector2(X + (Width / 2), Y + (Height / 2)));
+            }
         }
 
         public override void Update(double timeSinceFrame)

@@ -7,8 +7,8 @@ namespace MinionsOfDeath.Interface
     {
         private bool _pressed = false;
 
-        public Button(int x, int y, int width, int height, string text, Sprite background)
-            : base(x, y, width, height, text, background)
+        public Button(int x, int y, int width, int height,bool staticImage, string text, Sprite background)
+            : base(x, y, width, height, staticImage, text, background)
         {
         }
 
