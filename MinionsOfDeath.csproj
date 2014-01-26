@@ -63,6 +63,8 @@
     <Compile Include="Behaviors\Actions\AttackClosest.cs" />
     <Compile Include="Behaviors\Actions\FollowPath.cs" />
     <Compile Include="Behaviors\Actions\GotoBase.cs" />
+    <Compile Include="Behaviors\Actions\PatrolHomeHalf.cs" />
+    <Compile Include="Behaviors\Actions\ReturnHomeBase.cs" />
     <Compile Include="Behaviors\Actions\RunAway.cs" />
     <Compile Include="Behaviors\Actions\WaitForTime.cs" />
     <Compile Include="Behaviors\DecisionNode.cs" />
