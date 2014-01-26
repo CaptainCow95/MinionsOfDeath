@@ -38,6 +38,8 @@ namespace MinionsOfDeath.Behaviors.Actions
                 path.RemoveAt(0);
             }
             
+            //Detect if at next node here?
+
             return new DoublePoint(path[0].X,path[0].Y);
         }
     }
