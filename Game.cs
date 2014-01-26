@@ -12,6 +12,8 @@ using System.Linq;
 using MinionsOfDeath.Navigation;
 using System;
 using System.Xml.Linq;
+using System.Media;
+using System.IO;
 
 namespace MinionsOfDeath
 {
@@ -50,6 +52,10 @@ namespace MinionsOfDeath
             WindowWidth = this.Width;
             this.Height = 700;
             WindowHeight = this.Height;
+
+			SoundPlayer watching = new SoundPlayer ();
+			watching.SoundLocation = new FileInfo("Sounds/strategize.wav").FullName;
+			watching.PlaySync ();
 
             _gameState = GameState.Running;
             InitRunningState();
