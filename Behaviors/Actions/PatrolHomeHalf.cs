@@ -9,6 +9,8 @@ namespace MinionsOfDeath.Behaviors.Actions
 {
     public class PatrolHomeHalf : Action
     {
+
+        private WaypointNode target;
         public PatrolHomeHalf(Minion owner)
             : base(owner)
         {
@@ -18,7 +20,6 @@ namespace MinionsOfDeath.Behaviors.Actions
         {
             bool player1 = Game.Player1.Minions.ContainsValue(_owner);
             //List<WaypointNode> target_nodes = new List<WaypointNode>();
-            WaypointNode target;
             /*      These are guesses for base nodes: ...?
                     <Waypoint X="231" Y="1586" />
                     <Waypoint X="326" Y="1760" />
@@ -28,27 +29,24 @@ namespace MinionsOfDeath.Behaviors.Actions
                     <Waypoint X="499" Y="44" />
                     <Waypoint X="810" Y="37" />
                  * */
-            if (player1)
+            if (target == null || WaypointGraph.GetClosestWaypoint((int)_owner.Pos.X, (int)_owner.Pos.Y) == target)
             {
-                //target_nodes.Add(WaypointGraph.getNode(231,1586));
-                //target_nodes.Add(WaypointGraph.getNode(326, 1760));
-                //target_nodes.Add(WaypointGraph.getNode(495, 1777));
-                Random random = new Random();
-                int randX = random.Next(0, 1000);
-                int randY = random.Next(0, 900);
+                if (player1)
+                {
+                    Random random = new Random();
+                    int randX = random.Next(0, 1000);
+                    int randY = random.Next(0, 900);
 
-                target = WaypointGraph.GetClosestWaypoint(randX, randY);
-            }
-            else
-            {
-                //target_nodes.Add(WaypointGraph.getNode(160, 47));
-                //target_nodes.Add(WaypointGraph.getNode(499, 44));
-                //target_nodes.Add(WaypointGraph.getNode(810, 37));
-                Random random = new Random();
-                int randX = random.Next(0, 1000);
-                int randY = random.Next(900, 1800);
+                    target = WaypointGraph.GetClosestWaypoint(randX, randY);
+                }
+                else
+                {
+                    Random random = new Random();
+                    int randX = random.Next(0, 1000);
+                    int randY = random.Next(900, 1800);
 
-                target = WaypointGraph.GetClosestWaypoint(randX, randY);
+                    target = WaypointGraph.GetClosestWaypoint(randX, randY);
+                }
             }
             WaypointNode myNode = WaypointGraph.GetClosestWaypoint((int)_owner.Pos.X, (int)_owner.Pos.Y);
             List<WaypointNode> path = new List<WaypointNode>();
