@@ -13,7 +13,7 @@ namespace MinionsOfDeath.Interface
             : base(x, y, 0, 0, staticImage)
         {
             _background = background;
-            _buttons = new StackPanel(x, y, staticImage);
+            _buttons = new StackPanel(x, y, staticImage, false);
             selections.ForEach(e => _buttons.Children.Add(new Button(x, (int)(y + background.Height), (int)background.Width, (int)background.Height, false, e, new Sprite(backgroundFilenames))));
         }
 

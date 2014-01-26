@@ -7,20 +7,23 @@ namespace MinionsOfDeath.Interface
     public class StackPanel : InterfaceObject
     {
         private List<InterfaceObject> _children = new List<InterfaceObject>();
+        private bool _horizontal = false;
         private ScrollBar _horizontalScrollbar;
         private bool _scrollable = false;
         private ScrollBar _verticalScrollbar;
 
-        public StackPanel(int x, int y, bool staticImage)
+        public StackPanel(int x, int y, bool staticImage, bool horizontal)
             : base(x, y, 0, 0, staticImage)
         {
             _scrollable = false;
+            _horizontal = horizontal;
         }
 
-        public StackPanel(int x, int y, int width, int height, bool staticImage, Sprite verticalScrollBar, Sprite horizontalScrollBar)
+        public StackPanel(int x, int y, int width, int height, bool staticImage, bool horizontal, Sprite verticalScrollBar, Sprite horizontalScrollBar)
             : base(x, y, width, height, staticImage)
         {
             _scrollable = true;
+            _horizontal = horizontal;
             _verticalScrollbar = new ScrollBar((int)(x + width - verticalScrollBar.Width), y, (int)verticalScrollBar.Width, height, staticImage, 0, height, false, verticalScrollBar);
             _horizontalScrollbar = new ScrollBar(x, (int)(y + height - horizontalScrollBar.Height), width, (int)horizontalScrollBar.Height, staticImage, 0, width, true, horizontalScrollBar);
         }
@@ -42,8 +45,6 @@ namespace MinionsOfDeath.Interface
                 _verticalScrollbar.Draw();
             }
         }
-
-        private bool _horizontal = false;
 
         public override void Update(double timeSinceFrame)
         {
