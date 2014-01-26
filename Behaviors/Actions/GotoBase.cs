@@ -14,8 +14,9 @@ namespace MinionsOfDeath.Behaviors.Actions
         public override DoublePoint GetGoal()
         {
             bool player1 = Game.Player1.Minions.ContainsValue(_owner);
-            List<WaypointNode> target_nodes = new List<WaypointNode>();
-            /*
+            //List<WaypointNode> target_nodes = new List<WaypointNode>();
+            WaypointNode target;
+            /*      These are guesses for base nodes: ...?
                     <Waypoint X="231" Y="1586" />
                     <Waypoint X="326" Y="1760" />
                     <Waypoint X="495" Y="1777" />
@@ -26,19 +27,22 @@ namespace MinionsOfDeath.Behaviors.Actions
                  * */
             if (player1)
             {
-                target_nodes.Add(WaypointGraph.getNode(231,1586));
-                target_nodes.Add(WaypointGraph.getNode(326, 1760));
-                target_nodes.Add(WaypointGraph.getNode(495, 1777));
+                //target_nodes.Add(WaypointGraph.getNode(231,1586));
+                //target_nodes.Add(WaypointGraph.getNode(326, 1760));
+                //target_nodes.Add(WaypointGraph.getNode(495, 1777));
+                target = WaypointGraph.getNode(495, 1777);
             }
             else
             {
-                target_nodes.Add(WaypointGraph.getNode(160, 47));
-                target_nodes.Add(WaypointGraph.getNode(499, 44));
-                target_nodes.Add(WaypointGraph.getNode(810, 37));
+                //target_nodes.Add(WaypointGraph.getNode(160, 47));
+                //target_nodes.Add(WaypointGraph.getNode(499, 44));
+                //target_nodes.Add(WaypointGraph.getNode(810, 37));
+                target = WaypointGraph.getNode(499, 44);
             }
             WaypointNode myNode = WaypointGraph.GetClosestWaypoint((int)_owner.Pos.X, (int)_owner.Pos.Y);
             List<WaypointNode> path = new List<WaypointNode>();
-            int length = Int32.MaxValue;
+            /*
+             * int length = Int32.MaxValue;
             foreach(WaypointNode target in target_nodes){
                 List<WaypointNode> p = WaypointGraph.pathfindDijkstra(myNode, target);
                 if (p.Count < length){
@@ -46,6 +50,8 @@ namespace MinionsOfDeath.Behaviors.Actions
                     length = p.Count;
                 }
             }
+             * */
+            path = WaypointGraph.pathfindDijkstra(myNode, target);
             //path.Add(new WaypointNode((int)closest.Pos.X, (int)closest.Pos.Y, new List<WaypointNode>()));
             FollowPath fp = new FollowPath(_owner, path);
 
