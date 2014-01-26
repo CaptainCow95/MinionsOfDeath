@@ -13,6 +13,12 @@ namespace MinionsOfDeath
 			Strategize.Load ();
 			Combat.Load ();
 		}
+
+		public static void StopAll()
+		{
+			Strategize.Stop();
+			Combat.Stop();
+		}
 	}
 }
 
