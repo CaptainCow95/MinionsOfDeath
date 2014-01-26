@@ -34,6 +34,9 @@ namespace MinionsOfDeath
         private int _minionEditing = 1;
         private Sprite player1win;
         private Sprite player2win;
+        private static Sprite player1wins = new Sprite(new List<string>() { "Images/Player1Wins.png" }, 0);
+        private static Sprite player2wins = new Sprite(new List<string>() { "Images/Player2Wins.png" }, 0);
+
 
         public UserInterface()
         {
@@ -165,12 +168,10 @@ namespace MinionsOfDeath
                     break;
 
                 case UserInterfaceState.Player1Wins:
-                    Sprite player1wins = new Sprite(new List<string>() { "Images/Player1Wins.png" }, 0);
                     player1wins.Draw();
                     break;
 
                 case UserInterfaceState.Player2Wins:
-                    Sprite player2wins = new Sprite(new List<string>() { "Images/Player2Wins.png" }, 0);
                     player2wins.Draw();
                     break;
             }
