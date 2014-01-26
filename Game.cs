@@ -1,4 +1,4 @@
-﻿// #define GRAPHMAKER
+﻿﻿// #define GRAPHMAKER
 
 using MinionsOfDeath.Behaviors;
 using MinionsOfDeath.Graphics;
@@ -46,8 +46,7 @@ namespace MinionsOfDeath
             this.Height = 700;
             WindowHeight = this.Height;
 
-            SoundPlayer watching = new SoundPlayer();
-            watching.SoundLocation = new FileInfo("Sounds/strategize.wav").FullName;
+			SoundPlayer watching = new SoundPlayer("Sounds/strategize.wav");
             watching.Play();
 
             InitRunningState();
