@@ -1,4 +1,4 @@
-﻿﻿using MinionsOfDeath.Behaviors;
+﻿﻿﻿using MinionsOfDeath.Behaviors;
 using MinionsOfDeath.Behaviors.Actions;
 using MinionsOfDeath.Behaviors.Queries;
 using MinionsOfDeath.Graphics;
@@ -540,7 +540,6 @@ namespace MinionsOfDeath
                     {
                         _state = UserInterfaceState.Running;
                         CreateDecisionTrees();
-                        Sound.StopAll();
                         Sound.Combat.PlayLooping();
                     }
                     if (_makeSpecialMinion.Pressed)
@@ -586,7 +585,6 @@ namespace MinionsOfDeath
                                 player2MinionsToRemove.Add(player2Minion.Key);
                                 Game.DeathClouds.Add(new DeathCloud(DoublePoint.GetAverage(
                                     player1Minion.Value.Pos, player2Minion.Value.Pos)));
-							Sound.Death.Play();
                             }
                         }
                     }
