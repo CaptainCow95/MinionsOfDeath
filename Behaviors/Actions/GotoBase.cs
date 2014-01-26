@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 namespace MinionsOfDeath.Behaviors.Actions
 {
 
-    internal class GotoBase : Action
-    
+    internal class GotoBase : Action {
 
         public override DoublePoint GetGoal()
         {
