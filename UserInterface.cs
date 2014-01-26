@@ -724,14 +724,15 @@ namespace MinionsOfDeath
             minion3Player1.Pos.X = 825;
             minion3Player1.Pos.Y = 100;
 
-            minion1Player2.Pos.X = 690;
-            minion1Player2.Pos.Y = 912;
 
-            minion2Player2.Pos.X = 700;
-            minion2Player2.Pos.Y = 912;
+            minion1Player2.Pos.X = 340;
+            minion1Player2.Pos.Y = 1750;
 
-            minion3Player2.Pos.X = 720;
-            minion3Player2.Pos.Y = 912;
+            minion2Player2.Pos.X = 495;
+            minion2Player2.Pos.Y = 1615;
+
+            minion3Player2.Pos.X = 575;
+            minion3Player2.Pos.Y = 1615;
         }
     }
 }
