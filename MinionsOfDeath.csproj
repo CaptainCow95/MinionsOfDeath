@@ -53,6 +53,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Behaviors\Action.cs" />
+    <Compile Include="Behaviors\Actions\AttackClosest.cs" />
+    <Compile Include="Behaviors\Actions\FollowPath.cs" />
+    <Compile Include="Behaviors\Actions\GotoBase.cs" />
+    <Compile Include="Behaviors\Actions\RunAway.cs" />
+    <Compile Include="Behaviors\Actions\WaitForTime.cs" />
     <Compile Include="Behaviors\DecisionNode.cs" />
     <Compile Include="Behaviors\DecisionTree.cs" />
     <Compile Include="Behaviors\Pathfinder.cs" />
