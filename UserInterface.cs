@@ -591,14 +591,22 @@ namespace MinionsOfDeath
                     Camera.X = 0;
                     Camera.Y = 0;
 
-                    Reset();
+                    if (Game.MouseState.LeftButton == OpenTK.Input.ButtonState.Released && Game.PreviousMouseState.LeftButton == OpenTK.Input.ButtonState.Pressed)
+                    {
+                        _state = UserInterfaceState.Player1EditMinionTree;
+                        Reset();
+                    }
                     break;
 
                 case UserInterfaceState.Player2Wins:
                     Camera.X = 0;
                     Camera.Y = 0;
 
-                    Reset();
+                    if (Game.MouseState.LeftButton == OpenTK.Input.ButtonState.Released && Game.PreviousMouseState.LeftButton == OpenTK.Input.ButtonState.Pressed)
+                    {
+                        _state = UserInterfaceState.Player1EditMinionTree;
+                        Reset();
+                    }
                     break;
             }
         }
