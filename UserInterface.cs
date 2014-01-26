@@ -41,6 +41,8 @@ namespace MinionsOfDeath
 
             _mapScroll = new ScrollBar(970, 0, 30, 1800, false, 0, 1800, false, new Sprite(new List<string>() { "Images/SCROLLDAGGER5000.png" }));
 
+            _editSelect = new Select(0, 0, false, new List<string>() { "Go To\nBase" }, new Sprite(new List<string>() { "Images/blueButton.png" }), new List<string>() { "Images/blueButton.png" });
+
             _state = UserInterfaceState.Player1MinionSelect;
 
             Sound.Strategize.PlayLooping();
