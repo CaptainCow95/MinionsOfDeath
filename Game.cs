@@ -1,4 +1,4 @@
-﻿﻿// #define GRAPHMAKER
+﻿﻿﻿// #define GRAPHMAKER
 
 using MinionsOfDeath.Behaviors;
 using MinionsOfDeath.Graphics;
@@ -8,7 +8,6 @@ using OpenTK.Graphics.OpenGL;
 using OpenTK.Input;
 using System.Collections.Generic;
 using System.Drawing;
-using System.IO;
 using System.Media;
 
 namespace MinionsOfDeath
@@ -47,8 +46,7 @@ namespace MinionsOfDeath
             this.Height = 700;
             WindowHeight = this.Height;
 
-			SoundPlayer watching = new SoundPlayer("Sounds/strategize.wav");
-            watching.Play();
+			Sound.Load();
 
             InitRunningState();
 
