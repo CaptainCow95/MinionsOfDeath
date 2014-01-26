@@ -36,8 +36,6 @@ namespace MinionsOfDeath
         int[] clicks = new int[4];
         int minID = 5;
 #endif
-        
-        private StackPanel _stackPanel;
 
         public Game()
         {
@@ -55,19 +53,16 @@ namespace MinionsOfDeath
 
 			SoundPlayer watching = new SoundPlayer ();
 			watching.SoundLocation = new FileInfo("Sounds/strategize.wav").FullName;
-			watching.PlaySync ();
+			watching.Play ();
 
             _gameState = GameState.Running;
             InitRunningState();
 
-            _map = new Sprite(new List<string>() { "Images/testMap.png" });
+            _map = new Sprite(new List<string>() { "Images/Map1.png" });
 
 #if GRAPHMAKER
             doc.Add(new XElement("Waypoints"));
 #endif
-
-            _stackPanel = new StackPanel(0, 0, 1000, 700, new Sprite(new List<string>() { "Images/redMinion0.png" }), new Sprite(new List<string>() { "Images/redMinion0.png" }));
-            _stackPanel.Children.Add(new TextBlock(0, 0, 1000, 1800, "Test Test", new Sprite(new List<string>() { "Images/testMap.png" })));
         }
 
         public static int WindowHeight { get; private set; }
@@ -144,8 +139,6 @@ namespace MinionsOfDeath
 
                     _player1.Draw();
                     _player2.Draw();
-
-                    _stackPanel.Draw();
                     break;
             }
 
@@ -224,7 +217,6 @@ namespace MinionsOfDeath
                     break;
 
                 case GameState.Running:
-                    _stackPanel.Update(e.Time);
                     _map.Update(e.Time);
                     _player1.Update(e.Time);
                     _player2.Update(e.Time);
