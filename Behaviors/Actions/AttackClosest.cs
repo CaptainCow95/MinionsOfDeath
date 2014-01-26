@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MinionsOfDeath.Behaviors.Actions
 {
-    class AttackClosest
+    internal class AttackClosest : Action
     {
     }
 }

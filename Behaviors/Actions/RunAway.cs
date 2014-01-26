@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MinionsOfDeath.Behaviors.Actions
 {
-    class RunAway
+    internal class RunAway : Action
     {
     }
 }

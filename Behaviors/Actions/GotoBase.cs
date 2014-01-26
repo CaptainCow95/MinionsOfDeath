@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace MinionsOfDeath.Behaviors.Actions
 {
-    class GotoBase
+
+    internal class GotoBase : Action
     {
     }
 }
