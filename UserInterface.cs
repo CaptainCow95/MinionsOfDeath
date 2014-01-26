@@ -414,11 +414,12 @@ namespace MinionsOfDeath
                     }
                     break;
 
-                case UserInterfaceState.Running:
-                    _mapScroll.Update(lastFrameTime);
+			case UserInterfaceState.Running:
+				_mapScroll.Update (lastFrameTime);
 
-                    Game.Player1.Update(lastFrameTime);
-                    Game.Player2.Update(lastFrameTime);
+				Game.Player1.Update (lastFrameTime);
+				Game.Player2.Update (lastFrameTime);
+				Game.DeathClouds.Update (lastFrameTime);
 
                     // Check for collisions
                     List<int> player1MinionsToRemove = new List<int>();
@@ -431,6 +432,8 @@ namespace MinionsOfDeath
                             {
                                 player1MinionsToRemove.Add(player1Minion.Key);
                                 player2MinionsToRemove.Add(player2Minion.Key);
+							Game.DeathClouds.Add(new DeathCloud(DoublePoint.GetAverage(
+								player1Minion.Value.Pos, player2Minion.Value.Pos)));
                             }
                         }
                     }

@@ -1,4 +1,4 @@
-﻿﻿using System;
+﻿using System;
 
 namespace MinionsOfDeath
 {
@@ -49,5 +49,10 @@ namespace MinionsOfDeath
             _y /= m;
             return false;
         }
+
+		public static DoublePoint GetAverage(DoublePoint a, DoublePoint b)
+		{
+			return new DoublePoint ((a._x / 2) + (b._x / 2), (a._y / 2) + (b._y / 2));
+		}
     }
 }

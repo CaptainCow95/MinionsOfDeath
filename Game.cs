@@ -20,7 +20,7 @@ namespace MinionsOfDeath
         public static KeyboardState PreviousKeyboardState;
         public static Point PreviousMousePosition;
         public static MouseState PreviousMouseState;
-		public static DeathCloudList DeathClouds;
+		public static DeathCloudList DeathClouds = new DeathCloudList();
         private static Player _player1;
         private static Player _player2;
         private Sprite _map;
