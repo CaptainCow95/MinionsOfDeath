@@ -30,24 +30,24 @@ namespace MinionsOfDeath
             _y += point._y;
         }
 
-		public void Set(DoublePoint point)
-		{
-			_x = point._x;
-			_y = point._y;
-		}
-
-		public bool SetToLessOrEqualMag(double mag)
+        public double GetMag()
         {
-			double m = GetMag();
-			if (m <= mag) return true;
-            _x /= m;
-            _y /= m;
-			return false;
+            return Math.Sqrt((_x * _x) + (_y * _y));
         }
 
-		public double GetMag()
-		{
-			return Math.Sqrt((_x * _x) + (_y * _y));
-		}
+        public void Set(DoublePoint point)
+        {
+            _x = point._x;
+            _y = point._y;
+        }
+
+        public bool SetToLessOrEqualMag(double mag)
+        {
+            double m = GetMag();
+            if (m <= mag) return true;
+            _x /= m;
+            _y /= m;
+            return false;
+        }
     }
 }

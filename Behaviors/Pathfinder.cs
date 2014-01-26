@@ -3,11 +3,12 @@ using System.Collections.Generic;
 
 namespace MinionsOfDeath.Behaviors
 {
-    internal class Pathfinder : Action
+    public class Pathfinder : Action
     {
-        List<WaypointNode> _path;
+        private List<WaypointNode> _path;
 
-        public Pathfinder(Minion owner, List<WaypointNode> path) : base(owner)
+        public Pathfinder(Minion owner, List<WaypointNode> path)
+            : base(owner)
         {
             _owner = owner;
             _path = path;
@@ -16,9 +17,10 @@ namespace MinionsOfDeath.Behaviors
         public override DoublePoint GetGoal()
         {
             WaypointNode targetNode = _path[0];
-            DoublePoint targetNodePos = new DoublePoint(targetNode.X,targetNode.Y);
+            DoublePoint targetNodePos = new DoublePoint(targetNode.X, targetNode.Y);
             // minion at target, advancec target
-            if(_owner.Pos == targetNodePos){
+            if (_owner.Pos == targetNodePos)
+            {
                 _path.RemoveAt(0);
                 targetNode = _path[0];
                 targetNodePos = new DoublePoint(targetNode.X, targetNode.Y);
@@ -28,7 +30,7 @@ namespace MinionsOfDeath.Behaviors
 
         public void getPath(WaypointNode curNode, WaypointNode target)
         {
-           _path = WaypointGraph.pathfindDijkstra(curNode, target);
+            _path = WaypointGraph.pathfindDijkstra(curNode, target);
         }
     }
 }

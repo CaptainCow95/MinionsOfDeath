@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using MinionsOfDeath.Navigation;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MinionsOfDeath.Navigation;
 
 namespace MinionsOfDeath.Behaviors.Queries
 {
-    internal class NearestEnemyMovingAway : QueryNode
+    public class NearestEnemyMovingAway : QueryNode
     {
-        public NearestEnemyMovingAway(Minion owner) : base(owner) { }
+        public NearestEnemyMovingAway(Minion owner)
+            : base(owner)
+        {
+        }
+
         public override DoublePoint GetGoal()
         {
             bool player1 = Game.Player1.Minions.ContainsValue(_owner);

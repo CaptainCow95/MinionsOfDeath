@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MinionsOfDeath.Behaviors.Queries
+﻿namespace MinionsOfDeath.Behaviors.Queries
 {
-    internal class IsEnemyNum2 : QueryNode
+    public class IsEnemyNum2 : QueryNode
     {
-
-        public IsEnemyNum2(Minion owner) : base(owner) { }
+        public IsEnemyNum2(Minion owner)
+            : base(owner)
+        {
+        }
 
         public override DoublePoint GetGoal()
         {

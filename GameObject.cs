@@ -25,8 +25,10 @@ namespace MinionsOfDeath
 
         public DoublePoint Pos
         {
-            set { _pos.X = value.X - _sprites[0].Width/2;
-            _pos.X = value.X - _sprites[0].Width / 2;
+            set
+            {
+                _pos.X = value.X - _sprites[0].Width / 2;
+                _pos.X = value.X - _sprites[0].Width / 2;
             }
             get { return _pos; }
         }
@@ -37,7 +39,7 @@ namespace MinionsOfDeath
             set { _state = value; }
         }
 
-		public virtual void Draw()
+        public virtual void Draw()
         {
             _sprites[_state].X = _pos.X;
             _sprites[_state].Y = _pos.Y;

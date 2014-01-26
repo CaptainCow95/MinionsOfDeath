@@ -11,7 +11,7 @@ namespace MinionsOfDeath.Navigation
 
         public WaypointNode(int x, int y, List<WaypointNode> neighbors)
         {
-        _x = x;
+            _x = x;
             _y = y;
             my_neighbors = neighbors;
         }

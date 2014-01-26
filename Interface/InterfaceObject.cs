@@ -3,10 +3,10 @@
     public abstract class InterfaceObject
     {
         private int _height;
+        private bool _static;
         private int _width;
         private int _x;
         private int _y;
-        private bool _static;
 
         public InterfaceObject(int x, int y, int width, int height, bool staticImage)
         {
@@ -14,12 +14,7 @@
             _y = y;
             _width = width;
             _height = height;
-        _static = staticImage;
-        }
-
-        protected bool Static
-        {
-            get { return _static; }
+            _static = staticImage;
         }
 
         public int Height
@@ -44,6 +39,11 @@
         {
             get { return _y; }
             set { _y = value; }
+        }
+
+        protected bool Static
+        {
+            get { return _static; }
         }
 
         public abstract void Draw();

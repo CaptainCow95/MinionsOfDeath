@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Waypoints>
 <Waypoint X="400" Y="60">
-  <Neighbor X="500" Y ="50"/>
-  <Neighbor X="126" Y ="218"/>
+  <Neighbor X="500" Y ="50" />
+  <Neighbor X="126" Y ="218" />
 </Waypoint>
   <Waypoint  X="500" Y ="50">
-    <Neighbor X="400" Y ="60"/>
-    <Neighbor X="126" Y ="218"/>
+    <Neighbor X="400" Y ="60" />
+    <Neighbor X="126" Y ="218" />
   </Waypoint>
   <Waypoint  X="126" Y ="218">
   </Waypoint>

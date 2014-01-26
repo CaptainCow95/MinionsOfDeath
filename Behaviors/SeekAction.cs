@@ -1,9 +1,11 @@
 ﻿namespace MinionsOfDeath.Behaviors
 {
-    internal class SeekAction : Action
+    public class SeekAction : Action
     {
         protected Minion _target;
-        public SeekAction(Minion owner, Minion target) : base(owner)
+
+        public SeekAction(Minion owner, Minion target)
+            : base(owner)
         {
             _target = target;
         }

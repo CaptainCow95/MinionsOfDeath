@@ -1,11 +1,14 @@
 ﻿namespace MinionsOfDeath.Behaviors
 {
-    internal abstract class QueryNode : DecisionNode
+    public abstract class QueryNode : DecisionNode
     {
         private DecisionNode _trueChild, _falseChild;
 
-        public QueryNode(Minion owner) : base(owner) { }
-        
+        public QueryNode(Minion owner)
+            : base(owner)
+        {
+        }
+
         public DecisionNode FalseChild
         {
             get { return _falseChild; }

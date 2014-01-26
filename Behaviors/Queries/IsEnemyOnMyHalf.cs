@@ -1,16 +1,16 @@
-﻿using MinionsOfDeath.Navigation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 
 namespace MinionsOfDeath.Behaviors.Queries
 {
-    internal class IsEnemyOnMyHalf : QueryNode
+    public class IsEnemyOnMyHalf : QueryNode
     {
-        int halfline_y;
-        public IsEnemyOnMyHalf(Minion owner) : base(owner) { }
+        private int halfline_y;
+
+        public IsEnemyOnMyHalf(Minion owner)
+            : base(owner)
+        {
+        }
+
         public override DoublePoint GetGoal()
         {
             bool player1 = Game.Player1.Minions.ContainsValue(_owner);

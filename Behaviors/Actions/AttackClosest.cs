@@ -1,18 +1,13 @@
 ﻿using MinionsOfDeath.Navigation;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 
 namespace MinionsOfDeath.Behaviors.Actions
 {
-    internal class AttackClosest : Action
+    public class AttackClosest : Action
     {
-        
-
-        public AttackClosest(Minion owner) : base(owner) 
+        public AttackClosest(Minion owner)
+            : base(owner)
         {
         }
 
@@ -29,8 +24,8 @@ namespace MinionsOfDeath.Behaviors.Actions
                 closest = Game.Player1.Minions.Values.OrderBy(e => WaypointGraph.getDistance((int)_owner.Pos.X, (int)e.Pos.X, (int)_owner.Pos.Y, (int)e.Pos.Y)).First();
             }
             //TODO: update curNode at some point
-           WaypointNode enemyNode = WaypointGraph.GetClosestWaypoint((int)closest.Pos.X, (int)closest.Pos.Y);
-           WaypointNode myNode = WaypointGraph.GetClosestWaypoint((int)_owner.Pos.X, (int)_owner.Pos.Y);
+            WaypointNode enemyNode = WaypointGraph.GetClosestWaypoint((int)closest.Pos.X, (int)closest.Pos.Y);
+            WaypointNode myNode = WaypointGraph.GetClosestWaypoint((int)_owner.Pos.X, (int)_owner.Pos.Y);
             List<WaypointNode> path = WaypointGraph.pathfindDijkstra(myNode, enemyNode);
             path.Add(new WaypointNode((int)closest.Pos.X, (int)closest.Pos.Y, new List<WaypointNode>()));
             FollowPath fp = new FollowPath(_owner, path);

@@ -9,7 +9,6 @@ using OpenTK.Graphics.OpenGL;
 using OpenTK.Input;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Media;
 
 namespace MinionsOfDeath
 {
@@ -48,12 +47,11 @@ namespace MinionsOfDeath
             this.Height = 700;
             WindowHeight = this.Height;
 
-			Sound.Load();
+            Sound.Load();
 
             InitRunningState();
 
             _map = new Sprite(new List<string>() { "Images/Map1.png" });
-    
 
             _ui = new UserInterface();
 
@@ -79,8 +77,8 @@ namespace MinionsOfDeath
         public void InitRunningState()
         {
             _player1 = new Player(1);
-            Minion minion1 = new Minion(new List<Sprite>() { 
-				new Sprite(new List<string>() { "Images/BlueMinion.png" }), 
+            Minion minion1 = new Minion(new List<Sprite>() {
+				new Sprite(new List<string>() { "Images/BlueMinion.png" }),
 				new Sprite(new List<string>() { "Images/BlueMinion0.png", "Images/BlueMinion1.png" }),
 				new Sprite(new List<string>() { "Images/BlueMinionBack0.png", "Images/BlueMinionBack1.png"}),
 				new Sprite(new List<string>() { "Images/LeftWalkBlue0.png", "Images/LeftWalkBlue1.png", "Images/LeftWalkBlue2.png"}),
@@ -90,8 +88,8 @@ namespace MinionsOfDeath
             _player1.AddMinion(minion1);
 
             _player2 = new Player(2);
-            Minion minion2 = new Minion(new List<Sprite>() { 
-				new Sprite(new List<string>() { "Images/RedMinion.png" }), 
+            Minion minion2 = new Minion(new List<Sprite>() {
+				new Sprite(new List<string>() { "Images/RedMinion.png" }),
 				new Sprite(new List<string>() { "Images/RedMinion0.png", "Images/RedMinion1.png" }),
 				new Sprite(new List<string>() { "Images/RedMinionBack0.png", "Images/RedMinionBack1.png"}),
 				new Sprite(new List<string>() { "Images/LeftWalkRed0.png", "Images/LeftWalkRed1.png", "Images/LeftWalkRed2.png"}),

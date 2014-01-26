@@ -1,17 +1,16 @@
 ﻿using MinionsOfDeath.Navigation;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MinionsOfDeath.Behaviors.Queries
 {
-    internal class IsEnemyClose : QueryNode
+    public class IsEnemyClose : QueryNode
     {
+        private double closeDist = 200;
 
-        public IsEnemyClose(Minion owner) : base(owner) { }
-        double closeDist = 200;
+        public IsEnemyClose(Minion owner)
+            : base(owner)
+        {
+        }
 
         public override DoublePoint GetGoal()
         {
@@ -27,7 +26,7 @@ namespace MinionsOfDeath.Behaviors.Queries
                 Minion minion = Game.Player1.Minions.Values.OrderBy(e => WaypointGraph.getDistance((int)_owner.Pos.X, (int)e.Pos.X, (int)_owner.Pos.Y, (int)e.Pos.Y)).First();
                 succeed = WaypointGraph.getDistance((int)_owner.Pos.X, (int)minion.Pos.X, (int)_owner.Pos.Y, (int)minion.Pos.Y) < closeDist;
             }
-            if(succeed)
+            if (succeed)
             {
                 return TrueChild.GetGoal();
             }

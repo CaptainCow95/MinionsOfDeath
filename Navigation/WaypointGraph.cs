@@ -10,46 +10,6 @@ namespace MinionsOfDeath.Navigation
         // Storing nodes in dictionary, indexed by Tuple<_x,_y>
         private static Dictionary<Tuple<int, int>, WaypointNode> nodes;
 
-        public static void init(string filename)
-        {
-            nodes = new Dictionary<Tuple<int, int>, WaypointNode>();
-            XDocument xdoc = XDocument.Load("Resources/TestWaypointNeighbors.xml");
-
-            //add all the waypoints to the graph
-            foreach (var item in xdoc.Element("Waypoints").Elements("Waypoint"))
-            {
-                int x = int.Parse(item.Attribute("X").Value);
-                int y = int.Parse(item.Attribute("Y").Value);
-                nodes[new Tuple<int, int>(x, y)] = new WaypointNode( x, y, new List<WaypointNode>());
-            }
-
-            //find the neigbhors for every waypoint
-            foreach (var item in xdoc.Element("Waypoints").Elements("Waypoint"))
-            {
-                int x = int.Parse(item.Attribute("X").Value);
-                int y = int.Parse(item.Attribute("Y").Value);
-                Tuple<int, int> thisPoint = new Tuple<int, int>(x, y);
-                foreach (var neighbor in item.Elements("Neighbor"))
-                {
-                    int xn = int.Parse(neighbor.Attribute("X").Value);
-                    int yn = int.Parse(neighbor.Attribute("Y").Value);
-                    Tuple<int, int> neighborPoint = new Tuple<int, int>(xn, yn);
-                    nodes[thisPoint].Neighbors.Add(nodes[neighborPoint]);
-                }
-            }
-        }
-
-        public static void WriteGraph(String filename)
-        {
-            XDocument doc = new XDocument();
-            doc.Add(new XElement("Waypoints"));
-            foreach (KeyValuePair<Tuple<int, int>, WaypointNode> item in nodes)
-            {
-                doc.Element("Waypoints").Add(new XElement("Waypoint", new XAttribute("X", item.Key.Item1), new XAttribute("Y", item.Key.Item2), item.Value.Neighbors.Select(e => new XElement("Neighbor", new XAttribute("X", e.X), new XAttribute("Y", e.Y)))));
-            }
-            doc.Save(filename);
-        }
-
         public static void ConnectNodes(WaypointNode aNode, WaypointNode bNode)
         {
             aNode.Neighbors.Add(bNode);
@@ -67,13 +27,7 @@ namespace MinionsOfDeath.Navigation
                     closest = tempNode;
                 }
             }
-            return closest; 
-
-        }
-
-        private static double getDistance(WaypointNode node1, WaypointNode node2)
-        {
-            return getDistance(node1.X, node2.X, node1.Y, node2.Y);
+            return closest;
         }
 
         public static double getDistance(int x1, int x2, int y1, int y2)
@@ -84,6 +38,35 @@ namespace MinionsOfDeath.Navigation
         public static WaypointNode getNode(int x, int y)
         {
             return nodes[Tuple.Create(x, y)];
+        }
+
+        public static void init(string filename)
+        {
+            nodes = new Dictionary<Tuple<int, int>, WaypointNode>();
+            XDocument xdoc = XDocument.Load("Resources/TestWaypointNeighbors.xml");
+
+            //add all the waypoints to the graph
+            foreach (var item in xdoc.Element("Waypoints").Elements("Waypoint"))
+            {
+                int x = int.Parse(item.Attribute("X").Value);
+                int y = int.Parse(item.Attribute("Y").Value);
+                nodes[new Tuple<int, int>(x, y)] = new WaypointNode(x, y, new List<WaypointNode>());
+            }
+
+            //find the neigbhors for every waypoint
+            foreach (var item in xdoc.Element("Waypoints").Elements("Waypoint"))
+            {
+                int x = int.Parse(item.Attribute("X").Value);
+                int y = int.Parse(item.Attribute("Y").Value);
+                Tuple<int, int> thisPoint = new Tuple<int, int>(x, y);
+                foreach (var neighbor in item.Elements("Neighbor"))
+                {
+                    int xn = int.Parse(neighbor.Attribute("X").Value);
+                    int yn = int.Parse(neighbor.Attribute("Y").Value);
+                    Tuple<int, int> neighborPoint = new Tuple<int, int>(xn, yn);
+                    nodes[thisPoint].Neighbors.Add(nodes[neighborPoint]);
+                }
+            }
         }
 
         public static List<WaypointNode> pathfindDijkstra(WaypointNode start, WaypointNode end)
@@ -116,14 +99,14 @@ namespace MinionsOfDeath.Navigation
                     WaypointNode endNode = connection.getToNode();
                     double endNodeCost = current.CostSoFar + connection.getCost();
                     NodeRecord endNodeRecord = closed.Where(e => e.Node == endNode).FirstOrDefault();
-                    if(endNodeRecord != null)
+                    if (endNodeRecord != null)
                     {
                         continue;
                     }
                     endNodeRecord = open.Where(e => e.Node == endNode).FirstOrDefault();
                     if (endNodeRecord != null)
                     {
-                        if(endNodeRecord.CostSoFar <= endNodeCost)
+                        if (endNodeRecord.CostSoFar <= endNodeCost)
                         {
                             continue;
                         }
@@ -150,7 +133,7 @@ namespace MinionsOfDeath.Navigation
             }
             else
             {
-                if(current.Connection == null)
+                if (current.Connection == null)
                 {
                     return new List<WaypointNode>();
                 }
@@ -167,6 +150,22 @@ namespace MinionsOfDeath.Navigation
                 path.Reverse();
                 return path;
             }
+        }
+
+        public static void WriteGraph(String filename)
+        {
+            XDocument doc = new XDocument();
+            doc.Add(new XElement("Waypoints"));
+            foreach (KeyValuePair<Tuple<int, int>, WaypointNode> item in nodes)
+            {
+                doc.Element("Waypoints").Add(new XElement("Waypoint", new XAttribute("X", item.Key.Item1), new XAttribute("Y", item.Key.Item2), item.Value.Neighbors.Select(e => new XElement("Neighbor", new XAttribute("X", e.X), new XAttribute("Y", e.Y)))));
+            }
+            doc.Save(filename);
+        }
+
+        private static double getDistance(WaypointNode node1, WaypointNode node2)
+        {
+            return getDistance(node1.X, node2.X, node1.Y, node2.Y);
         }
     }
 }
