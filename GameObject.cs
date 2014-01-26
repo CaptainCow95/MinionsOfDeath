@@ -14,7 +14,7 @@ namespace MinionsOfDeath
         {
             _sprites = sprites;
 
-            if (_sprites.Count > 0)
+            if (_sprites!=null && _sprites.Count > 0)
             {
                 _left = 0;
                 _right = _sprites[0].Width;
