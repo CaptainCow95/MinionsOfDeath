@@ -554,9 +554,13 @@ namespace MinionsOfDeath
                     break;
 
                 case UserInterfaceState.Player1Wins:
+                    Camera.X = 0;
+                    Camera.Y = 0;
                     break;
 
                 case UserInterfaceState.Player2Wins:
+                    Camera.X = 0;
+                    Camera.Y = 0;
                     break;
             }
         }
