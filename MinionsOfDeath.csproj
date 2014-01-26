@@ -62,7 +62,6 @@
     <Compile Include="Behaviors\DecisionTree.cs" />
     <Compile Include="Behaviors\Pathfinder.cs" />
     <Compile Include="Behaviors\Queries\IsEnemyClose.cs" />
-    <Compile Include="Behaviors\Queries\IsEnemyNum0.cs" />
     <Compile Include="Behaviors\Queries\IsEnemyNum1.cs" />
     <Compile Include="Behaviors\Queries\IsEnemyNum2.cs" />
     <Compile Include="Behaviors\Queries\IsEnemyOnMyHalf.cs" />
@@ -95,6 +94,9 @@
     <Compile Include="Sound.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\BlueButtonSmall.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\BlueMinion.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
