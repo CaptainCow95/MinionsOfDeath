@@ -1,3 +1,6 @@
+﻿// #define GRAPHMAKER
+
+using MinionsOfDeath.Behaviors;
 ﻿using MinionsOfDeath.Behaviors;
 using MinionsOfDeath.Graphics;
 using MinionsOfDeath.Interface;
@@ -6,6 +9,9 @@ using OpenTK.Graphics.OpenGL;
 using OpenTK.Input;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
+using MinionsOfDeath.Navigation;
+using System;
 
 namespace MinionsOfDeath
 {
@@ -21,6 +27,14 @@ namespace MinionsOfDeath
         private static Player _player2;
         private GameState _gameState;
         private Sprite _map;
+#if GRAPHMAKER        
+        XDocument doc = new XDocument();
+        WaypointGraph graph = new WaypointGraph("TestWaypoint.xml");
+        int rightClicks = 0;
+        int[] clicks = new int[4];
+        int minID = 5;
+#endif
+        
         private StackPanel _stackPanel;
 
         public Game()
@@ -39,8 +53,10 @@ namespace MinionsOfDeath
 
             _gameState = GameState.Running;
             InitRunningState();
+
             _map = new Sprite(new List<string>() { "Images/testMap.png" });
 
+            doc.Add(new XElement("Waypoints"));
             _stackPanel = new StackPanel(0, 0, 1000, 700, new Sprite(new List<string>() { "Images/redMinion0.png" }), new Sprite(new List<string>() { "Images/redMinion0.png" }));
             _stackPanel.Children.Add(new TextBlock(0, 0, 1000, 1800, "Test Test", new Sprite(new List<string>() { "Images/testMap.png" })));
         }
@@ -61,6 +77,8 @@ namespace MinionsOfDeath
 
         public void InitRunningState()
         {
+
+
             _player1 = new Player(1);
             Minion minion1 = new Minion(new List<Sprite>() { new Sprite(new List<string>() { "Images/BlueMinion.png" }), new Sprite(new List<string>() { "Images/BlueMinion0.png", "Images/BlueMinion1.png" }) }, 0);
             minion1.State = 1;
@@ -78,6 +96,7 @@ namespace MinionsOfDeath
             minion2.Pos.X = 900;
             minion2.Pos.Y = 100;
             minion2.DecisionTree = new DecisionTree(minion2, new SeekAction(minion2, minion1));
+
         }
 
         private void Game_RenderFrame(object sender, FrameEventArgs e)
@@ -139,10 +158,52 @@ namespace MinionsOfDeath
 #if GRAPHMAKER
             XDocument doc = new XDocument();
             doc.Add(new XElement("Waypoints"));
+            if (MouseState.LeftButton == ButtonState.Pressed && PreviousMouseState.LeftButton == ButtonState.Released) { 
+
+            int x = Camera.X + MousePosition.X;
+            int y = Camera.Y + MousePosition.Y;
+
+            if (MouseState.LeftButton == ButtonState.Pressed && PreviousMouseState.LeftButton == ButtonState.Released && MousePosition.X > 40) {
+               doc.Element("Waypoints").Add(new XElement("Waypoint", new XAttribute("X", x), new XAttribute("Y", y)));
+               minID++;
+               Minion markerMinion = new Minion(new List<Sprite>() { new Sprite(new List<string>() { "Images/BlueMinion.png" }), new Sprite(new List<string>() { "Images/BlueMinion0.png", "Images/BlueMinion1.png" }) }, minID);
+                markerMinion.Pos.X = x;
+                markerMinion.Pos.Y = y;
+                _player1.AddMinion(markerMinion);
+              // doc.Save("TestWaypoint.xml");
+            XDocument doc = new XDocument();
+            doc.Add(new XElement("Waypoints"));
             if (MouseState.LeftButton == ButtonState.Pressed && PreviousMouseState.LeftButton == ButtonState.Released) {
-                 doc.Element("Waypoints").Add(new XElement("Waypoint", new XAttribute("X", MousePosition.X), new XAttribute("Y", MousePosition.Y), new XElement("Subwaypoint")));
             }
-            doc.Save("TestWaypoint.xml");
+            
+            if (MouseState.RightButton == ButtonState.Pressed && PreviousMouseState.RightButton == ButtonState.Released && MousePosition.X > 40)
+            {
+                switch (rightClicks)
+                {
+                    case 0: clicks[0] = x;
+                        clicks[1] = y;
+                        break;
+                    case 1:
+                        clicks[2] = x;
+                        clicks[3] = y;
+                         minID++;
+                         Minion markerMinion = new Minion(new List<Sprite>() { new Sprite(new List<string>() { "Images/square.png" }), new Sprite(new List<string>() { "Images/square.png", "Images/square.png" }) }, minID);
+                         WaypointNode waypoint1 = graph.GetClosestWaypoint(clicks[0], clicks[1]);
+                         WaypointNode waypoint2 = graph.GetClosestWaypoint(clicks[2], clicks[3]);
+                         markerMinion.Pos.X = waypoint1.X + (waypoint2.X - waypoint1.X) / 2;
+                         markerMinion.Pos.Y = waypoint1.Y + (waypoint2.Y - waypoint1.Y) / 2;
+                _player1.AddMinion(markerMinion);
+                graph.ConnectNodes(waypoint1, waypoint2);
+                        Console.Write("Added neighbor");
+                        break;
+                }
+                rightClicks++;
+                rightClicks = rightClicks % 2;
+                graph.WriteGraph("TestWaypointNeighbors.xml");
+
+            }
+
+            _scrollBar.Update(e.Time);
 #else
 
             switch (_gameState)

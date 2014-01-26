@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Waypoints>
+  <Waypoint X="160" Y="47">
+    <Neighbor X="499" Y="44" />
+    <Neighbor X="161" Y="221" />
+  </Waypoint>
+  <Waypoint X="499" Y="44">
+    <Neighbor X="160" Y="47" />
+    <Neighbor X="810" Y="37" />
+    <Neighbor X="490" Y="215" />
+  </Waypoint>
+  <Waypoint X="810" Y="37">
+    <Neighbor X="499" Y="44" />
+    <Neighbor X="852" Y="261" />
+  </Waypoint>
+  <Waypoint X="852" Y="261">
+    <Neighbor X="750" Y="458" />
+    <Neighbor X="810" Y="37" />
+  </Waypoint>
+  <Waypoint X="490" Y="215">
+    <Neighbor X="499" Y="44" />
+    <Neighbor X="613" Y="339" />
+    <Neighbor X="399" Y="219" />
+  </Waypoint>
+  <Waypoint X="399" Y="219">
+    <Neighbor X="490" Y="215" />
+    <Neighbor X="161" Y="221" />
+    <Neighbor X="388" Y="446" />
+  </Waypoint>
+  <Waypoint X="161" Y="221">
+    <Neighbor X="399" Y="219" />
+    <Neighbor X="160" Y="47" />
+    <Neighbor X="162" Y="458" />
+  </Waypoint>
+  <Waypoint X="162" Y="458">
+    <Neighbor X="161" Y="221" />
+    <Neighbor X="233" Y="462" />
+    <Neighbor X="56" Y="670" />
+  </Waypoint>
+  <Waypoint X="233" Y="462">
+    <Neighbor X="162" Y="458" />
+    <Neighbor X="388" Y="446" />
+    <Neighbor X="237" Y="649" />
+  </Waypoint>
+  <Waypoint X="388" Y="446">
+    <Neighbor X="233" Y="462" />
+    <Neighbor X="399" Y="219" />
+    <Neighbor X="471" Y="519" />
+  </Waypoint>
+  <Waypoint X="471" Y="519">
+    <Neighbor X="613" Y="339" />
+    <Neighbor X="388" Y="446" />
+    <Neighbor X="502" Y="665" />
+  </Waypoint>
+  <Waypoint X="613" Y="339">
+    <Neighbor X="490" Y="215" />
+    <Neighbor X="750" Y="458" />
+    <Neighbor X="471" Y="519" />
+  </Waypoint>
+  <Waypoint X="750" Y="458">
+    <Neighbor X="613" Y="339" />
+    <Neighbor X="852" Y="261" />
+    <Neighbor X="769" Y="822" />
+  </Waypoint>
+  <Waypoint X="769" Y="822">
+    <Neighbor X="738" Y="861" />
+    <Neighbor X="750" Y="458" />
+  </Waypoint>
+  <Waypoint X="502" Y="665">
+    <Neighbor X="480" Y="704" />
+    <Neighbor X="471" Y="519" />
+  </Waypoint>
+  <Waypoint X="480" Y="704">
+    <Neighbor X="407" Y="791" />
+    <Neighbor X="502" Y="665" />
+    <Neighbor X="652" Y="959" />
+  </Waypoint>
+  <Waypoint X="407" Y="791">
+    <Neighbor X="292" Y="703" />
+    <Neighbor X="480" Y="704" />
+    <Neighbor X="421" Y="945" />
+  </Waypoint>
+  <Waypoint X="292" Y="703">
+    <Neighbor X="237" Y="649" />
+    <Neighbor X="407" Y="791" />
+    <Neighbor X="243" Y="912" />
+  </Waypoint>
+  <Waypoint X="237" Y="649">
+    <Neighbor X="233" Y="462" />
+    <Neighbor X="292" Y="703" />
+  </Waypoint>
+  <Waypoint X="243" Y="912">
+    <Neighbor X="53" Y="915" />
+    <Neighbor X="292" Y="703" />
+    <Neighbor X="421" Y="945" />
+  </Waypoint>
+  <Waypoint X="421" Y="945">
+    <Neighbor X="243" Y="912" />
+    <Neighbor X="407" Y="791" />
+    <Neighbor X="435" Y="1063" />
+  </Waypoint>
+  <Waypoint X="652" Y="959">
+    <Neighbor X="480" Y="704" />
+    <Neighbor X="582" Y="1064" />
+    <Neighbor X="738" Y="861" />
+  </Waypoint>
+  <Waypoint X="53" Y="915">
+    <Neighbor X="56" Y="670" />
+    <Neighbor X="243" Y="912" />
+    <Neighbor X="179" Y="1114" />
+  </Waypoint>
+  <Waypoint X="193" Y="1161">
+    <Neighbor X="358" Y="1124" />
+    <Neighbor X="218" Y="1272" />
+    <Neighbor X="179" Y="1114" />
+  </Waypoint>
+  <Waypoint X="358" Y="1124">
+    <Neighbor X="435" Y="1063" />
+    <Neighbor X="193" Y="1161" />
+  </Waypoint>
+  <Waypoint X="435" Y="1063">
+    <Neighbor X="502" Y="1069" />
+    <Neighbor X="421" Y="945" />
+    <Neighbor X="358" Y="1124" />
+  </Waypoint>
+  <Waypoint X="502" Y="1069">
+    <Neighbor X="573" Y="1293" />
+    <Neighbor X="582" Y="1064" />
+    <Neighbor X="435" Y="1063" />
+  </Waypoint>
+  <Waypoint X="582" Y="1064">
+    <Neighbor X="652" Y="959" />
+    <Neighbor X="502" Y="1069" />
+  </Waypoint>
+  <Waypoint X="855" Y="1045">
+    <Neighbor X="738" Y="861" />
+    <Neighbor X="765" Y="1239" />
+  </Waypoint>
+  <Waypoint X="765" Y="1239">
+    <Neighbor X="855" Y="1045" />
+    <Neighbor X="813" Y="1429" />
+    <Neighbor X="573" Y="1293" />
+  </Waypoint>
+  <Waypoint X="573" Y="1293">
+    <Neighbor X="416" Y="1420" />
+    <Neighbor X="765" Y="1239" />
+    <Neighbor X="502" Y="1069" />
+  </Waypoint>
+  <Waypoint X="218" Y="1272">
+    <Neighbor X="416" Y="1420" />
+    <Neighbor X="76" Y="1404" />
+    <Neighbor X="193" Y="1161" />
+  </Waypoint>
+  <Waypoint X="76" Y="1404">
+    <Neighbor X="218" Y="1272" />
+    <Neighbor X="231" Y="1586" />
+  </Waypoint>
+  <Waypoint X="416" Y="1420">
+    <Neighbor X="445" Y="1518" />
+    <Neighbor X="573" Y="1293" />
+    <Neighbor X="218" Y="1272" />
+  </Waypoint>
+  <Waypoint X="813" Y="1429">
+    <Neighbor X="765" Y="1239" />
+    <Neighbor X="581" Y="1617" />
+  </Waypoint>
+  <Waypoint X="581" Y="1617">
+    <Neighbor X="813" Y="1429" />
+    <Neighbor X="495" Y="1777" />
+  </Waypoint>
+  <Waypoint X="483" Y="1626">
+    <Neighbor X="445" Y="1518" />
+    <Neighbor X="495" Y="1777" />
+  </Waypoint>
+  <Waypoint X="445" Y="1518">
+    <Neighbor X="483" Y="1626" />
+    <Neighbor X="231" Y="1586" />
+    <Neighbor X="416" Y="1420" />
+  </Waypoint>
+  <Waypoint X="231" Y="1586">
+    <Neighbor X="326" Y="1760" />
+    <Neighbor X="445" Y="1518" />
+    <Neighbor X="76" Y="1404" />
+  </Waypoint>
+  <Waypoint X="326" Y="1760">
+    <Neighbor X="495" Y="1777" />
+    <Neighbor X="231" Y="1586" />
+  </Waypoint>
+  <Waypoint X="495" Y="1777">
+    <Neighbor X="581" Y="1617" />
+    <Neighbor X="483" Y="1626" />
+    <Neighbor X="326" Y="1760" />
+  </Waypoint>
+  <Waypoint X="179" Y="1114">
+    <Neighbor X="193" Y="1161" />
+    <Neighbor X="53" Y="915" />
+  </Waypoint>
+  <Waypoint X="56" Y="670">
+    <Neighbor X="162" Y="458" />
+    <Neighbor X="53" Y="915" />
+  </Waypoint>
+  <Waypoint X="738" Y="861">
+    <Neighbor X="769" Y="822" />
+    <Neighbor X="652" Y="959" />
+    <Neighbor X="855" Y="1045" />
+  </Waypoint>
+</Waypoints>

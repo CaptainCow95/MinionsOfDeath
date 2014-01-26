@@ -13,18 +13,18 @@ namespace MinionsOfDeath.Navigation
         public WaypointGraph(string filename)
         {
             nodes = new Dictionary<Tuple<int, int>, WaypointNode>();
-            XDocument xdoc = XDocument.Load("Resources/WaypointTestGraph.xml");
+            XDocument xdoc = XDocument.Load("TestWaypoint.xml");
 
             //add all the waypoints to the graph
-            foreach (var item in xdoc.Elements("Waypoint"))
+            foreach (var item in xdoc.Element("Waypoints").Elements("Waypoint"))
             {
                 int x = int.Parse(item.Attribute("X").Value);
                 int y = int.Parse(item.Attribute("Y").Value);
-                nodes.Add(new Tuple<int, int>(x, y), new WaypointNode(this, x, y, new List<WaypointNode>()));
+                nodes[new Tuple<int, int>(x, y)] = new WaypointNode(this, x, y, new List<WaypointNode>());
             }
 
             //find the neigbhors for every waypoint
-            foreach (var item in xdoc.Elements("Waypoint"))
+            foreach (var item in xdoc.Element("Waypoints").Elements("Waypoint"))
             {
                 int x = int.Parse(item.Attribute("X").Value);
                 int y = int.Parse(item.Attribute("Y").Value);
@@ -39,6 +39,17 @@ namespace MinionsOfDeath.Navigation
             }
         }
 
+        public void WriteGraph(String filename)
+        {
+            XDocument doc = new XDocument();
+            doc.Add(new XElement("Waypoints"));
+            foreach (KeyValuePair<Tuple<int, int>, WaypointNode> item in nodes)
+            {
+                doc.Element("Waypoints").Add(new XElement("Waypoint", new XAttribute("X", item.Key.Item1), new XAttribute("Y", item.Key.Item2), item.Value.Neighbors.Select(e => new XElement("Neighbor", new XAttribute("X", e.X), new XAttribute("Y", e.Y)))));
+            }
+            doc.Save(filename);
+        }
+
         private void AddNode(int x, int y)
         {
             //TODO: give node its neighbors
@@ -47,7 +58,7 @@ namespace MinionsOfDeath.Navigation
             nodes.Add(Tuple.Create(x, y), n);
         }
 
-        private void ConnectNodes(WaypointNode aNode, WaypointNode bNode)
+        public void ConnectNodes(WaypointNode aNode, WaypointNode bNode)
         {
             aNode.Neighbors.Add(bNode);
             bNode.Neighbors.Add(aNode);
@@ -59,7 +70,7 @@ namespace MinionsOfDeath.Navigation
             foreach (KeyValuePair<Tuple<int, int>, WaypointNode> item in nodes)
             {
                 WaypointNode tempNode = item.Value;
-                if (getDistance(x, y, tempNode.X, tempNode.Y) < getDistance(x, y, closest.X, closest.Y))
+                if (getDistance(x, tempNode.X, y, tempNode.Y) < getDistance(x, closest.X, y, closest.Y))
                 {
                     closest = tempNode;
                 }
