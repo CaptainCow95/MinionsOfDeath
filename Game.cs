@@ -50,8 +50,6 @@ namespace MinionsOfDeath
 
             Sound.Load();
 
-            InitRunningState();
-
 			_map = new Sprite(new List<string>() { "Images/Map1.png" }, 0);
 
             _ui = new UserInterface();
@@ -76,40 +74,6 @@ namespace MinionsOfDeath
         public static int WindowHeight { get; private set; }
 
         public static int WindowWidth { get; private set; }
-
-        public void InitRunningState()
-        {
-            _player1 = new Player(1);
-			Minion minion1 = new Minion(true, 0);
-            _player1.AddMinion(minion1);
-            //_player1.Base = new Base((List<Sprite>)null, 1);
-            _player1.Base = new Base(null, 1);
-            _player1.Base.Pos.X = 499;
-            _player1.Base.Pos.Y = 44;
-
-            _player2 = new Player(2);
-			Minion minion2 = new Minion(false, 0);
-            _player2.AddMinion(minion2);
-            //_player2.Base = new Base((List<Sprite>)null, 2);
-            _player2.Base = new Base(null, 2);
-            _player2.Base.Pos.X = 495;
-            _player2.Base.Pos.Y = 1700;
-              
-
-            minion1.Pos.X = 160;
-            minion1.Pos.Y = 47;
-            minion1.DecisionTree = new DecisionTree(minion1, new AttackClosest(minion1));
-           //minion1.Pos.X = 495;
-           //minion1.Pos.Y = 1777;
-           // minion1.DecisionTree = new DecisionTree(minion1, new GotoBase(minion1));
-
-            minion2.Pos.X = 690;
-            minion2.Pos.Y = 912;
-            minion2.DecisionTree = new DecisionTree(minion2, new SeekAction(minion2, minion2));
-            //minion2.Pos.X = 499;
-            //minion2.Pos.Y = 45;
-            //minion2.DecisionTree = new DecisionTree(minion2, new GotoBase(minion2));
-        }
 
         private void Game_RenderFrame(object sender, FrameEventArgs e)
         {
