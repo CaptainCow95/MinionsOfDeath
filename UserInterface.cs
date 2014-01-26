@@ -16,6 +16,7 @@ namespace MinionsOfDeath
         private bool _inSelectMode = false;
         private Button _inSelectModeButton;
         private Button _makeSpecialMinion;
+        private Button _makeSpecialMinionSelected;
         private ScrollBar _mapScroll;
         private Button _player1Go;
         private Dictionary<Button, Tuple<StackPanel, StackPanel>> _player1ParentList = new Dictionary<Button, Tuple<StackPanel, StackPanel>>();
@@ -43,6 +44,8 @@ namespace MinionsOfDeath
             _player2Go = new Button(0, 600, 100, 100, true, "Run\nSimulation", new Sprite(new List<string>() { "Images/blueButton.png" }, 0));
 
             _makeSpecialMinion = new Button(0, 500, 100, 100, true, "Make Special\nMinion", new Sprite(new List<string>() { "Images/blueButton.png" }, 0));
+            _makeSpecialMinionSelected = new Button(0, 500, 100, 100, true, "Make Special\nMinion", new Sprite(new List<string>() { "Images/blueButtonLIGHT.png" }, 0));
+
             _editTree = new Button(0, 400, 100, 100, true, "Edit\nBehaviours", new Sprite(new List<string>() { "Images/blueButton.png" }, 0));
 
             _mapScroll = new ScrollBar(970, 0, 30, 1800, false, 0, 1800, false, new Sprite(new List<string>() { "Images/SCROLLDAGGER5000.png" }, 0));
@@ -105,7 +108,14 @@ namespace MinionsOfDeath
 
                 case UserInterfaceState.Player1MinionSelect:
                     _player1Go.Draw();
-                    _makeSpecialMinion.Draw();
+                    if (Game.Player1.Minions[_minionEditing].IsSpecial)
+                    {
+                        _makeSpecialMinionSelected.Draw();
+                    }
+                    else
+                    {
+                        _makeSpecialMinion.Draw();
+                    }
                     _editTree.Draw();
                     _mapScroll.Draw();
                     switch (_minionEditing)
@@ -141,7 +151,14 @@ namespace MinionsOfDeath
 
                 case UserInterfaceState.Player2MinionSelect:
                     _player2Go.Draw();
-                    _makeSpecialMinion.Draw();
+                    if (Game.Player2.Minions[_minionEditing].IsSpecial)
+                    {
+                        _makeSpecialMinionSelected.Draw();
+                    }
+                    else
+                    {
+                        _makeSpecialMinion.Draw();
+                    }
                     _editTree.Draw();
                     _mapScroll.Draw();
                     switch (_minionEditing)
@@ -354,9 +371,29 @@ namespace MinionsOfDeath
                     _minion2.Update(lastFrameTime);
                     _minion3.Update(lastFrameTime);
 
+                    if (Game.Player1.Minions[_minionEditing].IsSpecial)
+                    {
+                        _makeSpecialMinionSelected.Update(lastFrameTime);
+                    }
+                    else
+                    {
+                        _makeSpecialMinion.Update(lastFrameTime);
+                    }
+
+                    if (_makeSpecialMinion.Pressed)
+                    {
+                        foreach (var minion in Game.Player1.Minions)
+                        {
+                            minion.Value.IsSpecial = false;
+                        }
+
+                        Game.Player1.Minions[_minionEditing].IsSpecial = true;
+                    }
+
                     if (_player1Go.Pressed)
                     {
                         _state = UserInterfaceState.Player2MinionSelect;
+                        _minionEditing = 1;
                     }
                     if (_makeSpecialMinion.Pressed)
                     {
@@ -479,6 +516,25 @@ namespace MinionsOfDeath
                     _minion1.Update(lastFrameTime);
                     _minion2.Update(lastFrameTime);
                     _minion3.Update(lastFrameTime);
+
+                    if (Game.Player2.Minions[_minionEditing].IsSpecial)
+                    {
+                        _makeSpecialMinionSelected.Update(lastFrameTime);
+                    }
+                    else
+                    {
+                        _makeSpecialMinion.Update(lastFrameTime);
+                    }
+
+                    if (_makeSpecialMinion.Pressed)
+                    {
+                        foreach (var minion in Game.Player2.Minions)
+                        {
+                            minion.Value.IsSpecial = false;
+                        }
+
+                        Game.Player2.Minions[_minionEditing].IsSpecial = true;
+                    }
 
                     if (_player2Go.Pressed)
                     {
@@ -620,6 +676,7 @@ namespace MinionsOfDeath
 
             Game.Player1 = new Player(1);
             Minion minion1Player1 = new Minion(true, 1);
+            minion1Player1.IsSpecial = true;
             Game.Player1.AddMinion(minion1Player1);
             Minion minion2Player1 = new Minion(true, 2);
             Game.Player1.AddMinion(minion2Player1);
@@ -632,6 +689,7 @@ namespace MinionsOfDeath
 
             Game.Player2 = new Player(2);
             Minion minion1Player2 = new Minion(false, 1);
+            minion1Player2.IsSpecial = true;
             Game.Player2.AddMinion(minion1Player2);
             Minion minion2Player2 = new Minion(false, 2);
             Game.Player2.AddMinion(minion2Player2);
