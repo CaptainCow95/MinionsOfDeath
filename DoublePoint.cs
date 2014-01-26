@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 
 namespace MinionsOfDeath
 {
@@ -36,7 +36,7 @@ namespace MinionsOfDeath
 			_y = point._y;
 		}
 
-		public double SetToLessOrEqualMag(double mag)
+		public bool SetToLessOrEqualMag(double mag)
         {
 			double m = GetMag();
 			if (m <= mag) return true;
@@ -44,5 +44,10 @@ namespace MinionsOfDeath
             _y /= m;
 			return false;
         }
+
+		public double GetMag()
+		{
+			return Math.Sqrt((_x * _x) + (_y * _y));
+		}
     }
 }
