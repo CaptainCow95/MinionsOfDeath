@@ -2,6 +2,7 @@
 
 using MinionsOfDeath.Behaviors;
 using MinionsOfDeath.Graphics;
+using MinionsOfDeath.Navigation;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
 using OpenTK.Input;
