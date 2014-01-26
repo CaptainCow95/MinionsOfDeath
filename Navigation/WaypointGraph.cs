@@ -30,6 +30,12 @@ namespace MinionsOfDeath.Navigation
             return closest;
         }
 
+        public static WaypointNode GetFarthestWaypoint(int x, int y)
+        {
+            WaypointNode farthest = nodes.OrderBy(e => WaypointGraph.getDistance(e.Value.X, x, e.Value.Y, y)).Last().Value;
+            return farthest;
+        }
+
         public static double getDistance(int x1, int x2, int y1, int y2)
         {
             return Math.Sqrt(Math.Pow(x2 - x1, 2) + Math.Pow(y2 - y1, 2));
@@ -91,6 +97,89 @@ namespace MinionsOfDeath.Navigation
                 {
                     WaypointNode fromNode = current.Node;
                     Connection c = new Connection(getDistance(current.Node, n), current.Node, n);
+                    connections.Add(c);
+                }
+
+                foreach (Connection connection in connections)
+                {
+                    WaypointNode endNode = connection.getToNode();
+                    double endNodeCost = current.CostSoFar + connection.getCost();
+                    NodeRecord endNodeRecord = closed.Where(e => e.Node == endNode).FirstOrDefault();
+                    if (endNodeRecord != null)
+                    {
+                        continue;
+                    }
+                    endNodeRecord = open.Where(e => e.Node == endNode).FirstOrDefault();
+                    if (endNodeRecord != null)
+                    {
+                        if (endNodeRecord.CostSoFar <= endNodeCost)
+                        {
+                            continue;
+                        }
+                    }
+                    else
+                    {
+                        endNodeRecord = new NodeRecord(endNode);
+                    }
+
+                    endNodeRecord.CostSoFar = endNodeCost;
+                    endNodeRecord.Connection = connection;
+
+                    if (!open.Contains(endNodeRecord))
+                    {
+                        open.Add(endNodeRecord);
+                    }
+                }
+                open.Remove(current);
+                closed.Add(current);
+            }
+            if (current.Node != end)
+            {
+                return null;
+            }
+            else
+            {
+                if (current.Connection == null)
+                {
+                    return new List<WaypointNode>();
+                }
+
+                List<WaypointNode> path = new List<WaypointNode>();
+                path.Add(current.Connection.getFromNode());
+                while (current.Node != start)
+                {
+                    // path += current.connection;
+                    path.Add(current.Connection.getToNode());
+                    // current = current.connection.getFromNode();
+                    current = closed.Where(e => e.Node == current.Connection.getFromNode()).First();
+                }
+                path.Reverse();
+                return path;
+            }
+        }
+
+        public static List<WaypointNode> pathfindDijkstra(WaypointNode start, WaypointNode end, int avoidX, int avoidY)
+        {
+            NodeRecord startRecord = new NodeRecord(start);
+
+            List<NodeRecord> open = new List<NodeRecord>();
+            open.Add(startRecord);
+            List<NodeRecord> closed = new List<NodeRecord>();
+            NodeRecord current = new NodeRecord();
+
+            while (open.Count > 0)
+            {
+                current = open.Where(e => e.CostSoFar == open.Min(f => f.CostSoFar)).First();
+
+                if (current.Node == end)
+                    break;
+
+                // connections = graph.getConnections(current);
+                List<Connection> connections = new List<Connection>();
+                foreach (WaypointNode n in current.Node.Neighbors)
+                {
+                    WaypointNode fromNode = current.Node;
+                    Connection c = new Connection(getDistance(current.Node, n) + (1000/getDistance(n.X,avoidX,n.Y,avoidY)) , current.Node, n);
                     connections.Add(c);
                 }
 
