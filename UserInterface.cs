@@ -6,6 +6,7 @@ namespace MinionsOfDeath
 {
     public class UserInterface
     {
+        private Button _editTree;
         private Button _makeSpecialMinion;
         private Button _player1Go;
         private StackPanel _player1TreeRoot;
@@ -23,6 +24,7 @@ namespace MinionsOfDeath
             _player2Go = new Button(0, 600, 100, 100, "Run\nSimulation", new Sprite(new List<string>() { "Images/square.png" }));
 
             _makeSpecialMinion = new Button(0, 500, 100, 100, "Make Special\nMinion", new Sprite(new List<string>() { "Images/square.png" }));
+            _editTree = new Button(0, 400, 100, 100, "Edit\nBehaviours", new Sprite(new List<string>() { "Images/square.png" }));
 
             _state = UserInterfaceState.Player1MinionSelect;
         }
@@ -37,6 +39,7 @@ namespace MinionsOfDeath
                 case UserInterfaceState.Player1MinionSelect:
                     _player1Go.Draw();
                     _makeSpecialMinion.Draw();
+                    _editTree.Draw();
                     break;
 
                 case UserInterfaceState.Player2EditMinionTree:
@@ -45,6 +48,7 @@ namespace MinionsOfDeath
                 case UserInterfaceState.Player2MinionSelect:
                     _player2Go.Draw();
                     _makeSpecialMinion.Draw();
+                    _editTree.Draw();
                     break;
 
                 case UserInterfaceState.Running:
@@ -62,6 +66,7 @@ namespace MinionsOfDeath
                 case UserInterfaceState.Player1MinionSelect:
                     _player1Go.Update(lastFrameTime);
                     _makeSpecialMinion.Update(lastFrameTime);
+                    _editTree.Update(lastFrameTime);
 
                     if (_player1Go.Pressed)
                     {
@@ -71,6 +76,10 @@ namespace MinionsOfDeath
                     {
                         // Make current minion special
                     }
+                    if (_editTree.Pressed)
+                    {
+                        _state = UserInterfaceState.Player1EditMinionTree;
+                    }
                     break;
 
                 case UserInterfaceState.Player2EditMinionTree:
@@ -79,6 +88,7 @@ namespace MinionsOfDeath
                 case UserInterfaceState.Player2MinionSelect:
                     _player2Go.Update(lastFrameTime);
                     _makeSpecialMinion.Update(lastFrameTime);
+                    _editTree.Update(lastFrameTime);
 
                     if (_player2Go.Pressed)
                     {
@@ -87,6 +97,10 @@ namespace MinionsOfDeath
                     if (_makeSpecialMinion.Pressed)
                     {
                         // Make current minion special
+                    }
+                    if (_editTree.Pressed)
+                    {
+                        _state = UserInterfaceState.Player2EditMinionTree;
                     }
                     break;
 
