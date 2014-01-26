@@ -7,5 +7,7 @@
         Player1EditMinionTree,
         Player2EditMinionTree,
         Running,
+        Player1Wins,
+        Player2Wins
     }
 }

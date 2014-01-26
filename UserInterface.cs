@@ -28,27 +28,27 @@ namespace MinionsOfDeath
 
         public UserInterface()
         {
-			_player1TreeRoot = new StackPanel(0, 0, 1000, 700, false, false, new Sprite(new List<string>() { "Images/SCROLLDAGGER5000.png" }, 0), new Sprite(new List<string>() { "Images/SCROLLDAGGER3000.png" }, 0));
-			Button player1GoToBase = new Button(0, 0, 100, 100, false, "Go To Base", new Sprite(new List<string>() { "Images/blueButton.png" }, 0));
+            _player1TreeRoot = new StackPanel(0, 0, 1000, 700, false, false, new Sprite(new List<string>() { "Images/SCROLLDAGGER5000.png" }, 0), new Sprite(new List<string>() { "Images/SCROLLDAGGER3000.png" }, 0));
+            Button player1GoToBase = new Button(0, 0, 100, 100, false, "Go To Base", new Sprite(new List<string>() { "Images/blueButton.png" }, 0));
             _player1TreeRoot.Children.Add(player1GoToBase);
             _player1ParentList.Add(player1GoToBase, new Tuple<StackPanel, StackPanel>(_player1TreeRoot, null));
-			_player1TreeRoot.Children.Add(new Button(0, 0, 100, 100, false, "Go Back", new Sprite(new List<string>() { "Images/blueButton.png" }, 0)));
-			_player2TreeRoot = new StackPanel(0, 0, 1000, 700, false, false, new Sprite(new List<string>() { "Images/SCROLLDAGGER5000.png" }, 0), new Sprite(new List<string>() { "Images/SCROLLDAGGER3000.png" }, 0));
-			Button player2GoToBase = new Button(0, 0, 100, 100, false, "Go To Base", new Sprite(new List<string>() { "Images/blueButton.png" }, 0));
+            _player1TreeRoot.Children.Add(new Button(0, 0, 100, 100, false, "Go Back", new Sprite(new List<string>() { "Images/blueButton.png" }, 0)));
+            _player2TreeRoot = new StackPanel(0, 0, 1000, 700, false, false, new Sprite(new List<string>() { "Images/SCROLLDAGGER5000.png" }, 0), new Sprite(new List<string>() { "Images/SCROLLDAGGER3000.png" }, 0));
+            Button player2GoToBase = new Button(0, 0, 100, 100, false, "Go To Base", new Sprite(new List<string>() { "Images/blueButton.png" }, 0));
             _player2TreeRoot.Children.Add(player2GoToBase);
             _player2ParentList.Add(player2GoToBase, new Tuple<StackPanel, StackPanel>(_player2TreeRoot, null));
-			_player2TreeRoot.Children.Add(new Button(0, 0, 100, 100, false, "Go Back", new Sprite(new List<string>() { "Images/blueButton.png" }, 0)));
+            _player2TreeRoot.Children.Add(new Button(0, 0, 100, 100, false, "Go Back", new Sprite(new List<string>() { "Images/blueButton.png" }, 0)));
 
-			_player1Go = new Button(0, 600, 100, 100, true, "Go to\nPlayer 2", new Sprite(new List<string>() { "Images/blueButton.png" }, 0));
+            _player1Go = new Button(0, 600, 100, 100, true, "Go to\nPlayer 2", new Sprite(new List<string>() { "Images/blueButton.png" }, 0));
 
-			_player2Go = new Button(0, 600, 100, 100, true, "Run\nSimulation", new Sprite(new List<string>() { "Images/blueButton.png" }, 0));
+            _player2Go = new Button(0, 600, 100, 100, true, "Run\nSimulation", new Sprite(new List<string>() { "Images/blueButton.png" }, 0));
 
-			_makeSpecialMinion = new Button(0, 500, 100, 100, true, "Make Special\nMinion", new Sprite(new List<string>() { "Images/blueButton.png" }, 0));
-			_editTree = new Button(0, 400, 100, 100, true, "Edit\nBehaviours", new Sprite(new List<string>() { "Images/blueButton.png" }, 0));
+            _makeSpecialMinion = new Button(0, 500, 100, 100, true, "Make Special\nMinion", new Sprite(new List<string>() { "Images/blueButton.png" }, 0));
+            _editTree = new Button(0, 400, 100, 100, true, "Edit\nBehaviours", new Sprite(new List<string>() { "Images/blueButton.png" }, 0));
 
-			_mapScroll = new ScrollBar(970, 0, 30, 1800, false, 0, 1800, false, new Sprite(new List<string>() { "Images/SCROLLDAGGER5000.png" }, 0));
+            _mapScroll = new ScrollBar(970, 0, 30, 1800, false, 0, 1800, false, new Sprite(new List<string>() { "Images/SCROLLDAGGER5000.png" }, 0));
 
-			_editSelect = new Select(0, 0, false, _selectOptions, new Sprite(new List<string>() { "Images/blueButtonSmall.png" }, 0), new List<string>() { "Images/blueButtonSmall.png" });
+            _editSelect = new Select(0, 0, false, _selectOptions, new Sprite(new List<string>() { "Images/blueButtonSmall.png" }, 0), new List<string>() { "Images/blueButtonSmall.png" });
 
             _state = UserInterfaceState.Player1MinionSelect;
 
@@ -61,14 +61,14 @@ namespace MinionsOfDeath
             Game.Player1.Minions.ElementAt(0).Value.DecisionTree = tree;
 
             DecisionTree tree2 = new DecisionTree(Game.Player2.Minions.ElementAt(0).Value, GetNode(Game.Player2.Minions.ElementAt(0).Value, _player2TreeRoot.Children[0], _player2TreeRoot, null));
-			Game.Player2.Minions.ElementAt(0).Value.DecisionTree = tree2;
+            Game.Player2.Minions.ElementAt(0).Value.DecisionTree = tree2;
         }
 
         public void Draw()
         {
             Game.Player1.Draw();
             Game.Player2.Draw();
-			Game.DeathClouds.Draw();
+            Game.DeathClouds.Draw();
 
             switch (_state)
             {
@@ -110,6 +110,12 @@ namespace MinionsOfDeath
 
                 case UserInterfaceState.Running:
                     _mapScroll.Draw();
+                    break;
+
+                case UserInterfaceState.Player1Wins:
+                    break;
+
+                case UserInterfaceState.Player2Wins:
                     break;
             }
         }
@@ -220,15 +226,15 @@ namespace MinionsOfDeath
                                 StackPanel panel = new StackPanel(0, 0, false, false);
                                 StackPanel panel2 = new StackPanel(0, 0, false, true);
                                 panel.Children.Add(panel2);
-							Button button = new Button(0, 0, 100, 100, false, "Go To Base", new Sprite(new List<string>() { "Images/blueButton.png" }, 0));
+                                Button button = new Button(0, 0, 100, 100, false, "Go To Base", new Sprite(new List<string>() { "Images/blueButton.png" }, 0));
                                 panel.Children.Add(button);
                                 _player1ParentList.Add(button, new Tuple<StackPanel, StackPanel>(panel, null));
 
-							Button queryButton = new Button(0, 0, 100, 100, false, _selectOptions[_editSelect.SelectedIndex], new Sprite(new List<string>() { "Images/blueButton.png" }, 0));
+                                Button queryButton = new Button(0, 0, 100, 100, false, _selectOptions[_editSelect.SelectedIndex], new Sprite(new List<string>() { "Images/blueButton.png" }, 0));
                                 panel2.Children.Add(queryButton);
                                 _player1ParentList.Add(queryButton, new Tuple<StackPanel, StackPanel>(_player1ParentList[_inSelectModeButton].Item1, panel));
 
-							Button queryChildButton = new Button(0, 0, 100, 100, false, "Go To Base", new Sprite(new List<string>() { "Images/blueButton.png" }, 0));
+                                Button queryChildButton = new Button(0, 0, 100, 100, false, "Go To Base", new Sprite(new List<string>() { "Images/blueButton.png" }, 0));
                                 panel2.Children.Add(queryChildButton);
                                 _player1ParentList.Add(queryChildButton, new Tuple<StackPanel, StackPanel>(panel2, null));
 
@@ -247,7 +253,7 @@ namespace MinionsOfDeath
                                     _player1ParentList[_inSelectModeButton].Item1.Children.Remove(_inSelectModeButton);
                                 }
 
-							Button button = new Button(0, 0, 100, 100, false, _selectOptions[_editSelect.SelectedIndex], new Sprite(new List<string>() { "Images/blueButton.png" }, 0));
+                                Button button = new Button(0, 0, 100, 100, false, _selectOptions[_editSelect.SelectedIndex], new Sprite(new List<string>() { "Images/blueButton.png" }, 0));
                                 _player1ParentList[_inSelectModeButton].Item1.Children.Insert(index, button);
 
                                 _player1ParentList.Add(button, _player1ParentList[_inSelectModeButton]);
@@ -331,15 +337,15 @@ namespace MinionsOfDeath
                                 StackPanel panel = new StackPanel(0, 0, false, false);
                                 StackPanel panel2 = new StackPanel(0, 0, false, true);
                                 panel.Children.Add(panel2);
-							Button button = new Button(0, 0, 100, 100, false, "Go To Base", new Sprite(new List<string>() { "Images/blueButton.png" }, 0));
+                                Button button = new Button(0, 0, 100, 100, false, "Go To Base", new Sprite(new List<string>() { "Images/blueButton.png" }, 0));
                                 panel.Children.Add(button);
                                 _player2ParentList.Add(button, new Tuple<StackPanel, StackPanel>(panel, null));
 
-							Button queryButton = new Button(0, 0, 100, 100, false, _selectOptions[_editSelect.SelectedIndex], new Sprite(new List<string>() { "Images/blueButton.png" }, 0));
+                                Button queryButton = new Button(0, 0, 100, 100, false, _selectOptions[_editSelect.SelectedIndex], new Sprite(new List<string>() { "Images/blueButton.png" }, 0));
                                 panel2.Children.Add(queryButton);
                                 _player2ParentList.Add(queryButton, new Tuple<StackPanel, StackPanel>(_player2ParentList[_inSelectModeButton].Item1, panel));
 
-							Button queryChildButton = new Button(0, 0, 100, 100, false, "Go To Base", new Sprite(new List<string>() { "Images/blueButton.png" }, 0));
+                                Button queryChildButton = new Button(0, 0, 100, 100, false, "Go To Base", new Sprite(new List<string>() { "Images/blueButton.png" }, 0));
                                 panel2.Children.Add(queryChildButton);
                                 _player2ParentList.Add(queryChildButton, new Tuple<StackPanel, StackPanel>(panel2, null));
 
@@ -358,7 +364,7 @@ namespace MinionsOfDeath
                                     _player2ParentList[_inSelectModeButton].Item1.Children.Remove(_inSelectModeButton);
                                 }
 
-							Button button = new Button(0, 0, 100, 100, false, _selectOptions[_editSelect.SelectedIndex], new Sprite(new List<string>() { "Images/blueButton.png" }, 0));
+                                Button button = new Button(0, 0, 100, 100, false, _selectOptions[_editSelect.SelectedIndex], new Sprite(new List<string>() { "Images/blueButton.png" }, 0));
                                 _player2ParentList[_inSelectModeButton].Item1.Children.Insert(index, button);
 
                                 _player2ParentList.Add(button, _player2ParentList[_inSelectModeButton]);
@@ -415,13 +421,13 @@ namespace MinionsOfDeath
                     }
                     break;
 
-			case UserInterfaceState.Running:
-				_mapScroll.Update (lastFrameTime);
+                case UserInterfaceState.Running:
+                    _mapScroll.Update(lastFrameTime);
 
-				Game.Player1.Update (lastFrameTime);
-				Game.Player2.Update (lastFrameTime);
-				Game.DeathClouds.Update (lastFrameTime);
-				Game.DeathClouds.Flush ();
+                    Game.Player1.Update(lastFrameTime);
+                    Game.Player2.Update(lastFrameTime);
+                    Game.DeathClouds.Update(lastFrameTime);
+                    Game.DeathClouds.Flush();
 
                     // Check for collisions
                     List<int> player1MinionsToRemove = new List<int>();
@@ -434,8 +440,8 @@ namespace MinionsOfDeath
                             {
                                 player1MinionsToRemove.Add(player1Minion.Key);
                                 player2MinionsToRemove.Add(player2Minion.Key);
-							Game.DeathClouds.Add(new DeathCloud(DoublePoint.GetAverage(
-								player1Minion.Value.Pos, player2Minion.Value.Pos)));
+                                Game.DeathClouds.Add(new DeathCloud(DoublePoint.GetAverage(
+                                    player1Minion.Value.Pos, player2Minion.Value.Pos)));
                             }
                         }
                     }
@@ -456,9 +462,14 @@ namespace MinionsOfDeath
                         }
                     }
 
-
                     player1MinionsToRemove.ForEach(f => Game.Player1.Minions.Remove(f));
                     player2MinionsToRemove.ForEach(f => Game.Player2.Minions.Remove(f));
+                    break;
+
+                case UserInterfaceState.Player1Wins:
+                    break;
+
+                case UserInterfaceState.Player2Wins:
                     break;
             }
         }
