@@ -1,4 +1,4 @@
-﻿﻿﻿﻿using MinionsOfDeath.Behaviors;
+﻿﻿﻿using MinionsOfDeath.Behaviors;
 using MinionsOfDeath.Behaviors.Actions;
 using MinionsOfDeath.Behaviors.Queries;
 using MinionsOfDeath.Graphics;
@@ -736,6 +736,8 @@ namespace MinionsOfDeath
 
             minion3Player2.Pos.X = 575;
             minion3Player2.Pos.Y = 1615;
+
+			Game.DeathClouds.Clear();
         }
     }
 }
