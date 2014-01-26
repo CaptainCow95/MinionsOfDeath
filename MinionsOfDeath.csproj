@@ -86,6 +86,7 @@
     <Compile Include="Graphics\Sprite.cs" />
     <Compile Include="Interface\ScrollBar.cs" />
     <Compile Include="Resources\GraphMaker.cs" />
+    <Compile Include="UserInterface.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\BlueMinion.png">
