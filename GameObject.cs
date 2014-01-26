@@ -25,7 +25,9 @@ namespace MinionsOfDeath
 
         public DoublePoint Pos
         {
-            set { _pos = value; }
+            set { _pos.X = value.X - _sprites[0].Width/2;
+            _pos.X = value.X - _sprites[0].Width / 2;
+            }
             get { return _pos; }
         }
 

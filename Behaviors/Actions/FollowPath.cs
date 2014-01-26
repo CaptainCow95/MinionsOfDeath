@@ -26,7 +26,6 @@ namespace MinionsOfDeath.Behaviors.Actions
             }break;
         }
 
-            Console.WriteLine(_path[0].X + " "+ _path[0].Y);
             return new DoublePoint(_path[0].X, _path[0].Y);
         }
     }
