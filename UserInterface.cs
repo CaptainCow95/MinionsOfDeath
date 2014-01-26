@@ -30,6 +30,8 @@ namespace MinionsOfDeath
             _mapScroll = new ScrollBar(970, 0, 30, 1800, false, 0, 1800, false, new Sprite(new List<string>() { "Images/rightWalkred1.png" }));
 
             _state = UserInterfaceState.Player1MinionSelect;
+
+            Sound.Strategize.PlayLooping();
         }
 
         public void Draw()
@@ -101,6 +103,8 @@ namespace MinionsOfDeath
                     if (_player2Go.Pressed)
                     {
                         _state = UserInterfaceState.Running;
+                        Sound.StopAll();
+                        Sound.Combat.PlayLooping();
                     }
                     if (_makeSpecialMinion.Pressed)
                     {
