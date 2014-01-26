@@ -605,6 +605,23 @@ namespace MinionsOfDeath
 						Sound.Victory.Play();
                         }
                     }
+                    bool player1SpecialAlive = Game.Player1.Minions.Where(e => e.Value.IsSpecial).Count() > 0;
+                    bool player2SpecialAlive = Game.Player2.Minions.Where(e => e.Value.IsSpecial).Count() > 0;
+
+                    if (!player1SpecialAlive && !player2SpecialAlive)
+                    {
+                        // Draw
+                    }
+                    else if (!player1SpecialAlive)
+                    {
+                        _state = UserInterfaceState.Player2Wins;
+                        Sound.Victory.Play();
+                    }
+                    else if (!player2SpecialAlive)
+                    {
+                        _state = UserInterfaceState.Player1Wins;
+                        Sound.Victory.Play();
+                    }
 
                     player1MinionsToRemove.ForEach(f => Game.Player1.Minions.Remove(f));
                     player2MinionsToRemove.ForEach(f => Game.Player2.Minions.Remove(f));
@@ -616,7 +633,7 @@ namespace MinionsOfDeath
 
                     if (Game.MouseState.LeftButton == OpenTK.Input.ButtonState.Released && Game.PreviousMouseState.LeftButton == OpenTK.Input.ButtonState.Pressed)
                     {
-                        _state = UserInterfaceState.Player1EditMinionTree;
+                        _state = UserInterfaceState.Player1MinionSelect;
                         Reset();
                     }
                     break;
@@ -627,7 +644,7 @@ namespace MinionsOfDeath
 
                     if (Game.MouseState.LeftButton == OpenTK.Input.ButtonState.Released && Game.PreviousMouseState.LeftButton == OpenTK.Input.ButtonState.Pressed)
                     {
-                        _state = UserInterfaceState.Player1EditMinionTree;
+                        _state = UserInterfaceState.Player1MinionSelect;
                         Reset();
                     }
                     break;
