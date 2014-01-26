@@ -81,5 +81,12 @@ namespace MinionsOfDeath
 
             base.Update(time);
         }
+
+		public override void Draw()
+		{
+			GetSprite().X = _pos.X + _left - _right;
+			GetSprite().Y = _pos.Y + _top - _bottom;
+			GetSprite().Draw();
+		}
     }
 }

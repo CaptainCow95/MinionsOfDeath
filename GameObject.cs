@@ -1,4 +1,4 @@
-﻿﻿﻿using MinionsOfDeath.Graphics;
+﻿﻿using MinionsOfDeath.Graphics;
 using System.Collections.Generic;
 
 namespace MinionsOfDeath
@@ -37,7 +37,7 @@ namespace MinionsOfDeath
             set { _state = value; }
         }
 
-        public void Draw()
+		public virtual void Draw()
         {
             _sprites[_state].X = _pos.X;
             _sprites[_state].Y = _pos.Y;
