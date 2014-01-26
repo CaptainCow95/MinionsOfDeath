@@ -150,6 +150,11 @@ namespace MinionsOfDeath.Navigation
             }
             else
             {
+                if(current.Connection == null)
+                {
+                    return new List<WaypointNode>();
+                }
+
                 List<WaypointNode> path = new List<WaypointNode>();
                 path.Add(current.Connection.getFromNode());
                 while (current.Node != start)

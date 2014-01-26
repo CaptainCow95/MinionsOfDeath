@@ -32,6 +32,7 @@ namespace MinionsOfDeath.Behaviors.Actions
            WaypointNode enemyNode = WaypointGraph.GetClosestWaypoint((int)closest.Pos.X, (int)closest.Pos.Y);
            WaypointNode myNode = WaypointGraph.GetClosestWaypoint((int)_owner.Pos.X, (int)_owner.Pos.Y);
             List<WaypointNode> path = WaypointGraph.pathfindDijkstra(myNode, enemyNode);
+            path.Add(new WaypointNode((int)closest.Pos.X, (int)closest.Pos.Y, new List<WaypointNode>()));
             FollowPath fp = new FollowPath(_owner, path);
 
             return fp.GetGoal();
