@@ -1,4 +1,4 @@
-﻿using MinionsOfDeath.Behaviors;
+﻿﻿using MinionsOfDeath.Behaviors;
 using MinionsOfDeath.Behaviors.Actions;
 using MinionsOfDeath.Behaviors.Queries;
 using MinionsOfDeath.Graphics;
@@ -530,6 +530,7 @@ namespace MinionsOfDeath
                                 player2MinionsToRemove.Add(player2Minion.Key);
                                 Game.DeathClouds.Add(new DeathCloud(DoublePoint.GetAverage(
                                     player1Minion.Value.Pos, player2Minion.Value.Pos)));
+							Sound.Death.Play();
                             }
                         }
                     }
@@ -539,7 +540,7 @@ namespace MinionsOfDeath
                         {
                             //TODO: win state
                             _state = UserInterfaceState.Player1Wins;
-                            Console.Write("Player 1 wins!");
+						Sound.Victory.Play();
                         }
                     }
                     foreach (var player2Minion in Game.Player2.Minions)
@@ -547,7 +548,7 @@ namespace MinionsOfDeath
                         if (player2Minion.Value.IsCollidingWith(Game.Player1.Base) && player2Minion.Value.IsSpecial)
                         {
                             _state = UserInterfaceState.Player2Wins;
-                            Console.Write("Player 2 wins!");
+						Sound.Victory.Play();
                         }
                     }
 

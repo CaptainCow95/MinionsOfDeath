@@ -95,6 +95,7 @@
     <Compile Include="UserInterface.cs" />
     <Compile Include="UserInterfaceState.cs" />
     <Compile Include="DeathCloud.cs" />
+    <Compile Include="Sound.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\BlueButtonSmall.png">
@@ -234,9 +235,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Sounds\Death.wav">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Sound.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
