@@ -73,7 +73,6 @@
     <Compile Include="Camera.cs" />
     <Compile Include="DoublePoint.cs" />
     <Compile Include="GameObject.cs" />
-    <Compile Include="GameState.cs" />
     <Compile Include="Graphics\StringDrawer.cs" />
     <Compile Include="Interface\Button.cs" />
     <Compile Include="Interface\InterfaceObject.cs" />
@@ -92,6 +91,7 @@
     <Compile Include="Interface\ScrollBar.cs" />
     <Compile Include="Resources\GraphMaker.cs" />
     <Compile Include="UserInterface.cs" />
+    <Compile Include="UserInterfaceState.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\BlueMinion.png">

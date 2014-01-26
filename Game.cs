@@ -22,7 +22,6 @@ namespace MinionsOfDeath
         public static MouseState PreviousMouseState;
         private static Player _player1;
         private static Player _player2;
-        private GameState _gameState;
         private Sprite _map;
         private UserInterface _ui;
 #if GRAPHMAKER
