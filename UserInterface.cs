@@ -1,4 +1,4 @@
-﻿﻿using MinionsOfDeath.Behaviors;
+﻿using MinionsOfDeath.Behaviors;
 using MinionsOfDeath.Behaviors.Actions;
 using MinionsOfDeath.Behaviors.Queries;
 using MinionsOfDeath.Graphics;
@@ -421,6 +421,7 @@ namespace MinionsOfDeath
 				Game.Player1.Update (lastFrameTime);
 				Game.Player2.Update (lastFrameTime);
 				Game.DeathClouds.Update (lastFrameTime);
+				Game.DeathClouds.Flush ();
 
                     // Check for collisions
                     List<int> player1MinionsToRemove = new List<int>();

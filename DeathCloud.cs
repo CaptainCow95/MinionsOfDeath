@@ -40,7 +40,7 @@ namespace MinionsOfDeath
 	public class DeathCloudList
 	{
 		private static List<DeathCloud> _deathClouds = new List<DeathCloud>();
-		//private static List<DeathCloud> _toRemoveDC = new List<DeathCloud>();
+		private static List<DeathCloud> _toRemoveDC = new List<DeathCloud>();
 
 		public void Add(DeathCloud dc)
 		{
@@ -49,14 +49,13 @@ namespace MinionsOfDeath
 
 		public void Remove(DeathCloud dc)
 		{
-			//_toRemoveDC.Add(dc);
-			_deathClouds.Remove(dc);
+			_toRemoveDC.Add(dc);
 		}
 
-//		public void Flush()
-//		{
-//			_toRemoveDC.ForEach(dc => _deathClouds.Remove(dc));
-//		}
+		public void Flush()
+		{
+			_toRemoveDC.ForEach(dc => _deathClouds.Remove(dc));
+		}
 
 		public void Draw()
 		{
