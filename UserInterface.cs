@@ -698,22 +698,22 @@ namespace MinionsOfDeath
             Game.Player2.Base.Pos.X = 495;
             Game.Player2.Base.Pos.Y = 1700;
 
-            minion1Player1.Pos.X = 160;
-            minion1Player1.Pos.Y = 47;
+            minion1Player1.Pos.X = 175;
+            minion1Player1.Pos.Y = 100;
 
-            minion2Player1.Pos.X = 160;
-            minion2Player1.Pos.Y = 47;
+            minion2Player1.Pos.X = 505;
+            minion2Player1.Pos.Y = 180;
 
-            minion3Player1.Pos.X = 160;
-            minion3Player1.Pos.Y = 47;
+            minion3Player1.Pos.X = 825;
+            minion3Player1.Pos.Y = 100;
 
             minion1Player2.Pos.X = 690;
             minion1Player2.Pos.Y = 912;
 
-            minion2Player2.Pos.X = 690;
+            minion2Player2.Pos.X = 700;
             minion2Player2.Pos.Y = 912;
 
-            minion3Player2.Pos.X = 690;
+            minion3Player2.Pos.X = 720;
             minion3Player2.Pos.Y = 912;
         }
     }
