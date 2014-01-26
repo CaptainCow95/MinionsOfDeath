@@ -59,8 +59,10 @@
     <Compile Include="Behaviors\DecisionTree.cs" />
     <Compile Include="Behaviors\Pathfinder.cs" />
     <Compile Include="Behaviors\Queries\IsEnemyClose.cs" />
+    <Compile Include="Behaviors\Queries\IsEnemyNum0.cs" />
     <Compile Include="Behaviors\Queries\IsEnemyNum1.cs" />
     <Compile Include="Behaviors\Queries\IsEnemyNum2.cs" />
+    <Compile Include="Behaviors\Queries\IsEnemyOnMyHalf.cs" />
     <Compile Include="Behaviors\Queries\NearestEnemyMovingAway.cs" />
     <Compile Include="Behaviors\Queries\NearestEnemyMovingTowards.cs" />
     <Compile Include="Behaviors\QueryNode.cs" />
@@ -139,7 +141,5 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <ItemGroup>
-    <Folder Include="Sounds\" />
-  </ItemGroup>
+  <ItemGroup />
 </Project>
