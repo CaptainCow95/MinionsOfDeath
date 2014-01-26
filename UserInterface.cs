@@ -61,7 +61,7 @@ namespace MinionsOfDeath
             Game.Player1.Minions.ElementAt(0).Value.DecisionTree = tree;
 
             DecisionTree tree2 = new DecisionTree(Game.Player2.Minions.ElementAt(0).Value, GetNode(Game.Player2.Minions.ElementAt(0).Value, _player2TreeRoot.Children[0], _player2TreeRoot, null));
-			Game.Player2.Minions.ElementAt(0).Value.DecisionTree = tree;
+			Game.Player2.Minions.ElementAt(0).Value.DecisionTree = tree2;
         }
 
         public void Draw()

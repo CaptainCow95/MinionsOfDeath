@@ -20,6 +20,7 @@ namespace MinionsOfDeath
         public static KeyboardState PreviousKeyboardState;
         public static Point PreviousMousePosition;
         public static MouseState PreviousMouseState;
+		public static DeathCloudList DeathClouds;
         private static Player _player1;
         private static Player _player2;
         private Sprite _map;
@@ -77,25 +78,13 @@ namespace MinionsOfDeath
         public void InitRunningState()
         {
             _player1 = new Player(1);
-            Minion minion1 = new Minion(new List<Sprite>() {
-				new Sprite(new List<string>() { "Images/BlueMinion.png" }, 0),
-				new Sprite(new List<string>() { "Images/BlueMinion0.png", "Images/BlueMinion1.png" }, 0.3),
-				new Sprite(new List<string>() { "Images/BlueMinionBack0.png", "Images/BlueMinionBack1.png"}, 0.3),
-				new Sprite(new List<string>() { "Images/LeftWalkBlue0.png", "Images/LeftWalkBlue1.png", "Images/LeftWalkBlue2.png"}, 0.2),
-				new Sprite(new List<string>() { "Images/RightWalkBlue0.png", "Images/RightWalkBlue1.png", "Images/RightWalkBlue2.png"}, 0.2),
-				}, 0);
+			Minion minion1 = new Minion(true, 0);
             minion1.State = 1;
             _player1.AddMinion(minion1);
             _player1.Base = new Base((List<Sprite>)null, 1);
 
             _player2 = new Player(2);
-            Minion minion2 = new Minion(new List<Sprite>() {
-				new Sprite(new List<string>() { "Images/RedMinion.png" }, 0),
-				new Sprite(new List<string>() { "Images/RedMinion0.png", "Images/RedMinion1.png" }, 0.3),
-				new Sprite(new List<string>() { "Images/RedMinionBack0.png", "Images/RedMinionBack1.png"}, 0.3),
-				new Sprite(new List<string>() { "Images/LeftWalkRed0.png", "Images/LeftWalkRed1.png", "Images/LeftWalkRed2.png"}, 0.2),
-				new Sprite(new List<string>() { "Images/RightWalkRed0.png", "Images/RightWalkRed1.png", "Images/RightWalkRed2.png"}, 0.2),
-			}, 0);
+			Minion minion2 = new Minion(false, 0);
             minion2.State = 1;
             _player2.AddMinion(minion2);
             _player2.Base = new Base((List<Sprite>)null, 2);
