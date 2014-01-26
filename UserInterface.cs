@@ -1,4 +1,4 @@
-﻿﻿﻿﻿using MinionsOfDeath.Behaviors;
+﻿﻿﻿using MinionsOfDeath.Behaviors;
 using MinionsOfDeath.Behaviors.Actions;
 using MinionsOfDeath.Behaviors.Queries;
 using MinionsOfDeath.Graphics;
@@ -24,7 +24,7 @@ namespace MinionsOfDeath
         private Button _player2Go;
         private Dictionary<Button, Tuple<StackPanel, StackPanel>> _player2ParentList = new Dictionary<Button, Tuple<StackPanel, StackPanel>>();
         private Dictionary<int, StackPanel> _player2TreeRoot;
-        private List<string> _selectOptions = new List<string>() { "Is Enemy\nClose", "Is 1 \nEnemy Left", "Is 2\nEnemies Left", "Is Enemy\nOn My Half", "Is Nearest\nEnemy Moving\nAway", "Is Nearest\nEnemy Moving\nTowards", "Attack Closest", "Go To Base", "Return to Base", "Patrol\n Home Half", "Run Away", "Stop" };
+        private List<string> _selectOptions = new List<string>() { "Is Enemy\nClose", "Is 1 \nEnemy Left", "Is 2\nEnemies Left", "Is Enemy\nOn My Half", "Is Nearest\nEnemy Moving\nAway", "Is Nearest\nEnemy Moving\nTowards", "Attack Closest", "Defend Special", "Go To Base", "Return to Base", "Patrol\n Home Half", "Run Away", "Stop" };
         private UserInterfaceState _state;
         private Button _minion1;
         private Button _minion1Selected;
@@ -250,6 +250,9 @@ namespace MinionsOfDeath
 
                     case "Attack Closest":
                         return new AttackClosest(owner);
+
+                    case "Defend Special":
+                        return new DefendSpecial(owner);
 
                     case "Follow Path":
                         return new FollowPath(owner, null);
@@ -736,6 +739,8 @@ namespace MinionsOfDeath
 
             minion3Player2.Pos.X = 575;
             minion3Player2.Pos.Y = 1615;
+
+			Game.DeathClouds.Clear();
         }
     }
 }

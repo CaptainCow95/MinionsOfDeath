@@ -61,6 +61,7 @@
     <Compile Include="Base.cs" />
     <Compile Include="Behaviors\Action.cs" />
     <Compile Include="Behaviors\Actions\AttackClosest.cs" />
+    <Compile Include="Behaviors\Actions\DefendSpecial.cs" />
     <Compile Include="Behaviors\Actions\FollowPath.cs" />
     <Compile Include="Behaviors\Actions\GotoBase.cs" />
     <Compile Include="Behaviors\Actions\PatrolHomeHalf.cs" />
