@@ -28,6 +28,8 @@ namespace MinionsOfDeath.Interface
         {
             _background.X = X;
             _background.Y = Y;
+            _background.Width = Width;
+            _background.Height = Height;
             _background.Draw();
             StringDrawer.Draw(_font, _text, QFontAlignment.Centre, new OpenTK.Vector2(X + (Width / 2), Y + (Height / 2)));
         }
