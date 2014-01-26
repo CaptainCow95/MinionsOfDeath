@@ -15,9 +15,9 @@ namespace MinionsOfDeath
             : base(sprites)
         {
             _pid = PlayerID;
-			_left += 1000;
-			_right -= 1000;
-			_top += 1000;
+			_left += 4;
+			_right -= 4;
+			_top += 4;
         }
 
         public int PID
@@ -28,9 +28,9 @@ namespace MinionsOfDeath
 
         public override void Draw()
         {
-            //GetSprite().X = _pos.X + _left - _right;
-            //GetSprite().Y = _pos.Y + _top - _bottom;
-            //GetSprite().Draw();
+            GetSprite().X = _pos.X + _left - _right;
+            GetSprite().Y = _pos.Y + _top - _bottom;
+            GetSprite().Draw();
         }
     }
 }
