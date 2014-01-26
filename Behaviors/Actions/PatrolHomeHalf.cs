@@ -6,7 +6,16 @@ using System.Threading.Tasks;
 
 namespace MinionsOfDeath.Behaviors.Actions
 {
-    class PatrolHomeHalf
+    public class PatrolHomeHalf : Action
     {
+        public PatrolHomeHalf(Minion owner)
+            : base(owner)
+        {
+        }
+
+        public override DoublePoint GetGoal()
+        {
+
+        }
     }
 }
