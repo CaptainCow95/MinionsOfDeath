@@ -32,8 +32,9 @@ namespace MinionsOfDeath
         private Button _minion3;
         private Button _minion3Selected;
         private int _minionEditing = 1;
-        private Sprite player1win;
-        private Sprite player2win;
+        private static Sprite player1wins = new Sprite(new List<string>() { "Images/Player1Wins.png" }, 0);
+        private static Sprite player2wins = new Sprite(new List<string>() { "Images/Player2Wins.png" }, 0);
+
 
         public UserInterface()
         {
@@ -200,12 +201,10 @@ namespace MinionsOfDeath
                     break;
 
                 case UserInterfaceState.Player1Wins:
-                    Sprite player1wins = new Sprite(new List<string>() { "Images/Player1Wins.png" }, 0);
                     player1wins.Draw();
                     break;
 
                 case UserInterfaceState.Player2Wins:
-                    Sprite player2wins = new Sprite(new List<string>() { "Images/Player2Wins.png" }, 0);
                     player2wins.Draw();
                     break;
             }
@@ -568,7 +567,7 @@ namespace MinionsOfDeath
                     }
                     foreach (var player1Minion in Game.Player1.Minions)
                     {
-                        if (player1Minion.Value.IsCollidingWith(Game.Player2.Base))
+                        if (player1Minion.Value.IsCollidingWith(Game.Player2.Base) && player1Minion.Value.IsSpecial)
                         {
                             //TODO: win state
                             _state = UserInterfaceState.Player1Wins;
@@ -577,7 +576,7 @@ namespace MinionsOfDeath
                     }
                     foreach (var player2Minion in Game.Player2.Minions)
                     {
-                        if (player2Minion.Value.IsCollidingWith(Game.Player1.Base))
+                        if (player2Minion.Value.IsCollidingWith(Game.Player1.Base) && player2Minion.Value.IsSpecial)
                         {
                             _state = UserInterfaceState.Player2Wins;
                             Console.Write("Player 2 wins!");
