@@ -8,26 +8,26 @@ namespace MinionsOfDeath
     {
         private Button _editTree;
         private Button _makeSpecialMinion;
+        private ScrollBar _mapScroll;
         private Button _player1Go;
         private StackPanel _player1TreeRoot;
         private Button _player2Go;
         private StackPanel _player2TreeRoot;
-        private ScrollBar _mapScroll;
         private UserInterfaceState _state;
 
         public UserInterface()
         {
-            _player1TreeRoot = new StackPanel(0, 0, 1000, 700, false, false, new Sprite(new List<string>() { "Images/BlueMinion0.png", "Images/BlueMinion1.png" }), new Sprite(new List<string>() { "Images/BlueMinion0.png", "Images/BlueMinion1.png" }));
-            _player2TreeRoot = new StackPanel(0, 0, 1000, 700, false, false, new Sprite(new List<string>() { "Images/BlueMinion0.png", "Images/BlueMinion1.png" }), new Sprite(new List<string>() { "Images/BlueMinion0.png", "Images/BlueMinion1.png" }));
+            _player1TreeRoot = new StackPanel(0, 0, 1000, 700, false, false, new Sprite(new List<string>() { "Images/SCROLLDAGGER5000.png" }), new Sprite(new List<string>() { "Images/SCROLLDAGGER3000.png" }));
+            _player2TreeRoot = new StackPanel(0, 0, 1000, 700, false, false, new Sprite(new List<string>() { "Images/SCROLLDAGGER5000.png" }), new Sprite(new List<string>() { "Images/SCROLLDAGGER3000.png" }));
 
-            _player1Go = new Button(0, 600, 100, 100, true, "Go to\nPlayer 2", new Sprite(new List<string>() { "Images/square.png" }));
+            _player1Go = new Button(0, 600, 100, 100, true, "Go to\nPlayer 2", new Sprite(new List<string>() { "Images/blueButton.png" }));
 
-            _player2Go = new Button(0, 600, 100, 100, true, "Run\nSimulation", new Sprite(new List<string>() { "Images/square.png" }));
+            _player2Go = new Button(0, 600, 100, 100, true, "Run\nSimulation", new Sprite(new List<string>() { "Images/blueButton.png" }));
 
-            _makeSpecialMinion = new Button(0, 500, 100, 100, true, "Make Special\nMinion", new Sprite(new List<string>() { "Images/square.png" }));
-            _editTree = new Button(0, 400, 100, 100, true, "Edit\nBehaviours", new Sprite(new List<string>() { "Images/square.png" }));
+            _makeSpecialMinion = new Button(0, 500, 100, 100, true, "Make Special\nMinion", new Sprite(new List<string>() { "Images/blueButton.png" }));
+            _editTree = new Button(0, 400, 100, 100, true, "Edit\nBehaviours", new Sprite(new List<string>() { "Images/blueButton.png" }));
 
-            _mapScroll = new ScrollBar(970, 0, 30, 1800, false, 0, 1800, false, new Sprite(new List<string>() { "Images/rightWalkred1.png" }));
+            _mapScroll = new ScrollBar(970, 0, 30, 1800, false, 0, 1800, false, new Sprite(new List<string>() { "Images/SCROLLDAGGER5000.png" }));
 
             _state = UserInterfaceState.Player1MinionSelect;
 
@@ -39,6 +39,7 @@ namespace MinionsOfDeath
             switch (_state)
             {
                 case UserInterfaceState.Player1EditMinionTree:
+                    _player1TreeRoot.Draw();
                     break;
 
                 case UserInterfaceState.Player1MinionSelect:
@@ -49,6 +50,7 @@ namespace MinionsOfDeath
                     break;
 
                 case UserInterfaceState.Player2EditMinionTree:
+                    _player2TreeRoot.Draw();
                     break;
 
                 case UserInterfaceState.Player2MinionSelect:
@@ -69,6 +71,7 @@ namespace MinionsOfDeath
             switch (_state)
             {
                 case UserInterfaceState.Player1EditMinionTree:
+                    _player1TreeRoot.Update(lastFrameTime);
                     break;
 
                 case UserInterfaceState.Player1MinionSelect:
@@ -92,6 +95,7 @@ namespace MinionsOfDeath
                     break;
 
                 case UserInterfaceState.Player2EditMinionTree:
+                    _player2TreeRoot.Update(lastFrameTime);
                     break;
 
                 case UserInterfaceState.Player2MinionSelect:
