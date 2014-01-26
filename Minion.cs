@@ -88,6 +88,13 @@ namespace MinionsOfDeath
             bool b = true;
             while (b && ((fp = _decisionTree.GetGoal()) != null && !(Math.Abs(fp.X - _pos.X) < double.Epsilon && Math.Abs(fp.Y - _pos.Y) < double.Epsilon)))
             {
+				fp = _decisionTree.GetGoal ();
+				if (fp == null || (Math.Abs(fp.X - _pos.X) < double.Epsilon && Math.Abs(fp.Y - _pos.Y) < double.Epsilon))
+				{
+					State = 0;
+					break;
+				}
+
                 DoublePoint v = new DoublePoint(fp.X - _pos.X, fp.Y - _pos.Y);
                 b = v.SetToLessOrEqualMag(mag);
                 _moveDirectionUp = fp.Y - _pos.Y > 0;
