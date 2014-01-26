@@ -7,7 +7,7 @@ namespace MinionsOfDeath.Behaviors
     {
         List<WaypointNode> _path;
 
-        public Pathfinder(Minion owner, List<WaypointNode> path)
+        public Pathfinder(Minion owner, List<WaypointNode> path) : base(owner)
         {
             _owner = owner;
             _path = path;

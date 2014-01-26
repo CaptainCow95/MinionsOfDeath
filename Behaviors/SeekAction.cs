@@ -3,9 +3,8 @@
     internal class SeekAction : Action
     {
         protected Minion _target;
-        public SeekAction(Minion owner, Minion target)
+        public SeekAction(Minion owner, Minion target) : base(owner)
         {
-            _owner = owner;
             _target = target;
         }
 

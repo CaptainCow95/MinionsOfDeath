@@ -10,6 +10,7 @@ namespace MinionsOfDeath.Behaviors.Queries
     internal class IsEnemyClose : QueryNode
     {
 
+        public IsEnemyClose(Minion owner) : base(owner) { }
         double closeDist = 200;
 
         public override DoublePoint GetGoal()

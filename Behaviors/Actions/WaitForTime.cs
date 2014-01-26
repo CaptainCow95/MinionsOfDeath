@@ -8,6 +8,7 @@ namespace MinionsOfDeath.Behaviors.Actions
 {
     internal class WaitForTime : Action
     {
+        public WaitForTime(Minion owner) : base(owner) { }
         public override DoublePoint GetGoal()
         {
             return null;

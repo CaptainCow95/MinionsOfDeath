@@ -9,6 +9,8 @@ namespace MinionsOfDeath.Behaviors.Queries
     internal class IsEnemyNum2 : QueryNode
     {
 
+        public IsEnemyNum2(Minion owner) : base(owner) { }
+
         public override DoublePoint GetGoal()
         {
             bool player1 = Game.Player1.Minions.ContainsValue(_owner);

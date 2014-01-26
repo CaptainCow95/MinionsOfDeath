@@ -8,6 +8,7 @@ namespace MinionsOfDeath.Behaviors.Actions
 {
     internal class RunAway : Action
     {
+        public RunAway(Minion owner) : base(owner) { }
         public override DoublePoint GetGoal()
         {
             return null;

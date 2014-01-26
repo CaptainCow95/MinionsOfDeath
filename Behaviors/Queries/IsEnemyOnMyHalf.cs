@@ -10,7 +10,7 @@ namespace MinionsOfDeath.Behaviors.Queries
     internal class IsEnemyOnMyHalf : QueryNode
     {
         int halfline_y;
-
+        public IsEnemyOnMyHalf(Minion owner) : base(owner) { }
         public override DoublePoint GetGoal()
         {
             bool player1 = Game.Player1.Minions.ContainsValue(_owner);

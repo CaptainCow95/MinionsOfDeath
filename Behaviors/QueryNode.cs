@@ -4,6 +4,8 @@
     {
         private DecisionNode _trueChild, _falseChild;
 
+        public QueryNode(Minion owner) : base(owner) { }
+        
         public DecisionNode FalseChild
         {
             get { return _falseChild; }

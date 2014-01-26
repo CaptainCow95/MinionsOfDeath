@@ -8,6 +8,7 @@ namespace MinionsOfDeath.Behaviors.Queries
 {
     internal class IsEnemyNum0 : QueryNode
     {
+        public IsEnemyNum0(Minion owner) : base(owner) { }
 
         public override DoublePoint GetGoal()
         {

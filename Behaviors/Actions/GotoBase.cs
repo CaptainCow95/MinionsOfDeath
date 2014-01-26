@@ -8,8 +8,8 @@ namespace MinionsOfDeath.Behaviors.Actions
 {
 
     internal class GotoBase : Action{
- 
 
+        public GotoBase(Minion owner) : base(owner) { }
         public override DoublePoint GetGoal()
         {
             return null;

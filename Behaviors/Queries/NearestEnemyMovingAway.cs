@@ -9,7 +9,7 @@ namespace MinionsOfDeath.Behaviors.Queries
 {
     internal class NearestEnemyMovingAway : QueryNode
     {
-
+        public NearestEnemyMovingAway(Minion owner) : base(owner) { }
         public override DoublePoint GetGoal()
         {
             bool player1 = Game.Player1.Minions.ContainsValue(_owner);
