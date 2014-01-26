@@ -1,4 +1,4 @@
-﻿using MinionsOfDeath.Behaviors;
+﻿﻿using MinionsOfDeath.Behaviors;
 using MinionsOfDeath.Graphics;
 using System;
 using System.Collections.Generic;
@@ -76,6 +76,21 @@ namespace MinionsOfDeath
 					_pos.Set(v);
 				} else {
 					_pos.Add(v);
+				}
+				if (Math.Abs (v.X) < Math.Abs (v.Y)) {
+					if (v.Y == 0) {
+						State = 0;
+					} else if (v.Y > 0) {
+						State = 1;
+					} else {
+						State = 2;
+					}
+				} else {
+					if (v.X < 0) {
+						State = 3;
+					} else {
+						State = 4;
+					}
 				}
 			}
 
