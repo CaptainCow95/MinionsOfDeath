@@ -13,7 +13,7 @@ namespace MinionsOfDeath.Navigation
         public static void init(string filename)
         {
             nodes = new Dictionary<Tuple<int, int>, WaypointNode>();
-            XDocument xdoc = XDocument.Load("TestWaypoint.xml");
+            XDocument xdoc = XDocument.Load("Resources/TestWaypoint.xml");
 
             //add all the waypoints to the graph
             foreach (var item in xdoc.Element("Waypoints").Elements("Waypoint"))
