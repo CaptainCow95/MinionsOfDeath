@@ -20,13 +20,19 @@ namespace MinionsOfDeath.Behaviors.Actions
             WaypointNode target;
             if (player1)
                 {
-                    Minion special = Game.Player1.Minions.Values.Where(e=> e.IsSpecial).First();
-                    target = WaypointGraph.GetClosestWaypoint((int)special.Pos.X, (int)special.Pos.Y+500);
+                    Minion special = Game.Player1.Minions.Values.Where(e => e.IsSpecial).FirstOrDefault();
+                    if (special != null)
+                        target = WaypointGraph.GetClosestWaypoint((int)special.Pos.X, (int)special.Pos.Y + 400);
+                    else
+                        target = WaypointGraph.GetClosestWaypoint((int)_owner.Pos.X, (int)_owner.Pos.Y);
                 }
                 else
                 {
-                    Minion special = Game.Player2.Minions.Values.Where(e => e.IsSpecial).First();
-                    target = WaypointGraph.GetClosestWaypoint((int)special.Pos.X, (int)special.Pos.Y - 500);
+                    Minion special = Game.Player2.Minions.Values.Where(e => e.IsSpecial).FirstOrDefault();
+                    if (special != null)
+                        target = WaypointGraph.GetClosestWaypoint((int)special.Pos.X, (int)special.Pos.Y - 400);
+                    else
+                        target = WaypointGraph.GetClosestWaypoint((int)_owner.Pos.X, (int)_owner.Pos.Y);
                 }
             WaypointNode myNode = WaypointGraph.GetClosestWaypoint((int)_owner.Pos.X, (int)_owner.Pos.Y);
             List<WaypointNode> path = new List<WaypointNode>();
