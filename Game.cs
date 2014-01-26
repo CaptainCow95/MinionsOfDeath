@@ -50,7 +50,6 @@ namespace MinionsOfDeath
             watching.SoundLocation = new FileInfo("Sounds/strategize.wav").FullName;
             watching.Play();
 
-            _gameState = GameState.Running;
             InitRunningState();
 
             _map = new Sprite(new List<string>() { "Images/Map1.png" });
