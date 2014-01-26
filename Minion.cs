@@ -1,5 +1,6 @@
 ﻿using MinionsOfDeath.Behaviors;
 using MinionsOfDeath.Graphics;
+using System;
 using System.Collections.Generic;
 
 namespace MinionsOfDeath
@@ -66,7 +67,7 @@ namespace MinionsOfDeath
 			DoublePoint fp;
 			double mag = speed;
 			bool b = true;
-			while (b && (fp = _decisionTree.GetGoal ()) != null) {
+			while (b && ((fp = _decisionTree.GetGoal ()) != null && !(Math.Abs(fp.X - _pos.X) < double.Epsilon && Math.Abs(fp.Y - _pos.Y) < double.Epsilon))) {
 				DoublePoint v = new DoublePoint (fp.X - _pos.X, fp.Y - _pos.Y);
 				b = v.SetToLessOrEqualMag (mag);
 				_moveDirectionUp = fp.Y - _pos.Y > 0; 

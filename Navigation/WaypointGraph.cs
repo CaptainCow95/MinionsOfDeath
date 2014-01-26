@@ -13,7 +13,7 @@ namespace MinionsOfDeath.Navigation
         public static void init(string filename)
         {
             nodes = new Dictionary<Tuple<int, int>, WaypointNode>();
-            XDocument xdoc = XDocument.Load("Resources/TestWaypoint.xml");
+            XDocument xdoc = XDocument.Load("Resources/TestWaypointNeighbors.xml");
 
             //add all the waypoints to the graph
             foreach (var item in xdoc.Element("Waypoints").Elements("Waypoint"))
@@ -115,24 +115,24 @@ namespace MinionsOfDeath.Navigation
                 {
                     WaypointNode endNode = connection.getToNode();
                     double endNodeCost = current.CostSoFar + connection.getCost();
-                    NodeRecord endNodeRecord = closed.Where(e => e.Node == endNode).First();
-                    if (endNodeRecord == null)
-                        endNodeRecord = open.Where(e => e.Node == endNode).First();
-
-                    // if (closed.Contains(endNode))
-                    if (closed.Contains(endNodeRecord))
-                        continue;
-                    // else if (open.Contains(endNode))
-                    else if (open.Contains(endNodeRecord))
+                    NodeRecord endNodeRecord = closed.Where(e => e.Node == endNode).FirstOrDefault();
+                    if(endNodeRecord != null)
                     {
-                        //endNodeRecord = open.Find(endNode);
-                        if (endNodeRecord.CostSoFar <= endNodeCost)
+                        continue;
+                    }
+                    endNodeRecord = open.Where(e => e.Node == endNode).FirstOrDefault();
+                    if (endNodeRecord != null)
+                    {
+                        if(endNodeRecord.CostSoFar <= endNodeCost)
+                        {
                             continue;
+                        }
                     }
                     else
                     {
                         endNodeRecord = new NodeRecord(endNode);
                     }
+
                     endNodeRecord.CostSoFar = endNodeCost;
                     endNodeRecord.Connection = connection;
 

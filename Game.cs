@@ -35,6 +35,7 @@ namespace MinionsOfDeath
 
         public Game()
         {
+            WaypointGraph.init("TestWaypointNeighbors.xml");
             this.Title = "Minions of Death";
             this.UpdateFrame += Game_UpdateFrame;
             this.RenderFrame += Game_RenderFrame;
@@ -52,7 +53,7 @@ namespace MinionsOfDeath
             InitRunningState();
 
             _map = new Sprite(new List<string>() { "Images/Map1.png" });
-            WaypointGraph.init("TestWaypointNeighbors.xml");
+    
 
             _ui = new UserInterface();
 

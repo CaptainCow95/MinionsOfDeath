@@ -10,11 +10,10 @@ namespace MinionsOfDeath.Behaviors.Actions
 {
     internal class AttackClosest : Action
     {
-        WaypointNode curNode;
+        
 
         public AttackClosest(Minion owner) : base(owner) 
         {
-            curNode = WaypointGraph.GetClosestWaypoint((int)_owner.Pos.X, (int)_owner.Pos.Y);
         }
 
         public override DoublePoint GetGoal()
@@ -30,8 +29,9 @@ namespace MinionsOfDeath.Behaviors.Actions
                 closest = Game.Player1.Minions.Values.OrderBy(e => WaypointGraph.getDistance((int)_owner.Pos.X, (int)e.Pos.X, (int)_owner.Pos.Y, (int)e.Pos.Y)).First();
             }
             //TODO: update curNode at some point
-            curNode = WaypointGraph.GetClosestWaypoint((int)closest.Pos.X, (int)closest.Pos.Y);
-            List<WaypointNode> path = WaypointGraph.pathfindDijkstra(curNode, WaypointGraph.GetClosestWaypoint((int)closest.Pos.X, (int)closest.Pos.Y) );
+           WaypointNode enemyNode = WaypointGraph.GetClosestWaypoint((int)closest.Pos.X, (int)closest.Pos.Y);
+           WaypointNode myNode = WaypointGraph.GetClosestWaypoint((int)_owner.Pos.X, (int)_owner.Pos.Y);
+            List<WaypointNode> path = WaypointGraph.pathfindDijkstra(myNode, enemyNode);
             FollowPath fp = new FollowPath(_owner, path);
 
             return fp.GetGoal();

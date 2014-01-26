@@ -16,7 +16,9 @@ namespace MinionsOfDeath.Behaviors.Actions
         }
         public override DoublePoint GetGoal()
         {
-            if (WaypointGraph.getDistance(_path[0].X, (int)_owner.Pos.X, _path[0].Y, (int)_owner.Pos.Y) < 2 || WaypointGraph.getDistance(_path[1].X, (int)_owner.Pos.X, _path[1].Y, (int)_owner.Pos.Y) < WaypointGraph.getDistance(_path[1].X, _path[0].X, _path[1].Y, _path[0].Y))
+            if (WaypointGraph.getDistance(_path[0].X, (int)_owner.Pos.X, _path[0].Y, (int)_owner.Pos.Y) < 2 
+                || WaypointGraph.getDistance(_path[1].X, (int)_owner.Pos.X, _path[1].Y, (int)_owner.Pos.Y)  
+                    < WaypointGraph.getDistance(_path[1].X, _path[0].X, _path[1].Y, _path[0].Y))
             {
                 _path.RemoveAt(0);
             }
