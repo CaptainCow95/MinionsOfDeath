@@ -13,7 +13,8 @@ namespace MinionsOfDeath.Interface
         public TextBlock(int x, int y, int width, int height, bool staticImage, string text, Sprite background)
             : base(x, y, width, height, staticImage)
         {
-            _font = new QFont(SystemFonts.DefaultFont);
+			//_font = new QFont(SystemFonts.DefaultFont);
+			_font = new QFont (SystemFonts.DialogFont);
             _background = background;
             _text = text;
         }
