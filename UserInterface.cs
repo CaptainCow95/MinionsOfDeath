@@ -25,6 +25,13 @@ namespace MinionsOfDeath
         private StackPanel _player2TreeRoot;
         private List<string> _selectOptions = new List<string>() { "Is Enemy\nClose", "Is 1 \nEnemy Left", "Is 2\nEnemies Left", "Is Enemy\nOn My Half", "Is Nearest\nEnemy Moving\nAway", "Is Nearest\nEnemy Moving\nTowards", "Attack Closest", "Follow Path", "Go To Base", "Run Away", "Wait For Time" };
         private UserInterfaceState _state;
+        private Button _minion1;
+        private Button _minion1Selected;
+        private Button _minion2;
+        private Button _minion2Selected;
+        private Button _minion3;
+        private Button _minion3Selected;
+        private int _minionEditing = 1;
 
         public UserInterface()
         {
@@ -49,6 +56,13 @@ namespace MinionsOfDeath
             _mapScroll = new ScrollBar(970, 0, 30, 1800, false, 0, 1800, false, new Sprite(new List<string>() { "Images/SCROLLDAGGER5000.png" }, 0));
 
             _editSelect = new Select(0, 0, false, _selectOptions, new Sprite(new List<string>() { "Images/blueButtonSmall.png" }, 0), new List<string>() { "Images/blueButtonSmall.png" });
+
+            _minion1 = new Button(0, 0, 100, 100, true, "Minion 1", new Sprite(new List<string>() { "Images/blueButton.png" }, 0));
+            _minion1Selected = new Button(0, 0, 100, 100, true, "Minion 1", new Sprite(new List<string>() { "Images/blueButtonLIGHT.png" }, 0));
+            _minion2 = new Button(0, 100, 100, 100, true, "Minion 2", new Sprite(new List<string>() { "Images/blueButton.png" }, 0));
+            _minion2Selected = new Button(0, 100, 100, 100, true, "Minion 2", new Sprite(new List<string>() { "Images/blueButtonLIGHT.png" }, 0));
+            _minion3 = new Button(0, 200, 100, 100, true, "Minion 3", new Sprite(new List<string>() { "Images/blueButton.png" }, 0));
+            _minion3Selected = new Button(0, 200, 100, 100, true, "Minion 3", new Sprite(new List<string>() { "Images/blueButtonLIGHT.png" }, 0));
 
             _state = UserInterfaceState.Player1MinionSelect;
 
@@ -88,6 +102,24 @@ namespace MinionsOfDeath
                     _makeSpecialMinion.Draw();
                     _editTree.Draw();
                     _mapScroll.Draw();
+                    switch (_minionEditing)
+                    {
+                        case 1:
+                            _minion1Selected.Draw();
+                            _minion2.Draw();
+                            _minion3.Draw();
+                            break;
+                        case 2:
+                            _minion1.Draw();
+                            _minion2Selected.Draw();
+                            _minion3.Draw();
+                            break;
+                        case 3:
+                            _minion1.Draw();
+                            _minion2.Draw();
+                            _minion3Selected.Draw();
+                            break;
+                    }
                     break;
 
                 case UserInterfaceState.Player2EditMinionTree:
@@ -106,6 +138,24 @@ namespace MinionsOfDeath
                     _makeSpecialMinion.Draw();
                     _editTree.Draw();
                     _mapScroll.Draw();
+                    switch (_minionEditing)
+                    {
+                        case 1:
+                            _minion1Selected.Draw();
+                            _minion2.Draw();
+                            _minion3.Draw();
+                            break;
+                        case 2:
+                            _minion1.Draw();
+                            _minion2Selected.Draw();
+                            _minion3.Draw();
+                            break;
+                        case 3:
+                            _minion1.Draw();
+                            _minion2.Draw();
+                            _minion3Selected.Draw();
+                            break;
+                    }
                     break;
 
                 case UserInterfaceState.Running:
@@ -292,6 +342,9 @@ namespace MinionsOfDeath
                     _makeSpecialMinion.Update(lastFrameTime);
                     _editTree.Update(lastFrameTime);
                     _mapScroll.Update(lastFrameTime);
+                    _minion1.Update(lastFrameTime);
+                    _minion2.Update(lastFrameTime);
+                    _minion3.Update(lastFrameTime);
 
                     if (_player1Go.Pressed)
                     {
@@ -304,6 +357,18 @@ namespace MinionsOfDeath
                     if (_editTree.Pressed)
                     {
                         _state = UserInterfaceState.Player1EditMinionTree;
+                    }
+                    if (_minion1.Pressed)
+                    {
+                        _minionEditing = 1;
+                    }
+                    else if (_minion2.Pressed)
+                    {
+                        _minionEditing = 2;
+                    }
+                    else if (_minion3.Pressed)
+                    {
+                        _minionEditing = 3;
                     }
                     break;
 
@@ -403,6 +468,9 @@ namespace MinionsOfDeath
                     _makeSpecialMinion.Update(lastFrameTime);
                     _editTree.Update(lastFrameTime);
                     _mapScroll.Update(lastFrameTime);
+                    _minion1.Update(lastFrameTime);
+                    _minion2.Update(lastFrameTime);
+                    _minion3.Update(lastFrameTime);
 
                     if (_player2Go.Pressed)
                     {
@@ -418,6 +486,18 @@ namespace MinionsOfDeath
                     if (_editTree.Pressed)
                     {
                         _state = UserInterfaceState.Player2EditMinionTree;
+                    }
+                    if (_minion1.Pressed)
+                    {
+                        _minionEditing = 1;
+                    }
+                    else if (_minion2.Pressed)
+                    {
+                        _minionEditing = 2;
+                    }
+                    else if (_minion3.Pressed)
+                    {
+                        _minionEditing = 3;
                     }
                     break;
 
