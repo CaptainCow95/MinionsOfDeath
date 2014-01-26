@@ -7,7 +7,7 @@ namespace MinionsOfDeath.Graphics
 {
     public class Sprite
     {
-        private const double UPDATETIME = 0.2;
+		private double _updateTime;
         private double _height;
         private int _textureHeight;
         private List<int> _textureIds = new List<int>();
@@ -18,7 +18,7 @@ namespace MinionsOfDeath.Graphics
         private double _x;
         private double _y;
 
-        public Sprite(List<string> filenames)
+		public Sprite(List<string> filenames, double updateTime)
         {
             foreach (string filename in filenames)
             {
@@ -43,6 +43,7 @@ namespace MinionsOfDeath.Graphics
 
             _width = _textureWidth;
             _height = _textureHeight;
+			_updateTime = updateTime;
         }
 
         public double Height
@@ -94,10 +95,10 @@ namespace MinionsOfDeath.Graphics
         public void Update(double timeSinceFrame)
         {
             _timeSinceUpdate += timeSinceFrame;
-            while (_timeSinceUpdate > UPDATETIME)
+			while (_updateTime > 0 && _timeSinceUpdate > _updateTime)
             {
                 ++_textureNumber;
-                _timeSinceUpdate -= UPDATETIME;
+				_timeSinceUpdate -= _updateTime;
                 if (_textureNumber >= _textureIds.Count)
                 {
                     _textureNumber = 0;
