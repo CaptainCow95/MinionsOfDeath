@@ -117,6 +117,7 @@
     </Content>
     <Content Include="Images\square.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\redMinionback0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

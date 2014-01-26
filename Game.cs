@@ -1,7 +1,6 @@
 ﻿// #define GRAPHMAKER
 
 using MinionsOfDeath.Behaviors;
-﻿using MinionsOfDeath.Behaviors;
 using MinionsOfDeath.Graphics;
 using MinionsOfDeath.Interface;
 using OpenTK;
@@ -12,6 +11,7 @@ using System.Drawing;
 using System.Linq;
 using MinionsOfDeath.Navigation;
 using System;
+using System.Xml.Linq;
 
 namespace MinionsOfDeath
 {
@@ -56,7 +56,10 @@ namespace MinionsOfDeath
 
             _map = new Sprite(new List<string>() { "Images/testMap.png" });
 
+#if GRAPHMAKER
             doc.Add(new XElement("Waypoints"));
+#endif
+
             _stackPanel = new StackPanel(0, 0, 1000, 700, new Sprite(new List<string>() { "Images/redMinion0.png" }), new Sprite(new List<string>() { "Images/redMinion0.png" }));
             _stackPanel.Children.Add(new TextBlock(0, 0, 1000, 1800, "Test Test", new Sprite(new List<string>() { "Images/testMap.png" })));
         }
