@@ -30,8 +30,16 @@ namespace MinionsOfDeath.Behaviors.Actions
                 closest = Game.Player1.Minions.Values.OrderBy(e => WaypointGraph.getDistance((int)_owner.Pos.X, (int)e.Pos.X, (int)_owner.Pos.Y, (int)e.Pos.Y)).First();
             }
             //TODO: update curNode at some point
+            curNode = WaypointGraph.GetClosestWaypoint((int)closest.Pos.X, (int)closest.Pos.Y);
             List<WaypointNode> path = WaypointGraph.pathfindDijkstra(curNode, WaypointGraph.GetClosestWaypoint((int)closest.Pos.X, (int)closest.Pos.Y) );
             
+            if(WaypointGraph.getDistance((int)closest.Pos.X, path[0].X, (int)closest.Pos.Y,path[0].Y) 
+            > WaypointGraph.getDistance((int)closest.Pos.X, path[1].X, (int)closest.Pos.Y,path[1].Y)){
+                path.RemoveAt(0);
+            }
+            
+            //Detect if at next node here?
+
             return new DoublePoint(path[0].X,path[0].Y);
         }
     }

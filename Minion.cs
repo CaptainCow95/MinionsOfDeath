@@ -63,11 +63,19 @@ namespace MinionsOfDeath
 
         public override void Update(double time)
         {
-            DoublePoint fp = _decisionTree.GetGoal();
-            DoublePoint v = new DoublePoint(fp.X - _pos.X, fp.Y - _pos.Y);
-            v.SetToLessOrEqualMag(speed);
-            _moveDirectionUp = fp.Y - _pos.Y > 0; 
-            _pos.Add(v);
+			DoublePoint fp;
+			double mag = speed;
+			bool b = true;
+			while (b && (fp = _decisionTree.GetGoal ()) != null) {
+				DoublePoint v = new DoublePoint (fp.X - _pos.X, fp.Y - _pos.Y);
+				b = v.SetToLessOrEqualMag (mag);
+				_moveDirectionUp = fp.Y - _pos.Y > 0; 
+				if (b) {
+					_pos.Set(v);
+				} else {
+					_pos.Add(v);
+				}
+			}
 
             base.Update(time);
         }
