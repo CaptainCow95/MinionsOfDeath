@@ -93,6 +93,7 @@
     <Compile Include="UserInterface.cs" />
     <Compile Include="UserInterfaceState.cs" />
     <Compile Include="Sound.cs" />
+    <Compile Include="DeathCloud.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\BlueButtonSmall.png">
