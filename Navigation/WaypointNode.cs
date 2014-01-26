@@ -7,13 +7,11 @@ namespace MinionsOfDeath.Navigation
         private int _x;
         private int _y;
         private bool isVisible = false;
-        private WaypointGraph my_graph;
         private List<WaypointNode> my_neighbors;
 
-        public WaypointNode(WaypointGraph graph, int x, int y, List<WaypointNode> neighbors)
+        public WaypointNode(int x, int y, List<WaypointNode> neighbors)
         {
-            my_graph = graph;
-            _x = x;
+        _x = x;
             _y = y;
             my_neighbors = neighbors;
         }

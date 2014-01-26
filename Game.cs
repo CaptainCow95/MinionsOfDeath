@@ -59,6 +59,7 @@ namespace MinionsOfDeath
             InitRunningState();
 
             _map = new Sprite(new List<string>() { "Images/Map1.png" });
+            WaypointGraph.init("TestWaypointNeighbors.xml");
 
 #if GRAPHMAKER
             doc.Add(new XElement("Waypoints"));

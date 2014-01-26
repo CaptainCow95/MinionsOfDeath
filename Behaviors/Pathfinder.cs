@@ -26,9 +26,9 @@ namespace MinionsOfDeath.Behaviors
             return targetNodePos;
         }
 
-        public void getPath(WaypointGraph graph, WaypointNode curNode, WaypointNode target)
+        public void getPath(WaypointNode curNode, WaypointNode target)
         {
-           _path = graph.pathfindDijkstra(curNode, target);
+           _path = WaypointGraph.pathfindDijkstra(curNode, target);
         }
     }
 }
