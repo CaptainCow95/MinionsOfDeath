@@ -1,6 +1,7 @@
 ﻿﻿﻿// #define GRAPHMAKER
 
 using MinionsOfDeath.Behaviors;
+using MinionsOfDeath.Behaviors.Actions;
 using MinionsOfDeath.Graphics;
 using MinionsOfDeath.Navigation;
 using OpenTK;
@@ -86,13 +87,13 @@ namespace MinionsOfDeath
             minion2.State = 1;
             _player2.AddMinion(minion2);
 
-            minion1.Pos.X = 50;
-            minion1.Pos.Y = 900;
-            minion1.DecisionTree = new DecisionTree(minion1, new SeekAction(minion1, minion2));
+            minion1.Pos.X = 160;
+            minion1.Pos.Y = 47;
+            minion1.DecisionTree = new DecisionTree(minion1, new AttackClosest(minion1));
 
-            minion2.Pos.X = 900;
-            minion2.Pos.Y = 100;
-            minion2.DecisionTree = new DecisionTree(minion2, new SeekAction(minion2, minion1));
+            minion2.Pos.X = 76;
+            minion2.Pos.Y = 1420;
+            minion2.DecisionTree = new DecisionTree(minion2, new SeekAction(minion2, minion2));
         }
 
         private void Game_RenderFrame(object sender, FrameEventArgs e)
