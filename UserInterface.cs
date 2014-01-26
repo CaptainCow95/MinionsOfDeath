@@ -434,6 +434,21 @@ namespace MinionsOfDeath
                             }
                         }
                     }
+                    foreach (var player1Minion in Game.Player1.Minions)
+                    {
+                        if (player1Minion.Value.IsCollidingWith(Game.Player2.Base))
+                        {
+                            //TODO: win state
+                        }
+                    }
+                    foreach (var player2Minion in Game.Player2.Minions)
+                    {
+                        if (player2Minion.Value.IsCollidingWith(Game.Player1.Base))
+                        {
+                            //TODO: win state
+                        }
+                    }
+
 
                     player1MinionsToRemove.ForEach(f => Game.Player1.Minions.Remove(f));
                     player2MinionsToRemove.ForEach(f => Game.Player2.Minions.Remove(f));

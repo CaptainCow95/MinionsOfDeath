@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base.cs" />
     <Compile Include="Behaviors\Action.cs" />
     <Compile Include="Behaviors\Actions\AttackClosest.cs" />
     <Compile Include="Behaviors\Actions\FollowPath.cs" />

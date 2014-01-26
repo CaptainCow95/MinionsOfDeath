@@ -86,6 +86,7 @@ namespace MinionsOfDeath
 				}, 0);
             minion1.State = 1;
             _player1.AddMinion(minion1);
+            _player1.Base = new Base(null, 1);
 
             _player2 = new Player(2);
             Minion minion2 = new Minion(new List<Sprite>() {
@@ -97,6 +98,7 @@ namespace MinionsOfDeath
 			}, 0);
             minion2.State = 1;
             _player2.AddMinion(minion2);
+            _player2.Base = new Base(null, 2);
 
             minion1.Pos.X = 160;
             minion1.Pos.Y = 47;

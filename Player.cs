@@ -6,6 +6,7 @@ namespace MinionsOfDeath
     {
         private Dictionary<int, Minion> _minions;
         private int _pid;
+        private Base _base;
 
         public Player(int ID)
         {
@@ -22,6 +23,12 @@ namespace MinionsOfDeath
         {
             set { _pid = value; }
             get { return _pid; }
+        }
+
+        public Base Base
+        {
+            set { _base = value; }
+            get { return _base; }
         }
 
         public void AddMinion(Minion minion)
