@@ -1,4 +1,4 @@
-﻿using MinionsOfDeath.Behaviors;
+﻿﻿using MinionsOfDeath.Behaviors;
 using MinionsOfDeath.Behaviors.Actions;
 using MinionsOfDeath.Behaviors.Queries;
 using MinionsOfDeath.Graphics;
@@ -68,6 +68,7 @@ namespace MinionsOfDeath
         {
             Game.Player1.Draw();
             Game.Player2.Draw();
+			Game.DeathClouds.Draw();
 
             switch (_state)
             {

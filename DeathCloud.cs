@@ -9,13 +9,14 @@ namespace MinionsOfDeath
 		private double _timeAlive = 0;
 		private const double TimeToLive = 0.5;
 
-		public DeathCloud (DoublePoint pos) : base (new List<Sprite>() { new Sprite(new List<string>() {
+		public DeathCloud (DoublePoint pos) : base (new List<Sprite>() { new Sprite( new List<string>() {
 				"Images/BattleCloud0.png", "Images/BattleCloud1.png",
 				"Images/BattleCloud2.png", "Images/BattleCloud3.png",
 		}, 0.1) })
 		{
 			_pos.X = pos.X;
 			_pos.Y = pos.Y;
+			State = 0;
 		}
 
 		public override void Update (double time)
@@ -23,9 +24,16 @@ namespace MinionsOfDeath
 			_timeAlive += time;
 			if (_timeAlive > TimeToLive)
 			{
-
+				Game.DeathClouds.Remove(this);
 			}
-			base.Update (time);
+			base.Update(time);
+		}
+
+		public override void Draw()
+		{
+			GetSprite().X = _pos.X + _left - _right;
+			GetSprite().Y = _pos.Y + _top - _bottom;
+			GetSprite().Draw();
 		}
 	}
 

@@ -45,8 +45,8 @@ namespace MinionsOfDeath
         {
             double m = GetMag();
             if (m <= mag) return true;
-            _x /= m;
-            _y /= m;
+			_x *= mag/m;
+			_y *= mag/m;
             return false;
         }
 

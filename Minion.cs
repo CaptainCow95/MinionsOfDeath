@@ -7,7 +7,7 @@ namespace MinionsOfDeath
 {
     public class Minion : GameObject
     {
-        private static double speed = 1.0;
+		private static double Speed = 1.0;
 
         //dictates the movement behavior of the minion
         private DecisionTree _decisionTree;
@@ -84,7 +84,7 @@ namespace MinionsOfDeath
         public override void Update(double time)
         {
             DoublePoint fp;
-            double mag = speed;
+            double mag = Speed;
             bool b = true;
             while (b && ((fp = _decisionTree.GetGoal()) != null && !(Math.Abs(fp.X - _pos.X) < double.Epsilon && Math.Abs(fp.Y - _pos.Y) < double.Epsilon)))
             {
