@@ -6,14 +6,15 @@ namespace MinionsOfDeath.Interface
     public class Select : InterfaceObject
     {
         private Sprite _background;
-        private List<Button> _buttons = new List<Button>();
+        private StackPanel _buttons;
         private int _selectedIndex = -1;
 
-        public Select(int x, int y, List<string> selections, Sprite background, List<string> backgroundFilenames)
-            : base(x, y, 0, 0)
+        public Select(int x, int y, bool staticImage, List<string> selections, Sprite background, List<string> backgroundFilenames)
+            : base(x, y, 0, 0, staticImage)
         {
             _background = background;
-            selections.ForEach(e => _buttons.Add(new Button(x, (int)(y + background.Height), (int)background.Width, (int)background.Height, e, new Sprite(backgroundFilenames))));
+            _buttons = new StackPanel(x, y, staticImage);
+            selections.ForEach(e => _buttons.Children.Add(new Button(x, (int)(y + background.Height), (int)background.Width, (int)background.Height, false, e, new Sprite(backgroundFilenames))));
         }
 
         public int SelectedIndex
@@ -23,18 +24,18 @@ namespace MinionsOfDeath.Interface
 
         public override void Draw()
         {
-            _buttons.ForEach(e => e.Draw());
+            _buttons.Draw();
         }
 
         public override void Update(double timeSinceFrame)
         {
-            _buttons.ForEach(e => e.Update(timeSinceFrame));
+            _buttons.Update(timeSinceFrame);
 
-            _buttons.ForEach(e =>
+            _buttons.Children.ForEach(e =>
             {
-                if (e.Pressed)
+                if (((Button)e).Pressed)
                 {
-                    _selectedIndex = _buttons.IndexOf(e);
+                    _selectedIndex = _buttons.Children.IndexOf(e);
                 }
             });
         }

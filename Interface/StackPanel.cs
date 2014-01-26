@@ -11,18 +11,18 @@ namespace MinionsOfDeath.Interface
         private bool _scrollable = false;
         private ScrollBar _verticalScrollbar;
 
-        public StackPanel(int x, int y)
-            : base(x, y, 0, 0)
+        public StackPanel(int x, int y, bool staticImage)
+            : base(x, y, 0, 0, staticImage)
         {
             _scrollable = false;
         }
 
-        public StackPanel(int x, int y, int width, int height, Sprite verticalScrollBar, Sprite horizontalScrollBar)
-            : base(x, y, width, height)
+        public StackPanel(int x, int y, int width, int height, bool staticImage, Sprite verticalScrollBar, Sprite horizontalScrollBar)
+            : base(x, y, width, height, staticImage)
         {
             _scrollable = true;
-            _verticalScrollbar = new ScrollBar((int)(x + width - verticalScrollBar.Width), y, (int)verticalScrollBar.Width, height, 0, height, false, verticalScrollBar);
-            _horizontalScrollbar = new ScrollBar(x, (int)(y + height - horizontalScrollBar.Height), width, (int)horizontalScrollBar.Height, 0, width, true, horizontalScrollBar);
+            _verticalScrollbar = new ScrollBar((int)(x + width - verticalScrollBar.Width), y, (int)verticalScrollBar.Width, height, staticImage, 0, height, false, verticalScrollBar);
+            _horizontalScrollbar = new ScrollBar(x, (int)(y + height - horizontalScrollBar.Height), width, (int)horizontalScrollBar.Height, staticImage, 0, width, true, horizontalScrollBar);
         }
 
         public List<InterfaceObject> Children { get { return _children; } }
@@ -51,6 +51,13 @@ namespace MinionsOfDeath.Interface
             int maxHeight = 0;
             int currentX = X;
             int currentY = Y;
+
+            if (Static)
+            {
+                currentX += Camera.X;
+                currentY += Camera.Y;
+            }
+
             foreach (var child in _children)
             {
                 child.X = currentX;

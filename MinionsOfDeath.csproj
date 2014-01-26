@@ -92,6 +92,7 @@
     <Compile Include="Resources\GraphMaker.cs" />
     <Compile Include="UserInterface.cs" />
     <Compile Include="UserInterfaceState.cs" />
+    <Compile Include="Sound.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\BlueMinion.png">

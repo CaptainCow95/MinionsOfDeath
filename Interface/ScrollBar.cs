@@ -12,8 +12,8 @@ namespace MinionsOfDeath.Interface
 		private bool _scrolling = false;
         private Sprite _scrollBar;
 
-        public ScrollBar(int x, int y, int width, int height, int minValue, int maxValue, bool horizontal, Sprite scrollBar)
-            : base(x, y, width, height)
+        public ScrollBar(int x, int y, int width, int height, bool staticImage, int minValue, int maxValue, bool horizontal, Sprite scrollBar)
+            : base(x, y, width, height, staticImage)
         {
             _minValue = minValue;
 			_maxValue = maxValue - (horizontal ? Game.WindowWidth : Game.WindowHeight);

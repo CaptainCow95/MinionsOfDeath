@@ -12,19 +12,22 @@ namespace MinionsOfDeath
         private StackPanel _player1TreeRoot;
         private Button _player2Go;
         private StackPanel _player2TreeRoot;
+        private ScrollBar _mapScroll;
         private UserInterfaceState _state;
 
         public UserInterface()
         {
-            _player1TreeRoot = new StackPanel(0, 0, 1000, 700, new Sprite(new List<string>() { "Images/BlueMinion0.png", "Images/BlueMinion1.png" }), new Sprite(new List<string>() { "Images/BlueMinion0.png", "Images/BlueMinion1.png" }));
-            _player2TreeRoot = new StackPanel(0, 0, 1000, 700, new Sprite(new List<string>() { "Images/BlueMinion0.png", "Images/BlueMinion1.png" }), new Sprite(new List<string>() { "Images/BlueMinion0.png", "Images/BlueMinion1.png" }));
+            _player1TreeRoot = new StackPanel(0, 0, 1000, 700, false, new Sprite(new List<string>() { "Images/BlueMinion0.png", "Images/BlueMinion1.png" }), new Sprite(new List<string>() { "Images/BlueMinion0.png", "Images/BlueMinion1.png" }));
+            _player2TreeRoot = new StackPanel(0, 0, 1000, 700, false, new Sprite(new List<string>() { "Images/BlueMinion0.png", "Images/BlueMinion1.png" }), new Sprite(new List<string>() { "Images/BlueMinion0.png", "Images/BlueMinion1.png" }));
 
-            _player1Go = new Button(0, 600, 100, 100, "Go to\nPlayer 2", new Sprite(new List<string>() { "Images/square.png" }));
+            _player1Go = new Button(0, 600, 100, 100, true, "Go to\nPlayer 2", new Sprite(new List<string>() { "Images/square.png" }));
 
-            _player2Go = new Button(0, 600, 100, 100, "Run\nSimulation", new Sprite(new List<string>() { "Images/square.png" }));
+            _player2Go = new Button(0, 600, 100, 100, true, "Run\nSimulation", new Sprite(new List<string>() { "Images/square.png" }));
 
-            _makeSpecialMinion = new Button(0, 500, 100, 100, "Make Special\nMinion", new Sprite(new List<string>() { "Images/square.png" }));
-            _editTree = new Button(0, 400, 100, 100, "Edit\nBehaviours", new Sprite(new List<string>() { "Images/square.png" }));
+            _makeSpecialMinion = new Button(0, 500, 100, 100, true, "Make Special\nMinion", new Sprite(new List<string>() { "Images/square.png" }));
+            _editTree = new Button(0, 400, 100, 100, true, "Edit\nBehaviours", new Sprite(new List<string>() { "Images/square.png" }));
+
+            _mapScroll = new ScrollBar(970, 0, 30, 1800, false, 0, 1800, false, new Sprite(new List<string>() { "Images/rightWalkred1.png" }));
 
             _state = UserInterfaceState.Player1MinionSelect;
         }
@@ -40,6 +43,7 @@ namespace MinionsOfDeath
                     _player1Go.Draw();
                     _makeSpecialMinion.Draw();
                     _editTree.Draw();
+                    _mapScroll.Draw();
                     break;
 
                 case UserInterfaceState.Player2EditMinionTree:
@@ -49,9 +53,11 @@ namespace MinionsOfDeath
                     _player2Go.Draw();
                     _makeSpecialMinion.Draw();
                     _editTree.Draw();
+                    _mapScroll.Draw();
                     break;
 
                 case UserInterfaceState.Running:
+                    _mapScroll.Draw();
                     break;
             }
         }
@@ -67,6 +73,7 @@ namespace MinionsOfDeath
                     _player1Go.Update(lastFrameTime);
                     _makeSpecialMinion.Update(lastFrameTime);
                     _editTree.Update(lastFrameTime);
+                    _mapScroll.Update(lastFrameTime);
 
                     if (_player1Go.Pressed)
                     {
@@ -89,6 +96,7 @@ namespace MinionsOfDeath
                     _player2Go.Update(lastFrameTime);
                     _makeSpecialMinion.Update(lastFrameTime);
                     _editTree.Update(lastFrameTime);
+                    _mapScroll.Update(lastFrameTime);
 
                     if (_player2Go.Pressed)
                     {
@@ -105,6 +113,7 @@ namespace MinionsOfDeath
                     break;
 
                 case UserInterfaceState.Running:
+                    _mapScroll.Update(lastFrameTime);
                     break;
             }
         }
