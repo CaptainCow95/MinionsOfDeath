@@ -1,19 +1,14 @@
-﻿// #define GRAPHMAKER
+﻿﻿// #define GRAPHMAKER
 
 using MinionsOfDeath.Behaviors;
 using MinionsOfDeath.Graphics;
-using MinionsOfDeath.Interface;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
 using OpenTK.Input;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using MinionsOfDeath.Navigation;
-using System;
-using System.Xml.Linq;
-using System.Media;
 using System.IO;
+using System.Media;
 
 namespace MinionsOfDeath
 {
@@ -27,9 +22,9 @@ namespace MinionsOfDeath
         public static MouseState PreviousMouseState;
         private static Player _player1;
         private static Player _player2;
-        private GameState _gameState;
         private Sprite _map;
-#if GRAPHMAKER        
+        private UserInterface _ui;
+#if GRAPHMAKER
         XDocument doc = new XDocument();
         WaypointGraph graph = new WaypointGraph("TestWaypoint.xml");
         int rightClicks = 0;
@@ -51,24 +46,20 @@ namespace MinionsOfDeath
             this.Height = 700;
             WindowHeight = this.Height;
 
-			SoundPlayer watching = new SoundPlayer ();
-			watching.SoundLocation = new FileInfo("Sounds/strategize.wav").FullName;
-			watching.Play ();
+			SoundPlayer watching = new SoundPlayer("Sounds/strategize.wav");
+            watching.Play();
 
-            _gameState = GameState.Running;
             InitRunningState();
 
             _map = new Sprite(new List<string>() { "Images/Map1.png" });
             WaypointGraph.init("TestWaypointNeighbors.xml");
 
+            _ui = new UserInterface();
+
 #if GRAPHMAKER
             doc.Add(new XElement("Waypoints"));
 #endif
         }
-
-        public static int WindowHeight { get; private set; }
-
-        public static int WindowWidth { get; private set; }
 
         public static Player Player1
         {
@@ -80,10 +71,12 @@ namespace MinionsOfDeath
             get { return _player2; }
         }
 
+        public static int WindowHeight { get; private set; }
+
+        public static int WindowWidth { get; private set; }
+
         public void InitRunningState()
         {
-
-
             _player1 = new Player(1);
             Minion minion1 = new Minion(new List<Sprite>() { new Sprite(new List<string>() { "Images/BlueMinion.png" }), new Sprite(new List<string>() { "Images/BlueMinion0.png", "Images/BlueMinion1.png" }) }, 0);
             minion1.State = 1;
@@ -101,7 +94,6 @@ namespace MinionsOfDeath
             minion2.Pos.X = 900;
             minion2.Pos.Y = 100;
             minion2.DecisionTree = new DecisionTree(minion2, new SeekAction(minion2, minion1));
-
         }
 
         private void Game_RenderFrame(object sender, FrameEventArgs e)
@@ -127,21 +119,12 @@ namespace MinionsOfDeath
 
             Camera.Begin();
 
-            switch (_gameState)
-            {
-                case GameState.PlanningTeam1:
-                    break;
+            _map.Draw();
 
-                case GameState.PlanningTeam2:
-                    break;
+            _player1.Draw();
+            _player2.Draw();
 
-                case GameState.Running:
-                    _map.Draw();
-
-                    _player1.Draw();
-                    _player2.Draw();
-                    break;
-            }
+            _ui.Draw();
 
             Camera.End();
 
@@ -161,8 +144,7 @@ namespace MinionsOfDeath
 #if GRAPHMAKER
             XDocument doc = new XDocument();
             doc.Add(new XElement("Waypoints"));
-            if (MouseState.LeftButton == ButtonState.Pressed && PreviousMouseState.LeftButton == ButtonState.Released) { 
-
+            if (MouseState.LeftButton == ButtonState.Pressed && PreviousMouseState.LeftButton == ButtonState.Released) {
             int x = Camera.X + MousePosition.X;
             int y = Camera.Y + MousePosition.Y;
 
@@ -178,7 +160,7 @@ namespace MinionsOfDeath
             doc.Add(new XElement("Waypoints"));
             if (MouseState.LeftButton == ButtonState.Pressed && PreviousMouseState.LeftButton == ButtonState.Released) {
             }
-            
+
             if (MouseState.RightButton == ButtonState.Pressed && PreviousMouseState.RightButton == ButtonState.Released && MousePosition.X > 40)
             {
                 switch (rightClicks)
@@ -186,6 +168,7 @@ namespace MinionsOfDeath
                     case 0: clicks[0] = x;
                         clicks[1] = y;
                         break;
+
                     case 1:
                         clicks[2] = x;
                         clicks[3] = y;
@@ -203,45 +186,34 @@ namespace MinionsOfDeath
                 rightClicks++;
                 rightClicks = rightClicks % 2;
                 graph.WriteGraph("TestWaypointNeighbors.xml");
-
             }
 
             _scrollBar.Update(e.Time);
 #else
 
-            switch (_gameState)
+            _map.Update(e.Time);
+            _player1.Update(e.Time);
+            _player2.Update(e.Time);
+
+            _ui.Update(e.Time);
+
+            // Check for collisions
+            List<int> player1MinionsToRemove = new List<int>();
+            List<int> player2MinionsToRemove = new List<int>();
+            foreach (var player1Minion in _player1.Minions)
             {
-                case GameState.PlanningTeam1:
-                    break;
-
-                case GameState.PlanningTeam2:
-                    break;
-
-                case GameState.Running:
-                    _map.Update(e.Time);
-                    _player1.Update(e.Time);
-                    _player2.Update(e.Time);
-
-                    // Check for collisions
-                    List<int> player1MinionsToRemove = new List<int>();
-                    List<int> player2MinionsToRemove = new List<int>();
-                    foreach (var player1Minion in _player1.Minions)
+                foreach (var player2Minion in _player2.Minions)
+                {
+                    if (player1Minion.Value.IsCollidingWith(player2Minion.Value))
                     {
-                        foreach (var player2Minion in _player2.Minions)
-                        {
-                            if (player1Minion.Value.IsCollidingWith(player2Minion.Value))
-                            {
-                                player1MinionsToRemove.Add(player1Minion.Key);
-                                player2MinionsToRemove.Add(player2Minion.Key);
-                            }
-                        }
+                        player1MinionsToRemove.Add(player1Minion.Key);
+                        player2MinionsToRemove.Add(player2Minion.Key);
                     }
-
-                    player1MinionsToRemove.ForEach(f => _player1.Minions.Remove(f));
-                    player2MinionsToRemove.ForEach(f => _player2.Minions.Remove(f));
-
-                    break;
+                }
             }
+
+            player1MinionsToRemove.ForEach(f => _player1.Minions.Remove(f));
+            player2MinionsToRemove.ForEach(f => _player2.Minions.Remove(f));
 
 #endif
         }
