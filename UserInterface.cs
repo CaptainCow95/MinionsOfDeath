@@ -57,11 +57,11 @@ namespace MinionsOfDeath
 
         public void CreateDecisionTrees()
         {
-            DecisionTree tree = new DecisionTree(Game.Player1.Minions.ElementAt(0).Value, GetNode(Game.Player1.Minions.ElementAt(0).Value, _player1TreeRoot.Children[0], _player1TreeRoot, null));
-            Game.Player1.Minions.ElementAt(0).Value.DecisionTree = tree;
+            //DecisionTree tree = new DecisionTree(Game.Player1.Minions.ElementAt(0).Value, GetNode(Game.Player1.Minions.ElementAt(0).Value, _player1TreeRoot.Children[0], _player1TreeRoot, null));
+            //Game.Player1.Minions.ElementAt(0).Value.DecisionTree = tree;
 
-            DecisionTree tree2 = new DecisionTree(Game.Player2.Minions.ElementAt(0).Value, GetNode(Game.Player2.Minions.ElementAt(0).Value, _player2TreeRoot.Children[0], _player2TreeRoot, null));
-			Game.Player2.Minions.ElementAt(0).Value.DecisionTree = tree2;
+            //DecisionTree tree2 = new DecisionTree(Game.Player2.Minions.ElementAt(0).Value, GetNode(Game.Player2.Minions.ElementAt(0).Value, _player2TreeRoot.Children[0], _player2TreeRoot, null));
+			//Game.Player2.Minions.ElementAt(0).Value.DecisionTree = tree2;
         }
 
         public void Draw()
@@ -442,6 +442,7 @@ namespace MinionsOfDeath
                         if (player1Minion.Value.IsCollidingWith(Game.Player2.Base))
                         {
                             //TODO: win state
+                            Console.Write("Player 1 wins!");
                         }
                     }
                     foreach (var player2Minion in Game.Player2.Minions)
@@ -449,6 +450,7 @@ namespace MinionsOfDeath
                         if (player2Minion.Value.IsCollidingWith(Game.Player1.Base))
                         {
                             //TODO: win state
+                            Console.Write("Player 2 wins!");
                         }
                     }
 
