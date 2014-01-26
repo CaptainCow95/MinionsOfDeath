@@ -15,7 +15,7 @@ namespace MinionsOfDeath.Behaviors.Actions
 
         public override DoublePoint GetGoal()
         {
-
+            return null;
         }
     }
 }
