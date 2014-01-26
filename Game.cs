@@ -102,11 +102,17 @@ namespace MinionsOfDeath
 
             minion1.Pos.X = 160;
             minion1.Pos.Y = 47;
-            minion1.DecisionTree = new DecisionTree(minion1, new AttackClosest(minion1));
+            //minion1.DecisionTree = new DecisionTree(minion1, new AttackClosest(minion1));
+            //minion1.Pos.X = 495;
+            //minion1.Pos.Y = 1777;
+            minion1.DecisionTree = new DecisionTree(minion1, new GotoBase(minion1));
 
             minion2.Pos.X = 690;
             minion2.Pos.Y = 912;
-            minion2.DecisionTree = new DecisionTree(minion2, new SeekAction(minion2, minion2));
+            //minion2.DecisionTree = new DecisionTree(minion2, new SeekAction(minion2, minion2));
+            //minion2.Pos.X = 499;
+            //minion2.Pos.Y = 45;
+            minion2.DecisionTree = new DecisionTree(minion2, new GotoBase(minion2));
         }
 
         private void Game_RenderFrame(object sender, FrameEventArgs e)
