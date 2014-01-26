@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace MinionsOfDeath
 {
-    internal class Minion : GameObject
+    public class Minion : GameObject
     {
         private static double speed = 1.0;
 
@@ -25,9 +25,9 @@ namespace MinionsOfDeath
         {
             _MinionID = MinionID;
             _isSpecial = false;
-            _left += 2;
-            _right -= 2;
-            _top += 2;
+			_left += 4;
+			_right -= 4;
+			_top += 4;
         }
 
         public DecisionTree DecisionTree

@@ -1,6 +1,6 @@
 ﻿namespace MinionsOfDeath.Behaviors
 {
-    internal class DecisionTree
+    public class DecisionTree
     {
         private Minion _owner;
         private DecisionNode _root;

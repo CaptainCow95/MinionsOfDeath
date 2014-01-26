@@ -2,7 +2,7 @@
 
 namespace MinionsOfDeath
 {
-    internal class DoublePoint
+    public class DoublePoint
     {
         private double _x, _y;
 

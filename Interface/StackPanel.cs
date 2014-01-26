@@ -14,6 +14,7 @@ namespace MinionsOfDeath.Interface
         public StackPanel(int x, int y)
             : base(x, y, 0, 0)
         {
+            _scrollable = false;
         }
 
         public StackPanel(int x, int y, int width, int height, Sprite verticalScrollBar, Sprite horizontalScrollBar)
@@ -32,15 +33,39 @@ namespace MinionsOfDeath.Interface
             {
                 child.Draw();
             }
+
+            if (_scrollable)
+            {
+                _horizontalScrollbar.Y = Height + Camera.Y - _horizontalScrollbar.Height;
+                _horizontalScrollbar.Draw();
+                _verticalScrollbar.X = Width + Camera.X - _verticalScrollbar.Width;
+                _verticalScrollbar.Draw();
+            }
         }
+
+        private bool _horizontal = false;
 
         public override void Update(double timeSinceFrame)
         {
             int maxWidth = 0;
             int maxHeight = 0;
+            int currentX = X;
+            int currentY = Y;
             foreach (var child in _children)
             {
+                child.X = currentX;
+                child.Y = currentY;
                 child.Update(timeSinceFrame);
+
+                if (_horizontal)
+                {
+                    currentX += child.Width;
+                }
+                else
+                {
+                    currentY += child.Height;
+                }
+
                 maxWidth = Math.Max(maxWidth, child.X + child.Width - X);
                 maxHeight = Math.Max(maxHeight, child.Y + child.Height - Y);
             }
@@ -52,8 +77,14 @@ namespace MinionsOfDeath.Interface
             }
             else
             {
-                _horizontalScrollbar.MaxValue = maxWidth;
-                _verticalScrollbar.MaxValue = maxHeight;
+                _horizontalScrollbar.MaxValue = maxWidth - Game.WindowWidth;
+                _verticalScrollbar.MaxValue = maxHeight - Game.WindowHeight;
+            }
+
+            if (_scrollable)
+            {
+                _horizontalScrollbar.Update(timeSinceFrame);
+                _verticalScrollbar.Update(timeSinceFrame);
             }
         }
     }

@@ -15,6 +15,7 @@ namespace MinionsOfDeath.Interface
         {
             _font = new QFont(SystemFonts.DefaultFont);
             _background = background;
+            _text = text;
         }
 
         public string Text

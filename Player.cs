@@ -2,7 +2,7 @@
 
 namespace MinionsOfDeath
 {
-    internal class Player
+    public class Player
     {
         private Dictionary<int, Minion> _minions;
         private int _pid;

@@ -1,6 +1,6 @@
 ﻿namespace MinionsOfDeath.Behaviors
 {
-    internal abstract class DecisionNode
+    public abstract class DecisionNode
     {
         protected Minion _owner;
 

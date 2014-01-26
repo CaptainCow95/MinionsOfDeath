@@ -1,6 +1,7 @@
 ﻿// #define GRAPHMAKER
 
 using MinionsOfDeath.Behaviors;
+﻿using MinionsOfDeath.Behaviors;
 using MinionsOfDeath.Graphics;
 using MinionsOfDeath.Interface;
 using OpenTK;
@@ -8,7 +9,6 @@ using OpenTK.Graphics.OpenGL;
 using OpenTK.Input;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Xml.Linq;
 using System.Linq;
 using MinionsOfDeath.Navigation;
 using System;
@@ -23,6 +23,8 @@ namespace MinionsOfDeath
         public static KeyboardState PreviousKeyboardState;
         public static Point PreviousMousePosition;
         public static MouseState PreviousMouseState;
+        private static Player _player1;
+        private static Player _player2;
         private GameState _gameState;
         private Sprite _map;
 #if GRAPHMAKER        
@@ -33,13 +35,11 @@ namespace MinionsOfDeath
         int minID = 5;
 #endif
         
-
-        private Player _player1;
-        private Player _player2;
-        private ScrollBar _scrollBar;
+        private StackPanel _stackPanel;
 
         public Game()
         {
+            this.Title = "Minions of Death";
             this.UpdateFrame += Game_UpdateFrame;
             this.RenderFrame += Game_RenderFrame;
 
@@ -53,19 +53,27 @@ namespace MinionsOfDeath
 
             _gameState = GameState.Running;
             InitRunningState();
-            _map = new Sprite(new List<string>() { "Images/Map1.png" });
-            _map.Width *= 2;
-            _map.Height *= 2;
 
-            //_scrollBar = new ScrollBar(0, 400, 2000, 40, 0, 2000, true, new Sprite(new List<string>() { "Images/redMinion0.png" }));//horizontal
-            _scrollBar = new ScrollBar(0, 0, 40, 1800, 0, 1800, false, new Sprite(new List<string>() { "Images/redMinion0.png" }));//vertical
+            _map = new Sprite(new List<string>() { "Images/testMap.png" });
 
             doc.Add(new XElement("Waypoints"));
+            _stackPanel = new StackPanel(0, 0, 1000, 700, new Sprite(new List<string>() { "Images/redMinion0.png" }), new Sprite(new List<string>() { "Images/redMinion0.png" }));
+            _stackPanel.Children.Add(new TextBlock(0, 0, 1000, 1800, "Test Test", new Sprite(new List<string>() { "Images/testMap.png" })));
         }
 
         public static int WindowHeight { get; private set; }
 
         public static int WindowWidth { get; private set; }
+
+        public static Player Player1
+        {
+            get { return _player1; }
+        }
+
+        public static Player Player2
+        {
+            get { return _player2; }
+        }
 
         public void InitRunningState()
         {
@@ -128,7 +136,7 @@ namespace MinionsOfDeath
                     _player1.Draw();
                     _player2.Draw();
 
-                    _scrollBar.Draw();
+                    _stackPanel.Draw();
                     break;
             }
 
@@ -148,6 +156,9 @@ namespace MinionsOfDeath
             PreviousMousePosition = MousePosition;
 
 #if GRAPHMAKER
+            XDocument doc = new XDocument();
+            doc.Add(new XElement("Waypoints"));
+            if (MouseState.LeftButton == ButtonState.Pressed && PreviousMouseState.LeftButton == ButtonState.Released) { 
 
             int x = Camera.X + MousePosition.X;
             int y = Camera.Y + MousePosition.Y;
@@ -160,6 +171,9 @@ namespace MinionsOfDeath
                 markerMinion.Pos.Y = y;
                 _player1.AddMinion(markerMinion);
               // doc.Save("TestWaypoint.xml");
+            XDocument doc = new XDocument();
+            doc.Add(new XElement("Waypoints"));
+            if (MouseState.LeftButton == ButtonState.Pressed && PreviousMouseState.LeftButton == ButtonState.Released) {
             }
             
             if (MouseState.RightButton == ButtonState.Pressed && PreviousMouseState.RightButton == ButtonState.Released && MousePosition.X > 40)
@@ -201,7 +215,7 @@ namespace MinionsOfDeath
                     break;
 
                 case GameState.Running:
-                    _scrollBar.Update(e.Time);
+                    _stackPanel.Update(e.Time);
                     _map.Update(e.Time);
                     _player1.Update(e.Time);
                     _player2.Update(e.Time);
@@ -232,7 +246,7 @@ namespace MinionsOfDeath
 
         private void Mouse_Move(object sender, MouseMoveEventArgs e)
         {
-			MousePosition = e.Position;
+            MousePosition = e.Position;
         }
     }
 }
