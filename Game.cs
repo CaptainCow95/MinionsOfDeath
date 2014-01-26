@@ -91,7 +91,7 @@ namespace MinionsOfDeath
             //_player2.Base = new Base((List<Sprite>)null, 2);
             _player2.Base = new Base(new List<Sprite> { new Sprite(new List<string>() { "Images/Player1Wins.png" }, 0) }, 2);
             _player2.Base.Pos.X = 495;
-            _player2.Base.Pos.Y = 1777;
+            _player2.Base.Pos.Y = 1700;
               
 
             minion1.Pos.X = 160;
