@@ -24,7 +24,7 @@ namespace MinionsOfDeath
         private Button _player2Go;
         private Dictionary<Button, Tuple<StackPanel, StackPanel>> _player2ParentList = new Dictionary<Button, Tuple<StackPanel, StackPanel>>();
         private Dictionary<int, StackPanel> _player2TreeRoot;
-        private List<string> _selectOptions = new List<string>() { "Is Enemy\nClose", "Is 1 \nEnemy Left", "Is 2\nEnemies Left", "Is Enemy\nOn My Half", "Is Nearest\nEnemy Moving\nAway", "Is Nearest\nEnemy Moving\nTowards", "Attack Closest", "Follow Path", "Go To Base", "Run Away", "Stop" };
+        private List<string> _selectOptions = new List<string>() { "Is Enemy\nClose", "Is 1 \nEnemy Left", "Is 2\nEnemies Left", "Is Enemy\nOn My Half", "Is Nearest\nEnemy Moving\nAway", "Is Nearest\nEnemy Moving\nTowards", "Attack Closest", "Go To Base", "Run Away", "Stop" };
         private UserInterfaceState _state;
         private Button _minion1;
         private Button _minion1Selected;
