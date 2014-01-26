@@ -1,4 +1,4 @@
-﻿// #define GRAPHMAKER
+﻿﻿// #define GRAPHMAKER
 
 using MinionsOfDeath.Behaviors;
 using MinionsOfDeath.Behaviors.Actions;
@@ -79,7 +79,6 @@ namespace MinionsOfDeath
         {
             _player1 = new Player(1);
 			Minion minion1 = new Minion(true, 0);
-            minion1.State = 1;
             _player1.AddMinion(minion1);
             _player1.Base = new Base((List<Sprite>)null, 1);
             _player1.Base.Pos.X = 499;
@@ -87,7 +86,6 @@ namespace MinionsOfDeath
 
             _player2 = new Player(2);
 			Minion minion2 = new Minion(false, 0);
-            minion2.State = 1;
             _player2.AddMinion(minion2);
             _player2.Base = new Base((List<Sprite>)null, 2);
             _player2.Base.Pos.X = 495;
