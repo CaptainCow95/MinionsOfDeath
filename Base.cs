@@ -15,9 +15,10 @@ namespace MinionsOfDeath
             : base(sprites)
         {
             _pid = PlayerID;
-			_left += 4;
-			_right -= 4;
-			_top += 4;
+			_left = 0;
+			_right = 202;
+			_top = 0;
+			_bottom = 134;
         }
 
         public int PID
