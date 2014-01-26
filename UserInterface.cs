@@ -1,4 +1,4 @@
-﻿﻿using MinionsOfDeath.Behaviors;
+﻿﻿﻿using MinionsOfDeath.Behaviors;
 using MinionsOfDeath.Behaviors.Actions;
 using MinionsOfDeath.Behaviors.Queries;
 using MinionsOfDeath.Graphics;
@@ -540,6 +540,7 @@ namespace MinionsOfDeath
                         {
                             //TODO: win state
                             _state = UserInterfaceState.Player1Wins;
+						Sound.StopAll();
 						Sound.Victory.Play();
                         }
                     }
@@ -548,6 +549,7 @@ namespace MinionsOfDeath
                         if (player2Minion.Value.IsCollidingWith(Game.Player1.Base) && player2Minion.Value.IsSpecial)
                         {
                             _state = UserInterfaceState.Player2Wins;
+						Sound.StopAll();
 						Sound.Victory.Play();
                         }
                     }
